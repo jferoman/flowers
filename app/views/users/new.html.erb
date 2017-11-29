@@ -1,0 +1,46 @@
+<div class="block-center mt-xl wd-xl">
+   <!-- START panel-->
+   <div class="panel panel-light panel-flat">
+      <div class="panel-heading text-center">
+         <a href="#">
+            <img src="<%= image_path('angle/melius2.png') %>" alt="Image" class="block-center img-responsive" />
+         </a>
+      </div>
+      <div class="panel-body">
+         <p class="text-center pv">REGISTRARSE.</p>
+         <form role="form" data-parsley-validate="" novalidate="" class="mb-lg" action="/users" accept-charset="UTF-8" method="post">
+            <div class="form-group has-feedback">
+               <label for="signupInputName" class="text-muted">Nombre</label>
+               <input id="signupInputName" type="text-muted" placeholder="Ingrese nombre" autocomplete="off" required="required" class="form-control" name="user[name]"/>
+               <span class="fa fa-user form-control-feedback text-muted"></span>
+            </div>
+            <div class="form-group has-feedback">
+               <label for="signupInputEmail1" class="text-muted">Email</label>
+               <input id="signupInputEmail1" type="email" placeholder="Ingresar email" autocomplete="off" required="required" class="form-control" name="user[email]"/>
+               <span class="fa fa-envelope form-control-feedback text-muted"></span>
+            </div>
+            <div class="form-group has-feedback">
+               <label for="signupInputPassword1" class="text-muted">Contraseña</label>
+               <input id="signupInputPassword1" type="password" placeholder="Contraseña" autocomplete="off" required="required" class="form-control" name="user[password]"/>
+               <span class="fa fa-lock form-control-feedback text-muted"></span>
+            </div>
+            <div class="form-group has-feedback">
+               <label for="signupInputRePassword1" class="text-muted">Confirmar contraseña</label>
+               <input id="signupInputRePassword1" type="password" placeholder="Confirmar contraseña" autocomplete="off" required="required" data-parsley-equalto="#signupInputPassword1" class="form-control" name="user[password_confirmation]" />
+               <span class="fa fa-lock form-control-feedback text-muted"></span>
+            </div>
+            <div class="clearfix">
+               <div class="checkbox c-checkbox pull-left mt0">
+                  <label>
+                     <input type="checkbox" value="" required="required" name="agreed" />
+                     <span class="fa fa-check"></span>Acepto los <a href="#">terminos.</a>
+                  </label>
+               </div>
+            </div>
+            <button name="commit" type="submit" class="btn btn-block btn-primary mt-lg" >Crear cuenta</button>
+         </form>
+         <p class="pt-lg text-center">Ya posee una cuenta?</p><a href="/login" class="btn btn-block btn-default">Iniciar Sesión</a>
+      </div>
+   </div>
+   <!-- END panel-->
+</div>

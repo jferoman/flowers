@@ -1,0 +1,92 @@
+!-- START Sidebar (left)-->
+<div class="aside-inner">
+   <nav class="sidebar" data-sidebar-anyclick-close="">
+      <!-- START sidebar nav-->
+      <ul class="nav">
+         <!-- START user info-->
+         <li class="has-user-block">
+            <div id="user-block" class="collapse">
+               <div class="item user-block">
+                  <!-- User picture-->
+                  <div class="user-block-picture">
+                     <div class="user-block-status">
+                        <div> Hola </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </li>
+         <!-- END user info-->
+         <!-- Iterates over all sidebar items-->
+          <li class="nav-heading">
+            <em class="fa fa-calculator"></em>
+            <span>Crear Prog.</span>
+         </li>
+
+          <li class="<%= 'active' if controller?('iph_dates') && action?('new') %>">
+            <a href= "<%=new_iph_date_path%>" title="IDF">
+               <em class="fa fa-bus"></em>
+               <span>Fecha Programacion</span>
+            </a>
+         </li>
+          <li class="<%= 'active' if controller?('time_tables') && action?('new') %>">
+            <a href= "<%=new_time_table_path%>" title="IDF">
+               <em class="fa fa-bus"></em>
+               <span> Tabla Horario</span>
+            </a>
+         </li>
+         <li class="nav-heading">
+            <em class="fa fa-calculator"></em>
+            <span>Análisis</span>
+         </li>
+         <li class="<%= 'active' if controller?('calendars') && action?('index') %>">
+            <a href= "/calendars" title="IDF">
+               <em class="icon-graph"></em>
+               <span>Calendario</span>
+            </a>
+         </li>
+         <li class="<%= 'active' if controller?('time_tables') && action?('index_original_tm') %>">
+            <a href="/time_tables_original_tm" title="Fechas de Programación">
+               <em class="fa icon-calendar"></em>
+               <span >Fechas Programación</span>
+            </a>
+         </li>
+         <li class="<%= 'active' if controller?('iph_dates') && action?('index') %>">
+            <a href="/iph_dates" title="Reclamacion">
+               <em class="fa fa-dollar"></em>
+               <span >Reclamacion</span>
+            </a>
+         </li>
+         <li class="nav-heading">
+            <em class="fa fa-database"></em>
+            <span>Base de Datos</span>
+         </li>
+         <li class="<%= 'active' if controller?('time_tables') && action?('index') %>">
+            <a href= "/time_tables" title="Tabla Horario">
+               <em class="fa fa-calendar"></em>
+               <span data-localize="sidebar.nav.table.STANDARD">Tabla Horario</span>
+            </a>
+         </li>
+         <li class="<%= 'active' if controller?('commercial_matrices') && action?('index') %>">
+            <a href= "/commercial_matrices" title="Matriz Comercial">
+               <em class="fa fa-th"></em>
+               <span data-localize="sidebar.nav.table.STANDARD">Matriz Comercial</span>
+            </a>
+         </li>
+         <li class="<%= 'active' if controller?('dead_matrices') && action?('index') %>">
+            <a href="/dead_matrices" title="Matriz Vacio">
+               <em class="fa fa-th"></em>
+               <span data-localize="sidebar.nav.table.EXTENDED">Matriz Vacio</span>
+            </a>
+         </li>
+         <li class="<%= 'active' if controller?('reference_fleets') && action?('index') %>">
+            <a href="/reference_fleets" title="Flota Reference">
+               <em class="fa fa-bus"></em>
+               <span data-localize="sidebar.nav.table.DATATABLE">Flota Reference</span>
+            </a>
+         </li>
+      </ul>
+      <!-- END sidebar nav-->
+   </nav>
+</div>
+<!-- END Sidebar (left)-->

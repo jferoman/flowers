@@ -1,0 +1,26 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * --- Angle Main Stylesheet
+ * 
+ *= require angle/app
+ *
+ * --- Assets paths redefinition 
+ * 
+ *= require fonts
+ *= require vendor.assets
+ *
+ */
+.idf_group_btn {
+	height: 75px;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	width: 100%;
+    
+}
+
+
+.btn-group > button {
+	height: 45px;    
+}
