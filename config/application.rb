@@ -42,27 +42,6 @@ module Angle
     # Controller assets
     config.assets.precompile += [
                                  # Scripts
-                                 'users.js',
-                                 'charts.js',
-                                 'dashboard.js',
-                                 'documentation.js',
-                                 'elements.js',
-                                 'extras.js',
-                                 'forms.js',
-                                 'maps.js',
-                                 'multilevel.js',
-                                 'pages.js',
-                                 'tables.js',
-                                 'widgets.js',
-                                 'blog.js',
-                                 'ecommerce.js',
-                                 'forum.js',
-                                 'time_tables.js',
-                                 'commercial_matrices.js',
-                                 'dead_matrices.js',
-                                 'reference_fleets.js',
-                                 'iph_dates.js',
-                                 'calendars.js',
                                  # Stylesheets
                                  'charts.css',
                                  'dashboard.css',
@@ -86,9 +65,7 @@ module Angle
                                  'calendars.css',
                                 ]
 
-
   end
-
 end
 
 

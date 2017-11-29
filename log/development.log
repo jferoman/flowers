@@ -1411,3 +1411,498 @@ rack (2.0.1) lib/rack/handler/webrick.rb:86:in `service'
 /Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:140:in `service'
 /Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:96:in `run'
 /Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/server.rb:290:in `block in start_thread'
+Started GET "/signup" for ::1 at 2017-11-29 15:23:45 -0500
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/pages
+  Rendered users/new.html.erb within layouts/pages (3120.3ms)
+DEPRECATION WARNING: The asset "users.css" is not present in the asset pipeline.Falling back to an asset that may be in the public folder.
+This behavior is deprecated and will be removed.
+To bypass the asset pipeline and preserve this behavior,
+use the `skip_pipeline: true` option.
+ (called from _app_views_layouts_pages_html_erb__2330748199986104045_70214279761580 at /Users/joseroman/Development/flowers/app/views/layouts/pages.html.erb:13)
+DEPRECATION WARNING: The asset "users.js" is not present in the asset pipeline.Falling back to an asset that may be in the public folder.
+This behavior is deprecated and will be removed.
+To bypass the asset pipeline and preserve this behavior,
+use the `skip_pipeline: true` option.
+ (called from _app_views_layouts_pages_html_erb__2330748199986104045_70214279761580 at /Users/joseroman/Development/flowers/app/views/layouts/pages.html.erb:35)
+Completed 200 OK in 3244ms (Views: 3242.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/users.js" for ::1 at 2017-11-29 15:23:49 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/javascripts/users.js"):
+  
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+request_store (1.3.2) lib/request_store/middleware.rb:9:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.0.rc1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.0.rc1) lib/rails/engine.rb:522:in `call'
+rack (2.0.1) lib/rack/handler/webrick.rb:86:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:140:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:96:in `run'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/server.rb:290:in `block in start_thread'
+Started GET "/stylesheets/users.css" for ::1 at 2017-11-29 15:23:49 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/stylesheets/users.css"):
+  
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+request_store (1.3.2) lib/request_store/middleware.rb:9:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.0.rc1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.0.rc1) lib/rails/engine.rb:522:in `call'
+rack (2.0.1) lib/rack/handler/webrick.rb:86:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:140:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:96:in `run'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/server.rb:290:in `block in start_thread'
+Started GET "/javascripts/users.js" for ::1 at 2017-11-29 15:23:50 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/javascripts/users.js"):
+  
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+request_store (1.3.2) lib/request_store/middleware.rb:9:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.0.rc1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.0.rc1) lib/rails/engine.rb:522:in `call'
+rack (2.0.1) lib/rack/handler/webrick.rb:86:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:140:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:96:in `run'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/server.rb:290:in `block in start_thread'
+Started GET "/signup" for ::1 at 2017-11-29 15:24:28 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/pages
+  Rendered users/new.html.erb within layouts/pages (1717.9ms)
+DEPRECATION WARNING: The asset "users.css" is not present in the asset pipeline.Falling back to an asset that may be in the public folder.
+This behavior is deprecated and will be removed.
+To bypass the asset pipeline and preserve this behavior,
+use the `skip_pipeline: true` option.
+ (called from _app_views_layouts_pages_html_erb__2792780682492932527_70266087186460 at /Users/joseroman/Development/flowers/app/views/layouts/pages.html.erb:13)
+DEPRECATION WARNING: The asset "users.js" is not present in the asset pipeline.Falling back to an asset that may be in the public folder.
+This behavior is deprecated and will be removed.
+To bypass the asset pipeline and preserve this behavior,
+use the `skip_pipeline: true` option.
+ (called from _app_views_layouts_pages_html_erb__2792780682492932527_70266087186460 at /Users/joseroman/Development/flowers/app/views/layouts/pages.html.erb:35)
+Completed 200 OK in 1889ms (Views: 1886.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/users.js" for ::1 at 2017-11-29 15:24:31 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/javascripts/users.js"):
+  
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+request_store (1.3.2) lib/request_store/middleware.rb:9:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.0.rc1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.0.rc1) lib/rails/engine.rb:522:in `call'
+rack (2.0.1) lib/rack/handler/webrick.rb:86:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:140:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:96:in `run'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/server.rb:290:in `block in start_thread'
+Started GET "/stylesheets/users.css" for ::1 at 2017-11-29 15:24:31 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/stylesheets/users.css"):
+  
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+request_store (1.3.2) lib/request_store/middleware.rb:9:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.0.rc1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.0.rc1) lib/rails/engine.rb:522:in `call'
+rack (2.0.1) lib/rack/handler/webrick.rb:86:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:140:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:96:in `run'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/server.rb:290:in `block in start_thread'
+Started GET "/javascripts/users.js" for ::1 at 2017-11-29 15:24:31 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/javascripts/users.js"):
+  
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+request_store (1.3.2) lib/request_store/middleware.rb:9:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.0.rc1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.0.rc1) lib/rails/engine.rb:522:in `call'
+rack (2.0.1) lib/rack/handler/webrick.rb:86:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:140:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:96:in `run'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/server.rb:290:in `block in start_thread'
+Started GET "/signup" for ::1 at 2017-11-29 15:24:36 -0500
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/pages
+  Rendered users/new.html.erb within layouts/pages (2.0ms)
+DEPRECATION WARNING: The asset "users.css" is not present in the asset pipeline.Falling back to an asset that may be in the public folder.
+This behavior is deprecated and will be removed.
+To bypass the asset pipeline and preserve this behavior,
+use the `skip_pipeline: true` option.
+ (called from _app_views_layouts_pages_html_erb__2792780682492932527_70266131719520 at /Users/joseroman/Development/flowers/app/views/layouts/pages.html.erb:13)
+DEPRECATION WARNING: The asset "users.js" is not present in the asset pipeline.Falling back to an asset that may be in the public folder.
+This behavior is deprecated and will be removed.
+To bypass the asset pipeline and preserve this behavior,
+use the `skip_pipeline: true` option.
+ (called from _app_views_layouts_pages_html_erb__2792780682492932527_70266131719520 at /Users/joseroman/Development/flowers/app/views/layouts/pages.html.erb:35)
+Completed 200 OK in 79ms (Views: 77.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/stylesheets/users.css" for ::1 at 2017-11-29 15:24:36 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/stylesheets/users.css"):
+  
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+request_store (1.3.2) lib/request_store/middleware.rb:9:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.0.rc1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.0.rc1) lib/rails/engine.rb:522:in `call'
+rack (2.0.1) lib/rack/handler/webrick.rb:86:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:140:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:96:in `run'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/server.rb:290:in `block in start_thread'
+Started GET "/javascripts/users.js" for ::1 at 2017-11-29 15:24:36 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/javascripts/users.js"):
+  
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+request_store (1.3.2) lib/request_store/middleware.rb:9:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.0.rc1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.0.rc1) lib/rails/engine.rb:522:in `call'
+rack (2.0.1) lib/rack/handler/webrick.rb:86:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:140:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:96:in `run'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/server.rb:290:in `block in start_thread'
+Started GET "/signup" for ::1 at 2017-11-29 15:24:50 -0500
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/pages
+  Rendered users/new.html.erb within layouts/pages (1.9ms)
+DEPRECATION WARNING: The asset "users.css" is not present in the asset pipeline.Falling back to an asset that may be in the public folder.
+This behavior is deprecated and will be removed.
+To bypass the asset pipeline and preserve this behavior,
+use the `skip_pipeline: true` option.
+ (called from _app_views_layouts_pages_html_erb__2792780682492932527_70266133757460 at /Users/joseroman/Development/flowers/app/views/layouts/pages.html.erb:13)
+DEPRECATION WARNING: The asset "users.js" is not present in the asset pipeline.Falling back to an asset that may be in the public folder.
+This behavior is deprecated and will be removed.
+To bypass the asset pipeline and preserve this behavior,
+use the `skip_pipeline: true` option.
+ (called from _app_views_layouts_pages_html_erb__2792780682492932527_70266133757460 at /Users/joseroman/Development/flowers/app/views/layouts/pages.html.erb:35)
+Completed 200 OK in 77ms (Views: 75.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/stylesheets/users.css" for ::1 at 2017-11-29 15:24:50 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/stylesheets/users.css"):
+  
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+request_store (1.3.2) lib/request_store/middleware.rb:9:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.0.rc1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.0.rc1) lib/rails/engine.rb:522:in `call'
+rack (2.0.1) lib/rack/handler/webrick.rb:86:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:140:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:96:in `run'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/server.rb:290:in `block in start_thread'
+Started GET "/javascripts/users.js" for ::1 at 2017-11-29 15:24:50 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/javascripts/users.js"):
+  
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+request_store (1.3.2) lib/request_store/middleware.rb:9:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.0.rc1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.0.rc1) lib/rails/engine.rb:522:in `call'
+rack (2.0.1) lib/rack/handler/webrick.rb:86:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:140:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:96:in `run'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/server.rb:290:in `block in start_thread'
+Started GET "/signup" for ::1 at 2017-11-29 15:26:19 -0500
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/pages
+  Rendered users/new.html.erb within layouts/pages (9.4ms)
+DEPRECATION WARNING: The asset "users.css" is not present in the asset pipeline.Falling back to an asset that may be in the public folder.
+This behavior is deprecated and will be removed.
+To bypass the asset pipeline and preserve this behavior,
+use the `skip_pipeline: true` option.
+ (called from _app_views_layouts_pages_html_erb__2792780682492932527_70266082404840 at /Users/joseroman/Development/flowers/app/views/layouts/pages.html.erb:13)
+DEPRECATION WARNING: The asset "users.js" is not present in the asset pipeline.Falling back to an asset that may be in the public folder.
+This behavior is deprecated and will be removed.
+To bypass the asset pipeline and preserve this behavior,
+use the `skip_pipeline: true` option.
+ (called from _app_views_layouts_pages_html_erb__2792780682492932527_70266082404840 at /Users/joseroman/Development/flowers/app/views/layouts/pages.html.erb:35)
+Completed 200 OK in 475ms (Views: 473.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/stylesheets/users.css" for ::1 at 2017-11-29 15:26:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/stylesheets/users.css"):
+  
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+request_store (1.3.2) lib/request_store/middleware.rb:9:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.0.rc1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.0.rc1) lib/rails/engine.rb:522:in `call'
+rack (2.0.1) lib/rack/handler/webrick.rb:86:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:140:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:96:in `run'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/server.rb:290:in `block in start_thread'
+Started GET "/javascripts/users.js" for ::1 at 2017-11-29 15:26:20 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/javascripts/users.js"):
+  
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+request_store (1.3.2) lib/request_store/middleware.rb:9:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.0.rc1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.0.rc1) lib/rails/engine.rb:522:in `call'
+rack (2.0.1) lib/rack/handler/webrick.rb:86:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:140:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:96:in `run'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/server.rb:290:in `block in start_thread'
+Started GET "/signup" for ::1 at 2017-11-29 15:30:16 -0500
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/pages
+  Rendered users/new.html.erb within layouts/pages (2156.4ms)
+DEPRECATION WARNING: The asset "users.css" is not present in the asset pipeline.Falling back to an asset that may be in the public folder.
+This behavior is deprecated and will be removed.
+To bypass the asset pipeline and preserve this behavior,
+use the `skip_pipeline: true` option.
+ (called from _app_views_layouts_pages_html_erb__4214597899158162110_70146815920980 at /Users/joseroman/Development/flowers/app/views/layouts/pages.html.erb:13)
+DEPRECATION WARNING: The asset "users.js" is not present in the asset pipeline.Falling back to an asset that may be in the public folder.
+This behavior is deprecated and will be removed.
+To bypass the asset pipeline and preserve this behavior,
+use the `skip_pipeline: true` option.
+ (called from _app_views_layouts_pages_html_erb__4214597899158162110_70146815920980 at /Users/joseroman/Development/flowers/app/views/layouts/pages.html.erb:35)
+Completed 200 OK in 2411ms (Views: 2409.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/users.js" for ::1 at 2017-11-29 15:30:21 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/javascripts/users.js"):
+  
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+request_store (1.3.2) lib/request_store/middleware.rb:9:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.0.rc1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.0.rc1) lib/rails/engine.rb:522:in `call'
+rack (2.0.1) lib/rack/handler/webrick.rb:86:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:140:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:96:in `run'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/server.rb:290:in `block in start_thread'
+Started GET "/stylesheets/users.css" for ::1 at 2017-11-29 15:30:21 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/stylesheets/users.css"):
+  
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+request_store (1.3.2) lib/request_store/middleware.rb:9:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.0.rc1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.0.rc1) lib/rails/engine.rb:522:in `call'
+rack (2.0.1) lib/rack/handler/webrick.rb:86:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:140:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:96:in `run'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/server.rb:290:in `block in start_thread'
+Started GET "/javascripts/users.js" for ::1 at 2017-11-29 15:30:21 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/javascripts/users.js"):
+  
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.0.rc1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.0.rc1) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+request_store (1.3.2) lib/request_store/middleware.rb:9:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.0.rc1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.0.rc1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.0.rc1) lib/rails/engine.rb:522:in `call'
+rack (2.0.1) lib/rack/handler/webrick.rb:86:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:140:in `service'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/httpserver.rb:96:in `run'
+/Users/joseroman/.rbenv/versions/2.4.0/lib/ruby/2.4.0/webrick/server.rb:290:in `block in start_thread'
