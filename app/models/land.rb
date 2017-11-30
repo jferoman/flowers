@@ -15,4 +15,13 @@ class Land < ApplicationRecord
   def get_free_area
     total_area - get_blocks_area
   end
+
+  def add_block block
+    if block.area > total_area
+      raise "Area del bloque no puede superar el area de la finca"
+    elsif block.area > get_free_area
+      raise "Area del bloque es mayor al area disponible de la finca"
+    end
+    block.update(land_id: id)
+  end
 end

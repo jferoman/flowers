@@ -14,12 +14,36 @@ describe Land do
     it { should have_many(:blocks) }
   end
 
-  describe 'get blocks area' do
+  describe 'Adding blocks ' do
     let!(:land) { create :land }
+    let!(:block) { create :block , :first_block }
+    let!(:third_block) { create :block , :third_block }
+    let!(:large_block) { create :block , :large_block }
+
+
+    it 'add new block' do
+      land.add_block(block)
+      expect( land.blocks.count ).to be(1)
+      expect( block.land ).to eq(land)
+    end
 
     it 'sum the blocks area' do
-      binding.pry
-      expect ().to be()
+      land.add_block(block)
+      expect( land.get_blocks_area ).to be(block.area)
+    end
+
+    it 'get free area of a land' do
+      land.add_block(block)
+      expect( land.get_free_area ).to be(500.1-100.0)
+    end
+
+    it "raise error by area error" do
+      expect{land.add_block(large_block)}.to raise_error(RuntimeError)
+    end
+
+    it "raise error by not enough area error" do
+      land.add_block(third_block)
+      expect{ land.add_block(third_block) }.to raise_error(RuntimeError)
     end
   end
 
