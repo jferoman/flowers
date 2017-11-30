@@ -43,7 +43,7 @@ group :development do
 	gem 'capistrano-bower'
 	gem 'capistrano-rails-db'
 	gem 'better_errors'
-
+	gem 'capybara'
 
 end
 
@@ -53,4 +53,8 @@ group :test,:development do
 	gem 'database_cleaner'
 	gem 'rspec-rails'
 	gem 'pry'
+end
+
+group :test do
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
 end

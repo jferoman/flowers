@@ -10,12 +10,7 @@ describe Company do
   end
 
   describe 'associations' do
-    it { should have_many(:historical_kilometers) }
-    it { should have_many(:interventions).through(:buses_interventions) }
-
-    it { should belong_to(:body_work) }
-
-    it { should have_one(:company) }
+    it { should have_many(:lands) }
   end
 
 end
