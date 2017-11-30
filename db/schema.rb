@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171130143110) do
+ActiveRecord::Schema.define(version: 20171130172502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "beds", force: :cascade do |t|
+    t.string "number"
+    t.float "area"
+    t.string "type"
+    t.integer "capacity"
+    t.bigint "block_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["block_id"], name: "index_beds_on_block_id"
+    t.index ["number"], name: "index_beds_on_number"
+  end
 
   create_table "blocks", force: :cascade do |t|
     t.string "name"

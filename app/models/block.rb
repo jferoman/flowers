@@ -5,5 +5,6 @@ class Block < ApplicationRecord
   validates_numericality_of :area, :allow_nil => false, :greater_than => 0.0
 
   belongs_to :land
+  has_many :beds
 
 end

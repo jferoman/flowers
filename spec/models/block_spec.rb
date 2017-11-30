@@ -10,5 +10,6 @@ describe Block do
 
   describe 'associations' do
     it { should belong_to(:land) }
+    it { should have_many(:beds) }
   end
 end

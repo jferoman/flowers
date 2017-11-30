@@ -38,7 +38,7 @@ describe Land do
     end
 
     it "raise error by area error" do
-      expect{land.add_block(large_block)}.to raise_error(RuntimeError)
+      expect{ land.add_block(large_block) }.to raise_error(RuntimeError)
     end
 
     it "raise error by not enough area error" do
