@@ -5,5 +5,6 @@ class Block < ApplicationRecord
 
   belongs_to :farm
   has_many :beds
+  has_many :block_color_flowers
 
 end

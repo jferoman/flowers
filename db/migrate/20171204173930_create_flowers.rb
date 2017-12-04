@@ -1,7 +1,7 @@
 class CreateFlowers < ActiveRecord::Migration[5.1]
   def change
     create_table :flowers do |t|
-      t.string :type, presence: true
+      t.string :name
 
       t.timestamps
     end

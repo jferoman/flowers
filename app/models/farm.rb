@@ -6,5 +6,8 @@ class Farm < ApplicationRecord
 
   belongs_to :company
   has_many :blocks
+  has_many :productivity_curves
+  has_many :block_color_flowers
+  has_many :flower_density
 
 end

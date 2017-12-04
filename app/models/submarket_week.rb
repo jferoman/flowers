@@ -1,0 +1,2 @@
+class SubmarketWeek < ApplicationRecord
+end

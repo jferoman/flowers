@@ -4,5 +4,6 @@ class Company < ApplicationRecord
   validates_presence_of   :name, :nit
 
   has_many :farms
+  has_many :demands
 
 end

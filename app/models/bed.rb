@@ -7,4 +7,7 @@ class Bed < ApplicationRecord
   validates_numericality_of :usable_area, :allow_nil => false, :greater_than => 0.0
 
   belongs_to :block
+  has_one :bed_type
+  has_many :sowing_details
+
 end

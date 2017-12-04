@@ -6,6 +6,7 @@ class CreateBeds < ActiveRecord::Migration[5.1]
       t.float :usable_area, presence: true
 
       t.references :block, index: true
+      t.references :bed_type, index: true
 
       t.timestamps
     end
