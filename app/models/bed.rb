@@ -1,10 +1,10 @@
 class Bed < ApplicationRecord
 
   validates_uniqueness_of :number
-  validates_presence_of   :number, :area, :type, :capacity
+  validates_presence_of   :number, :total_area, :usable_area
 
-  validates_numericality_of :area, :allow_nil => false, :greater_than => 0.0
-  validates_numericality_of :capacity, :allow_nil => false, :greater_than => 0
+  validates_numericality_of :total_area, :allow_nil => false, :greater_than => 0.0
+  validates_numericality_of :usable_area, :allow_nil => false, :greater_than => 0.0
 
   belongs_to :block
 end

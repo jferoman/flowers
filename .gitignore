@@ -11,7 +11,16 @@
 /log/*
 !/log/.keep
 /tmp/*
-/vendor/*
 
-#
+
+/log/development.log
+/tmp/pids/server.pid
+/bower_components/*
+/bower_components
+/vendor/assets/bower_components/*
+/vendor/assets/bower_components
+
 spec/examples.txt
+config/database.yml
+config/secrets.yml
+config/application.yml

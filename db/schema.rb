@@ -10,16 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171130172502) do
+ActiveRecord::Schema.define(version: 20171204165444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "beds", force: :cascade do |t|
     t.string "number"
-    t.float "area"
-    t.string "type"
-    t.integer "capacity"
+    t.float "total_area"
+    t.float "usable_area"
     t.bigint "block_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -29,11 +28,10 @@ ActiveRecord::Schema.define(version: 20171130172502) do
 
   create_table "blocks", force: :cascade do |t|
     t.string "name"
-    t.float "area"
-    t.bigint "land_id"
+    t.bigint "farm_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["land_id"], name: "index_blocks_on_land_id"
+    t.index ["farm_id"], name: "index_blocks_on_farm_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -44,21 +42,20 @@ ActiveRecord::Schema.define(version: 20171130172502) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "flowers", force: :cascade do |t|
-    t.string "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "lands", force: :cascade do |t|
+  create_table "farms", force: :cascade do |t|
     t.string "code"
-    t.float "total_area"
-    t.float "altitude"
+    t.float "mamsl"
     t.float "pluviosity"
     t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_lands_on_company_id"
+    t.index ["company_id"], name: "index_farms_on_company_id"
+  end
+
+  create_table "flowers", force: :cascade do |t|
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

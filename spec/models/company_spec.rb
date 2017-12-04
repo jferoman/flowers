@@ -10,7 +10,7 @@ describe Company do
   end
 
   describe 'associations' do
-    it { should have_many(:lands) }
+    it { should have_many(:farms) }
   end
 
 end

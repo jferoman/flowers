@@ -1,10 +1,9 @@
 class Block < ApplicationRecord
 
   validates_uniqueness_of :name
-  validates_presence_of   :name, :area
-  validates_numericality_of :area, :allow_nil => false, :greater_than => 0.0
+  validates_presence_of   :name
 
-  belongs_to :land
+  belongs_to :farm
   has_many :beds
 
 end

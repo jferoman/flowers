@@ -1,9 +1,8 @@
-class CreateLands < ActiveRecord::Migration[5.1]
+class CreateFarms < ActiveRecord::Migration[5.1]
   def change
-    create_table :lands do |t|
+    create_table :farms do |t|
       t.string :code, presence: true
-      t.float :total_area, presence: true
-      t.float :altitude
+      t.float :mamsl
       t.float :pluviosity
 
       t.references :company, index: true
