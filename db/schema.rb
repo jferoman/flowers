@@ -69,10 +69,10 @@ ActiveRecord::Schema.define(version: 20171205163141) do
   end
 
   create_table "color_submarkets", force: :cascade do |t|
-    t.float "price"
-    t.boolean "default"
-    t.bigint "color_id"
-    t.bigint "submarket_id"
+    t.float "price", null: false
+    t.boolean "default", null: false
+    t.bigint "color_id", null: false
+    t.bigint "submarket_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["color_id"], name: "index_color_submarkets_on_color_id"
@@ -80,9 +80,10 @@ ActiveRecord::Schema.define(version: 20171205163141) do
   end
 
   create_table "colors", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_colors_on_name"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -104,13 +105,14 @@ ActiveRecord::Schema.define(version: 20171205163141) do
   end
 
   create_table "demands", force: :cascade do |t|
-    t.integer "quantity"
-    t.bigint "color_id"
-    t.bigint "flower_id"
-    t.bigint "market_id"
-    t.bigint "week_id"
+    t.integer "quantity", null: false
+    t.bigint "color_id", null: false
+    t.bigint "flower_id", null: false
+    t.bigint "market_id", null: false
+    t.bigint "week_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["color_id", "flower_id", "market_id", "week_id"], name: "demand_color_flower_market", unique: true
     t.index ["color_id"], name: "index_demands_on_color_id"
     t.index ["flower_id"], name: "index_demands_on_flower_id"
     t.index ["market_id"], name: "index_demands_on_market_id"
@@ -168,10 +170,10 @@ ActiveRecord::Schema.define(version: 20171205163141) do
   end
 
   create_table "sowing_details", force: :cascade do |t|
-    t.integer "quantity"
-    t.bigint "variety_id"
-    t.bigint "week_id"
-    t.bigint "bed_id"
+    t.integer "quantity", null: false
+    t.bigint "variety_id", null: false
+    t.bigint "week_id", null: false
+    t.bigint "bed_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bed_id"], name: "index_sowing_details_on_bed_id"
@@ -204,8 +206,8 @@ ActiveRecord::Schema.define(version: 20171205163141) do
   end
 
   create_table "submarkets", force: :cascade do |t|
-    t.string "code"
-    t.string "name"
+    t.string "code", null: false
+    t.string "name", null: false
     t.bigint "market_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -236,10 +238,12 @@ ActiveRecord::Schema.define(version: 20171205163141) do
   end
 
   create_table "weeks", force: :cascade do |t|
-    t.date "initial_day"
-    t.integer "week"
+    t.date "initial_day", null: false
+    t.integer "week", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["initial_day", "week"], name: "index_weeks_on_initial_day_and_week", unique: true
+    t.index ["week"], name: "index_weeks_on_week"
   end
 
 end

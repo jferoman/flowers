@@ -10,5 +10,7 @@ class CreateDemands < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+    add_index :demands, [:color_id, :flower_id, :market_id, :week_id], unique: true,  :name => 'demand_color_flower_market'
+
   end
 end
