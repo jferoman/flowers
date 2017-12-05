@@ -1,12 +1,7 @@
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.1.0.rc1'
 
-# HEROKU doesn't support sqlite3.
-# Comment this gem
-#gem 'sqlite3'
-# and uncomment the following
  gem 'pg'
 # gem 'thin'
 ruby '2.4.0'
@@ -27,8 +22,6 @@ gem 'gon'
 gem 'rails_handsontable'
 #Multiple inserts
 gem 'bulk_insert'
-# Use unicorn as the app server
-# gem 'unicorn'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
@@ -43,7 +36,7 @@ group :development do
 	gem 'capistrano-bower'
 	gem 'capistrano-rails-db'
 	gem 'better_errors'
-
+	gem 'capybara'
 
 end
 
@@ -53,4 +46,8 @@ group :test,:development do
 	gem 'database_cleaner'
 	gem 'rspec-rails'
 	gem 'pry'
+end
+
+group :test do
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
 end
