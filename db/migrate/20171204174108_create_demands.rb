@@ -1,14 +1,12 @@
 class CreateDemands < ActiveRecord::Migration[5.1]
   def change
     create_table :demands do |t|
-      t.integer :quantity
+      t.integer :quantity, null: false
 
-      t.references :company, index: true
-      t.references :color, index: true
-      t.references :flower, index: true
-      t.references :market, index: true
-      t.references :week, index: true
-
+      t.references :color, null: false, index: true
+      t.references :flower, null: false, index: true
+      t.references :market, null: false, index: true
+      t.references :week, null: false, index: true
 
       t.timestamps
     end

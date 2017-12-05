@@ -1,11 +1,11 @@
 class CreateSowingDetails < ActiveRecord::Migration[5.1]
   def change
     create_table :sowing_details do |t|
-      t.integer :quantity
+      t.integer :quantity, null: false
 
-      t.references :variety, index: true
-      t.references :week, index: true
-      t.references :bed, index: true
+      t.references :variety, null: false, index: true
+      t.references :week, null: false, index: true
+      t.references :bed, null: false, index: true
 
 
       t.timestamps

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171204174510) do
+ActiveRecord::Schema.define(version: 20171205163141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,12 +38,13 @@ ActiveRecord::Schema.define(version: 20171204174510) do
   end
 
   create_table "block_color_flowers", force: :cascade do |t|
-    t.boolean "usage"
-    t.bigint "block_id"
-    t.bigint "flower_id"
-    t.bigint "color_id"
+    t.boolean "usage", null: false
+    t.bigint "block_id", null: false
+    t.bigint "flower_id", null: false
+    t.bigint "color_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["block_id", "flower_id", "color_id"], name: "block_color_flower", unique: true
     t.index ["block_id"], name: "index_block_color_flowers_on_block_id"
     t.index ["color_id"], name: "index_block_color_flowers_on_color_id"
     t.index ["flower_id"], name: "index_block_color_flowers_on_flower_id"
@@ -56,6 +57,15 @@ ActiveRecord::Schema.define(version: 20171204174510) do
     t.datetime "updated_at", null: false
     t.index ["farm_id"], name: "index_blocks_on_farm_id"
     t.index ["name", "farm_id"], name: "index_blocks_on_name_and_farm_id", unique: true
+  end
+
+  create_table "coldrooms", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "capacity", null: false
+    t.bigint "farm_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["farm_id"], name: "index_coldrooms_on_farm_id"
   end
 
   create_table "color_submarkets", force: :cascade do |t|
@@ -84,9 +94,9 @@ ActiveRecord::Schema.define(version: 20171204174510) do
   end
 
   create_table "cuttings", force: :cascade do |t|
-    t.integer "quantity"
-    t.bigint "week_id"
-    t.bigint "variety_id"
+    t.integer "quantity", null: false
+    t.bigint "week_id", null: false
+    t.bigint "variety_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["variety_id"], name: "index_cuttings_on_variety_id"
@@ -95,7 +105,6 @@ ActiveRecord::Schema.define(version: 20171204174510) do
 
   create_table "demands", force: :cascade do |t|
     t.integer "quantity"
-    t.bigint "company_id"
     t.bigint "color_id"
     t.bigint "flower_id"
     t.bigint "market_id"
@@ -103,7 +112,6 @@ ActiveRecord::Schema.define(version: 20171204174510) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["color_id"], name: "index_demands_on_color_id"
-    t.index ["company_id"], name: "index_demands_on_company_id"
     t.index ["flower_id"], name: "index_demands_on_flower_id"
     t.index ["market_id"], name: "index_demands_on_market_id"
     t.index ["week_id"], name: "index_demands_on_week_id"
@@ -131,29 +139,32 @@ ActiveRecord::Schema.define(version: 20171204174510) do
   end
 
   create_table "flowers", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "markets", force: :cascade do |t|
-    t.string "code"
-    t.string "country"
+    t.string "code", null: false
+    t.string "name", null: false
+    t.bigint "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_markets_on_company_id"
   end
 
   create_table "productivity_curves", force: :cascade do |t|
-    t.integer "week_number"
-    t.float "cost"
-    t.integer "production"
-    t.integer "cut"
+    t.integer "week_number", null: false
+    t.float "cost", null: false
+    t.integer "production", null: false
+    t.integer "cut", null: false
     t.bigint "farm_id"
     t.bigint "variety_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["farm_id"], name: "index_productivity_curves_on_farm_id"
     t.index ["variety_id"], name: "index_productivity_curves_on_variety_id"
+    t.index ["week_number", "farm_id", "variety_id"], name: "productivity_curve", unique: true
   end
 
   create_table "sowing_details", force: :cascade do |t|
@@ -169,15 +180,15 @@ ActiveRecord::Schema.define(version: 20171204174510) do
   end
 
   create_table "storage_resistance_types", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "storage_resistances", force: :cascade do |t|
-    t.integer "week_number"
-    t.float "lost_percentage"
-    t.bigint "storage_resistance_type_id"
+    t.integer "week_number", null: false
+    t.float "lost_percentage", null: false
+    t.bigint "storage_resistance_type_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["storage_resistance_type_id"], name: "index_storage_resistances_on_storage_resistance_type_id"
@@ -213,10 +224,10 @@ ActiveRecord::Schema.define(version: 20171204174510) do
   end
 
   create_table "varieties", force: :cascade do |t|
-    t.float "participation"
-    t.bigint "storage_resistance_type_id"
-    t.bigint "flower_id"
-    t.bigint "color_id"
+    t.float "participation", null: false
+    t.bigint "storage_resistance_type_id", null: false
+    t.bigint "flower_id", null: false
+    t.bigint "color_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["color_id"], name: "index_varieties_on_color_id"
