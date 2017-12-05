@@ -1,11 +1,11 @@
 class CreateVarieties < ActiveRecord::Migration[5.1]
   def change
     create_table :varieties do |t|
-      t.float :participation
+      t.float :participation, null: false
 
-      t.references :storage_resistance_type, index: true
-      t.references :flower, index: true
-      t.references :color, index: true
+      t.references :storage_resistance_type, null: false, index: true
+      t.references :flower, null: false, index: true
+      t.references :color, null: false, index: true
 
       t.timestamps
     end

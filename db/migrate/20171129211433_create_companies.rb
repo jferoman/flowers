@@ -1,8 +1,8 @@
 class CreateCompanies < ActiveRecord::Migration[5.1]
   def change
     create_table :companies do |t|
-      t.string :name, presence: true
-      t.integer :nit, presence: true
+      t.string :name, null: false, unique: true
+      t.integer :nit, null: false, unique: true
       t.integer :phone
 
       t.timestamps

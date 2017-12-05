@@ -1,0 +1,2 @@
+class Coldroom < ApplicationRecord
+end

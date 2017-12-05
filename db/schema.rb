@@ -10,28 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171204213038) do
+ActiveRecord::Schema.define(version: 20171204174510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bed_types", force: :cascade do |t|
-    t.string "name"
-    t.integer "width"
+    t.string "name", null: false
+    t.integer "width", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name", "width"], name: "index_bed_types_on_name_and_width", unique: true
   end
 
   create_table "beds", force: :cascade do |t|
-    t.string "number"
-    t.float "total_area"
-    t.float "usable_area"
-    t.bigint "block_id"
-    t.bigint "bed_type_id"
+    t.string "number", null: false
+    t.float "total_area", null: false
+    t.float "usable_area", null: false
+    t.bigint "block_id", null: false
+    t.bigint "bed_type_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bed_type_id"], name: "index_beds_on_bed_type_id"
     t.index ["block_id"], name: "index_beds_on_block_id"
+    t.index ["number", "block_id"], name: "index_beds_on_number_and_block_id", unique: true
     t.index ["number"], name: "index_beds_on_number"
   end
 
@@ -48,11 +50,12 @@ ActiveRecord::Schema.define(version: 20171204213038) do
   end
 
   create_table "blocks", force: :cascade do |t|
-    t.string "name"
-    t.bigint "farm_id"
+    t.string "name", null: false
+    t.bigint "farm_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["farm_id"], name: "index_blocks_on_farm_id"
+    t.index ["name", "farm_id"], name: "index_blocks_on_name_and_farm_id", unique: true
   end
 
   create_table "color_submarkets", force: :cascade do |t|
@@ -73,8 +76,8 @@ ActiveRecord::Schema.define(version: 20171204213038) do
   end
 
   create_table "companies", force: :cascade do |t|
-    t.string "name"
-    t.integer "nit"
+    t.string "name", null: false
+    t.integer "nit", null: false
     t.integer "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -82,26 +85,12 @@ ActiveRecord::Schema.define(version: 20171204213038) do
 
   create_table "cuttings", force: :cascade do |t|
     t.integer "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "cuttings_varieties", force: :cascade do |t|
-    t.bigint "cutting_id"
+    t.bigint "week_id"
     t.bigint "variety_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cutting_id"], name: "index_cuttings_varieties_on_cutting_id"
-    t.index ["variety_id"], name: "index_cuttings_varieties_on_variety_id"
-  end
-
-  create_table "cuttings_weeks", force: :cascade do |t|
-    t.bigint "cutting_id"
-    t.bigint "week_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cutting_id"], name: "index_cuttings_weeks_on_cutting_id"
-    t.index ["week_id"], name: "index_cuttings_weeks_on_week_id"
+    t.index ["variety_id"], name: "index_cuttings_on_variety_id"
+    t.index ["week_id"], name: "index_cuttings_on_week_id"
   end
 
   create_table "demands", force: :cascade do |t|
@@ -110,39 +99,33 @@ ActiveRecord::Schema.define(version: 20171204213038) do
     t.bigint "color_id"
     t.bigint "flower_id"
     t.bigint "market_id"
+    t.bigint "week_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["color_id"], name: "index_demands_on_color_id"
     t.index ["company_id"], name: "index_demands_on_company_id"
     t.index ["flower_id"], name: "index_demands_on_flower_id"
     t.index ["market_id"], name: "index_demands_on_market_id"
-  end
-
-  create_table "demands_weeks", force: :cascade do |t|
-    t.bigint "demand_id"
-    t.bigint "week_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["demand_id"], name: "index_demands_weeks_on_demand_id"
-    t.index ["week_id"], name: "index_demands_weeks_on_week_id"
+    t.index ["week_id"], name: "index_demands_on_week_id"
   end
 
   create_table "farms", force: :cascade do |t|
-    t.string "code"
+    t.string "code", null: false
     t.float "mamsl"
     t.float "pluviosity"
-    t.bigint "company_id"
+    t.bigint "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_farms_on_company_id"
   end
 
   create_table "flower_densities", force: :cascade do |t|
-    t.float "density"
-    t.bigint "farm_id"
-    t.bigint "flower_id"
+    t.float "density", null: false
+    t.bigint "farm_id", null: false
+    t.bigint "flower_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["farm_id", "flower_id"], name: "index_flower_densities_on_farm_id_and_flower_id", unique: true
     t.index ["farm_id"], name: "index_flower_densities_on_farm_id"
     t.index ["flower_id"], name: "index_flower_densities_on_flower_id"
   end
@@ -175,8 +158,14 @@ ActiveRecord::Schema.define(version: 20171204213038) do
 
   create_table "sowing_details", force: :cascade do |t|
     t.integer "quantity"
+    t.bigint "variety_id"
+    t.bigint "week_id"
+    t.bigint "bed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["bed_id"], name: "index_sowing_details_on_bed_id"
+    t.index ["variety_id"], name: "index_sowing_details_on_variety_id"
+    t.index ["week_id"], name: "index_sowing_details_on_week_id"
   end
 
   create_table "storage_resistance_types", force: :cascade do |t|
@@ -195,8 +184,12 @@ ActiveRecord::Schema.define(version: 20171204213038) do
   end
 
   create_table "submarket_weeks", force: :cascade do |t|
+    t.bigint "week_id"
+    t.bigint "submarket_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["submarket_id"], name: "index_submarket_weeks_on_submarket_id"
+    t.index ["week_id"], name: "index_submarket_weeks_on_week_id"
   end
 
   create_table "submarkets", force: :cascade do |t|
@@ -213,8 +206,10 @@ ActiveRecord::Schema.define(version: 20171204213038) do
     t.string "email", null: false
     t.string "password_digest", null: false
     t.boolean "admin"
+    t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_users_on_company_id"
   end
 
   create_table "varieties", force: :cascade do |t|
