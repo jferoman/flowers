@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20171205163141) do
   end
 
   create_table "beds", force: :cascade do |t|
-    t.string "number", null: false
+    t.string "number"
     t.float "total_area", null: false
     t.float "usable_area", null: false
     t.bigint "block_id", null: false
