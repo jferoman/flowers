@@ -160,8 +160,8 @@ ActiveRecord::Schema.define(version: 20171205163141) do
     t.float "cost", null: false
     t.integer "production", null: false
     t.integer "cut", null: false
-    t.bigint "farm_id"
-    t.bigint "variety_id"
+    t.bigint "farm_id", null: false
+    t.bigint "variety_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["farm_id"], name: "index_productivity_curves_on_farm_id"
