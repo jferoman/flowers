@@ -5,7 +5,7 @@ class Demand < ApplicationRecord
 
   belongs_to :color
   belongs_to :flower
-  belongs_to :martket
+  belongs_to :market
   belongs_to :week
 
 end
