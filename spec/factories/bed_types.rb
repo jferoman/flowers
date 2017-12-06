@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :bed_type do
-    name ""
-    width 1
+    name { %w(Ancha Angosta).sample }
+    width { [64,50].sample }
   end
 end

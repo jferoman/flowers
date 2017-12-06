@@ -27,6 +27,9 @@ gem 'bulk_insert'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "bower-rails", "~> 0.9.2"
+
+gem 'faker'
+
 #Deplyment to production GEMS
 group :development do
 	gem 'capistrano', '~> 3.8', '>= 3.8.1'

@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :storage_resistance_type do
-    name "MyString"
+    name { %w(Weak Medium Strong).sample }
   end
 end
