@@ -1,6 +1,6 @@
 class SowingDetail < ApplicationRecord
 
-  validates_presence_of :quantity
+  validates_presence_of :quantity, :cutting_week
   validates_numericality_of :quantity, :allow_nil => false, :greater_than => 0.0
 
   belongs_to :variety

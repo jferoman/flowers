@@ -10,5 +10,6 @@ class Bed < ApplicationRecord
   belongs_to :block
   belongs_to :bed_type
   has_many :sowing_details
+  has_many :bed_productions
 
 end

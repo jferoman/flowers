@@ -20,5 +20,6 @@ describe Bed do
     it { should belong_to(:block) }
     it { should belong_to(:bed_type) }
     it { should have_many(:sowing_details) }
+    it { should have_many(:bed_productions) }
   end
 end

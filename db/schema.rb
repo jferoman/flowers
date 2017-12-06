@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206163350) do
+ActiveRecord::Schema.define(version: 20171206201028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bed_productions", force: :cascade do |t|
+    t.integer "quantity", null: false
+    t.string "status", null: false
+    t.bigint "variety_id", null: false
+    t.bigint "bed_id", null: false
+    t.bigint "week_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bed_id"], name: "index_bed_productions_on_bed_id"
+    t.index ["variety_id", "bed_id", "week_id", "status"], name: "bed_production_status", unique: true
+    t.index ["variety_id"], name: "index_bed_productions_on_variety_id"
+    t.index ["week_id"], name: "index_bed_productions_on_week_id"
+  end
 
   create_table "bed_types", force: :cascade do |t|
     t.string "name", null: false
@@ -97,6 +111,7 @@ ActiveRecord::Schema.define(version: 20171206163350) do
 
   create_table "cuttings", force: :cascade do |t|
     t.integer "quantity", null: false
+    t.string "status", null: false
     t.bigint "farm_id", null: false
     t.bigint "week_id", null: false
     t.bigint "variety_id", null: false
@@ -158,14 +173,18 @@ ActiveRecord::Schema.define(version: 20171206163350) do
     t.index ["company_id"], name: "index_markets_on_company_id"
   end
 
-  create_table "model_sowing_solutions", force: :cascade do |t|
-    t.integer "bed_number", null: false
-    t.bigint "block_id", null: false
-    t.bigint "bed_type_id", null: false
+  create_table "productions", force: :cascade do |t|
+    t.integer "quantity", null: false
+    t.string "status", null: false
+    t.bigint "variety_id", null: false
+    t.bigint "farm_id", null: false
+    t.bigint "week_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bed_type_id"], name: "index_model_sowing_solutions_on_bed_type_id"
-    t.index ["block_id"], name: "index_model_sowing_solutions_on_block_id"
+    t.index ["farm_id"], name: "index_productions_on_farm_id"
+    t.index ["variety_id", "farm_id", "week_id", "status"], name: "production_status", unique: true
+    t.index ["variety_id"], name: "index_productions_on_variety_id"
+    t.index ["week_id"], name: "index_productions_on_week_id"
   end
 
   create_table "productivity_curves", force: :cascade do |t|
@@ -184,6 +203,7 @@ ActiveRecord::Schema.define(version: 20171206163350) do
 
   create_table "sowing_details", force: :cascade do |t|
     t.integer "quantity", null: false
+    t.integer "cutting_week", null: false
     t.bigint "variety_id", null: false
     t.bigint "week_id", null: false
     t.bigint "bed_id", null: false
@@ -192,6 +212,18 @@ ActiveRecord::Schema.define(version: 20171206163350) do
     t.index ["bed_id"], name: "index_sowing_details_on_bed_id"
     t.index ["variety_id"], name: "index_sowing_details_on_variety_id"
     t.index ["week_id"], name: "index_sowing_details_on_week_id"
+  end
+
+  create_table "sowing_solutions", force: :cascade do |t|
+    t.integer "bed_number", null: false
+    t.bigint "block_id", null: false
+    t.bigint "bed_type_id", null: false
+    t.bigint "variety_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bed_type_id"], name: "index_sowing_solutions_on_bed_type_id"
+    t.index ["block_id"], name: "index_sowing_solutions_on_block_id"
+    t.index ["variety_id"], name: "index_sowing_solutions_on_variety_id"
   end
 
   create_table "storage_resistance_types", force: :cascade do |t|
