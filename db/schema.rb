@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20171206163350) do
   create_table "companies", force: :cascade do |t|
     t.string "name", null: false
     t.integer "nit", null: false
-    t.integer "phone"
+    t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
