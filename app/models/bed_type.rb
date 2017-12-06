@@ -4,5 +4,6 @@ class BedType < ApplicationRecord
   validates :name, uniqueness: { scope: :width }
 
   has_many :beds
+  has_many :model_sowing_solutions
 
 end

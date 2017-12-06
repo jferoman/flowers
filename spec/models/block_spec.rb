@@ -12,5 +12,6 @@ describe Block do
     it { should belong_to(:farm) }
     it { should have_many(:beds) }
     it { should have_many(:block_color_flowers) }
+    it { should have_many(:model_sowing_solutions) }
   end
 end

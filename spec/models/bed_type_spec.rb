@@ -12,5 +12,7 @@ describe BedType do
 
   describe 'associations' do
     it { should have_many(:beds) }
+    it { should have_many(:model_sowing_solutions) }
+
   end
 end

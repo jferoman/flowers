@@ -15,7 +15,7 @@ describe Farm do
   describe 'associations' do
     it { should belong_to(:company) }
     it { should have_many(:blocks) }
-    #it { should have_many(:productivity_curves) }
+    it { should have_many(:productivity_curves) }
     it { should have_many(:flower_densities) }
   end
 
