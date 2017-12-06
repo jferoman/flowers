@@ -2,8 +2,9 @@ require 'rails_helper'
 
 describe Flower do
 	describe '#create' do 
+		let!(:flower) { create :flower }
 		it {should validate_presence_of(:name)}
-		it {should validate_uniqueness_of(:name).ignoring_case_sensitivity }
+		it {should validate_uniqueness_of(:name) }
 	end
 
 	describe 'associations' do 
