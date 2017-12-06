@@ -7,5 +7,6 @@ class CreateSubmarketWeeks < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+    add_index :submarket_weeks, [:week_id,:submarket_id], unique: true
   end
 end

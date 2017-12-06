@@ -205,6 +205,7 @@ ActiveRecord::Schema.define(version: 20171205163141) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["submarket_id"], name: "index_submarket_weeks_on_submarket_id"
+    t.index ["week_id", "submarket_id"], name: "index_submarket_weeks_on_week_id_and_submarket_id", unique: true
     t.index ["week_id"], name: "index_submarket_weeks_on_week_id"
   end
 
