@@ -6,6 +6,8 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :password_digest, null: false
       t.boolean :admin
 
+      t.references :company, index: true
+
       t.timestamps
     end
   end
