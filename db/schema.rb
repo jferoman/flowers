@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20171206163350) do
     t.bigint "submarket_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["color_id", "submarket_id"], name: "index_color_submarkets_on_color_id_and_submarket_id", unique: true
     t.index ["color_id"], name: "index_color_submarkets_on_color_id"
     t.index ["submarket_id"], name: "index_color_submarkets_on_submarket_id"
   end
@@ -214,6 +215,7 @@ ActiveRecord::Schema.define(version: 20171206163350) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["submarket_id"], name: "index_submarket_weeks_on_submarket_id"
+    t.index ["week_id", "submarket_id"], name: "index_submarket_weeks_on_week_id_and_submarket_id", unique: true
     t.index ["week_id"], name: "index_submarket_weeks_on_week_id"
   end
 

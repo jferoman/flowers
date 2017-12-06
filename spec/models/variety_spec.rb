@@ -1,5 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe Variety, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Variety do
+  describe '#create' do 
+    it {should validate_presence_of(:participation)}
+    it {should validate_inclusion_of(:participation).in_range(0.0..1.0)}
+  end
+
+  describe 'associations' do 
+  	it { should belong_to(:storage_resistance_type) }
+  	it { should belong_to(:flower) }
+  	it { should belong_to(:color) }
+
+    it { should have_many(:productivity_curves) }
+    it { should have_many(:cuttings) }
+    it { should have_many(:sowing_details) }
+  end	
 end

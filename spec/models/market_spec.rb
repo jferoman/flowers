@@ -1,5 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe Market, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Market do
+	describe '#create' do
+		let!(:company) {create :company}
+		let!(:markerts) {create :market, company_id: company.id}
+		it { should validate_presence_of(:name)}
+		it { should validate_presence_of(:code)}
+		it { should validate_presence_of(:name)}
+	end
+	describe 'assosiations' do 
+		it { should have_many(:demands)}
+		it { should have_many(:submarkets)}
+		it { should belong_to(:company)}
+	end
 end

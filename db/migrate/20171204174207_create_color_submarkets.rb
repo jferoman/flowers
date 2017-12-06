@@ -9,5 +9,7 @@ class CreateColorSubmarkets < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+
+    add_index :color_submarkets, [:color_id,:submarket_id], unique: true
   end
 end
