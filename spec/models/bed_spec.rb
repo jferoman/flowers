@@ -10,7 +10,8 @@ describe Bed do
     it { should validate_numericality_of(:total_area).is_greater_than(0.0) }
     it { should validate_numericality_of(:usable_area).is_greater_than(0.0) }
 
-    #it { should validate_uniqueness_of(:number).scoped_to(:block_id) }
+    it { should have_db_index( [:number, :block_id] ).unique(true) }
+
   end
 
   describe 'associations' do
