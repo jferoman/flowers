@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20171205163141) do
   end
 
   create_table "beds", force: :cascade do |t|
-    t.string "number"
+    t.string "number", null: false
     t.float "total_area", null: false
     t.float "usable_area", null: false
     t.bigint "block_id", null: false
@@ -96,10 +96,12 @@ ActiveRecord::Schema.define(version: 20171205163141) do
 
   create_table "cuttings", force: :cascade do |t|
     t.integer "quantity", null: false
+    t.bigint "farm_id", null: false
     t.bigint "week_id", null: false
     t.bigint "variety_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["farm_id"], name: "index_cuttings_on_farm_id"
     t.index ["variety_id"], name: "index_cuttings_on_variety_id"
     t.index ["week_id"], name: "index_cuttings_on_week_id"
   end
