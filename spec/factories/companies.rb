@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :company do
-    name "MyString"
+    name Faker::Company.name
     nit 1
-    telephone ""
+    phone ""
   end
 end

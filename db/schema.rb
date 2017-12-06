@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171205163141) do
+ActiveRecord::Schema.define(version: 20171206163350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -157,13 +157,23 @@ ActiveRecord::Schema.define(version: 20171205163141) do
     t.index ["company_id"], name: "index_markets_on_company_id"
   end
 
+  create_table "model_sowing_solutions", force: :cascade do |t|
+    t.integer "bed_number", null: false
+    t.bigint "block_id", null: false
+    t.bigint "bed_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bed_type_id"], name: "index_model_sowing_solutions_on_bed_type_id"
+    t.index ["block_id"], name: "index_model_sowing_solutions_on_block_id"
+  end
+
   create_table "productivity_curves", force: :cascade do |t|
     t.integer "week_number", null: false
     t.float "cost", null: false
     t.integer "production", null: false
     t.integer "cut", null: false
-    t.bigint "farm_id"
-    t.bigint "variety_id"
+    t.bigint "farm_id", null: false
+    t.bigint "variety_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["farm_id"], name: "index_productivity_curves_on_farm_id"
