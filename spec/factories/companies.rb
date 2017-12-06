@@ -2,6 +2,6 @@ FactoryGirl.define do
   factory :company do
     name "MyString"
     nit 1
-    telephone ""
+    phone ""
   end
 end
