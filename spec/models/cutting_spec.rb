@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 describe Cutting do
-  describe '#create' do 
+  describe '#create' do
     it { should validate_presence_of(:farm_id)}
     it { should validate_presence_of(:week_id)}
     it { should validate_presence_of(:variety_id)}
+    it { should validate_presence_of(:status)}
     it { should validate_numericality_of(:quantity).is_greater_than(0.0) }
   end
 
