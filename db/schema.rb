@@ -266,6 +266,7 @@ ActiveRecord::Schema.define(version: 20171206201028) do
     t.string "email", null: false
     t.string "password_digest", null: false
     t.boolean "admin"
+    t.integer "default_farm", null: false
     t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
