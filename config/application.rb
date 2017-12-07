@@ -45,8 +45,10 @@ module Angle
                                  # Scripts
                                  'main_reports.js',
                                  'users.js',
+                                 'blocks.js',
                                  # 'Styles',
                                  'main_reports.css',
+                                 'blocks.css',
                                  'users.css'
                                 ]
 

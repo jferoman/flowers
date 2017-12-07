@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   resources :farms do
-
+    resources :blocks, only: [:index, :create, :show, :new, :edit, :destroy, :update]
   end
 
 end

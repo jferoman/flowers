@@ -2,9 +2,9 @@ class UsersController < ApplicationController
 	layout 'pages'
 
 	def new
-    end
+  end
 
-    def create
+  def create
 		user = User.new(user_params)
 		if user.save
 			session[:user_id] = user.id
@@ -14,12 +14,12 @@ class UsersController < ApplicationController
 		else
 			redirect_to '/signup'
 		end
-    end
+  end
 
 
-    private
-    def user_params
-  		params.require(:user).permit(:name, :email, :password, :password_confirmation, :default_farm)
+  private
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :default_farm)
 	end
 
 end
