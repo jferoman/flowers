@@ -30,7 +30,8 @@ module Angle
     config.assets.precompile += %w( base.js )
     config.assets.precompile += %w( base.css )
     # precompile themes
-    config.assets.precompile += ['angle/themes/theme-a.css',
+    config.assets.precompile += [
+                                 'angle/themes/theme-a.css',
                                  'angle/themes/theme-b.css',
                                  'angle/themes/theme-c.css',
                                  'angle/themes/theme-d.css',
