@@ -42,6 +42,8 @@ module Angle
     # Controller assets
     config.assets.precompile += [
                                  # Scripts
+                                 'main_reports.js',
+                                 'users.js',
                                  # Stylesheets
                                  'charts.css',
                                  'dashboard.css',
@@ -63,6 +65,8 @@ module Angle
                                  'reference_fleets.css',
                                  'iph_dates.css',
                                  'calendars.css',
+                                 'main_reports.css',
+                                 'users.css'
                                 ]
 
   end
