@@ -2,6 +2,7 @@ class CreateFarms < ActiveRecord::Migration[5.1]
   def change
     create_table :farms do |t|
       t.string :code, null: false, unique: true
+      t.string :name, null: false, unique: true
       t.float :mamsl
       t.float :pluviosity
 

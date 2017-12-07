@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  #get 'main_reports/index'
+  get '/home' => 'main_reports#index'
+
   # defaults to home
   #root :to => redirect('/signup')
 
@@ -11,5 +14,9 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
+
+  resources :farms do
+
+  end
 
 end

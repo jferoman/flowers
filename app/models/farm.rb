@@ -1,7 +1,7 @@
 class Farm < ApplicationRecord
 
-  validates_uniqueness_of :code
-  validates_presence_of   :code, :company_id
+  validates_uniqueness_of :code, :name
+  validates_presence_of   :code, :name, :company_id
   validates_length_of :code, minimum: 2, on: :create
 
   belongs_to :company
