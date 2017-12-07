@@ -15,6 +15,25 @@
    <!-- START Nav wrapper-->
    <div class="nav-wrapper">
       <!-- START Right Navbar-->
+      <ul class="nav navbar-nav">
+         <li style = 'height: 100%;''>
+            <div class="idf_group_btn">
+               <div class="btn-group">
+                  <select id="farm_id" name="intervention_id" class="form-control" onchange="changeFarm()">
+                     <% Company.find(2).farms.each do |farm| %>
+                     <option type= "submit" value=<%= farm.id %>
+                        <%= if (farm.id == session[:farm_id])
+                           selected="selected"
+                           end%>>
+                           <%= farm.name %>
+                        </option>
+                        <% end %>
+                  </select>
+               </div>
+            </div>
+         </li>
+      </ul>
+
       <ul class="nav navbar-nav navbar-right">
          <li class="visible-lg">
             <a href="#" data-toggle-fullscreen="" data-no-persist="true">
@@ -32,3 +51,24 @@
    <!-- END Nav wrapper-->
 </nav>
 <!-- END Top Navbar-->
+
+<!-- Script action to detect the idf_group selected -->
+ <script type="text/javascript">
+   document.getElementById('farm_id').value = <%= session[:farm_id] %>
+ </script>
+ <!-- Script action to change idf group -->
+ <script type="text/javascript">
+   function changeFarm() {
+     var farm_id = document.getElementById("farm_id").value;
+
+     $.ajax({
+       type: "POST",
+       dataType: "json",
+       data: 'farm_id=' + farm_id,
+       url: "/sessions_controller/change_farm",
+       success: function(data){
+         window.location = data.url
+       }
+     });
+   }
+ </script>
