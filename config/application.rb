@@ -30,7 +30,8 @@ module Angle
     config.assets.precompile += %w( base.js )
     config.assets.precompile += %w( base.css )
     # precompile themes
-    config.assets.precompile += ['angle/themes/theme-a.css',
+    config.assets.precompile += [
+                                 'angle/themes/theme-a.css',
                                  'angle/themes/theme-b.css',
                                  'angle/themes/theme-c.css',
                                  'angle/themes/theme-d.css',
@@ -42,27 +43,13 @@ module Angle
     # Controller assets
     config.assets.precompile += [
                                  # Scripts
-                                 # Stylesheets
-                                 'charts.css',
-                                 'dashboard.css',
-                                 'documentation.css',
-                                 'elements.css',
-                                 'extras.css',
-                                 'forms.css',
-                                 'maps.css',
-                                 'multilevel.css',
-                                 'pages.css',
-                                 'tables.css',
-                                 'widgets.css',
-                                 'blog.css',
-                                 'ecommerce.css',
-                                 'forum.css',
-                                 'time_tables.css',
-                                 'commercial_matrices.css',
-                                 'dead_matrices.css',
-                                 'reference_fleets.css',
-                                 'iph_dates.css',
-                                 'calendars.css',
+                                 'main_reports.js',
+                                 'users.js',
+                                 'blocks.js',
+                                 # 'Styles',
+                                 'main_reports.css',
+                                 'blocks.css',
+                                 'users.css'
                                 ]
 
   end

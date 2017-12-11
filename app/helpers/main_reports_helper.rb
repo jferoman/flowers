@@ -1,0 +1,2 @@
+module MainReportsHelper
+end

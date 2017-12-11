@@ -1,14 +1,14 @@
 class ApplicationController < ActionController::Base
 	# Prevent CSRF attacks by raising an exception.
 	# For APIs, you may want to use :null_session instead.
-	
-	# EDC Commented for user autentication 
+
+	# EDC Commented for user autentication
 	# protect_from_forgery with: :exception
 
 	def current_user
 		@current_user ||= User.find(session[:user_id]) if session[:user_id]
 	end
-	
+
 	helper_method :current_user
 
 	def authorize
@@ -18,13 +18,16 @@ class ApplicationController < ActionController::Base
 	def dashboard
 	end
 
-	def post_api
-		session[:idf_group_id] = params[:idf_group_id]
-		reload params[:path]
-	end
-    
-    def index
+  def index
 
+  end
+
+  def lock_farms_per_company
+    if !(session[:company_id] == Farm.find(session[:farm_id]).company.id) || !User.find(session[:user_id]).admin
+      redirect_to "/home" , notice: "No tiene los permisos para consultar otras fincas."
+      return
+    else
     end
+  end
 
 end

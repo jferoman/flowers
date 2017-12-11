@@ -30,6 +30,20 @@
                <input id="signupInputRePassword1" type="password" placeholder="Confirmar contraseña" autocomplete="off" required="required" data-parsley-equalto="#signupInputPassword1" class="form-control" name="user[password_confirmation]" />
                <span class="fa fa-lock form-control-feedback text-muted"></span>
             </div>
+
+            <div class="form-group has-feedback">
+               <label class="text-muted">Selecconar Finca</label>
+               <select class="chosen-select input-md form-control" name="user[default_farm]">
+                  <% Company.all.each do |company|%>
+                     <optgroup label= <%= company.name %> >
+                        <% company.farms.each do |farm|%>
+                           <option value=<%= farm.id %>> <%= farm.name %></option>
+                        <% end %>
+                     </optgroup>
+                  <% end %>
+               </select>
+            </div>
+
             <div class="clearfix">
                <div class="checkbox c-checkbox pull-left mt0">
                   <label>

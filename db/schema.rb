@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(version: 20171206201028) do
 
   create_table "farms", force: :cascade do |t|
     t.string "code", null: false
+    t.string "name", null: false
     t.float "mamsl"
     t.float "pluviosity"
     t.bigint "company_id", null: false
@@ -265,6 +266,7 @@ ActiveRecord::Schema.define(version: 20171206201028) do
     t.string "email", null: false
     t.string "password_digest", null: false
     t.boolean "admin"
+    t.integer "default_farm", null: false
     t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

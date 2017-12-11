@@ -7,7 +7,9 @@ describe Farm do
     let!(:farm) { create :farm , company: company }
 
     it { should validate_uniqueness_of(:code) }
+    it { should validate_uniqueness_of(:name) }
     it { should validate_presence_of(:code) }
+    it { should validate_presence_of(:name) }
     it { should validate_presence_of(:company_id) }
     it { should validate_length_of(:code).is_at_least(2).on(:create) }
   end
