@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'colors/index'
+
+  get 'varieties/index'
+
   #get 'main_reports/index'
   get '/home' => 'main_reports#index'
 
@@ -18,5 +22,8 @@ Rails.application.routes.draw do
   resources :farms do
     resources :blocks, only: [:index, :create, :show, :new, :edit, :destroy, :update]
   end
+  
 
+
+  resources :colors, :varieties, only: [:index, :create, :show, :new, :edit, :destroy, :update]
 end
