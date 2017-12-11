@@ -75,13 +75,13 @@
       </li>
       <li class="<%= 'active' if controller?('') %>">
         <a href="#tables" title="Tables" data-toggle="collapse">
-          <em class="fa fa-bus"></em>
-          <span>MENU</span>
+          <em class="fa fa-tasks "></em>
+          <span>Infraestructura</span>
         </a>
         <ul id="tables" class="nav sidebar-subnav collapse">
-          <li class="<%= 'active' if controller?('') && action?('') %>">
-            <a href= "" title="Listado">
-              <span>Submenu1</span>
+          <li class="<%= 'active' if controller?('blocks') && action?('index') %>">
+            <a href= <%= "/company/" + session[:company_id].to_s + "/farms/" + session[:farm_id].to_s + "/blocks"  %> title="Bloques">
+              <span>Bloques</span>
             </a>
           </li>
           <li class="<%= 'active' if controller?('') && action?('') %>">
