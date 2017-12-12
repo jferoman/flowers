@@ -1,2 +1,13 @@
-<h1>Coldrooms#edit</h1>
-<p>Find me in app/views/coldrooms/edit.html.erb</p>
+<%= form_for @coldroom do |f| %>
+  <div class="form-group">
+    <%= f.label :name, 'Nombre del cuarto' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :capacity, 'Capacidad del cuarto' %>
+    <%= f.text_field :capacity, class: 'form-control' %>
+  </div>
+  <div>
+    <%= f.submit 'Editar Bloque' %>
+  </div>
+<% end %>
