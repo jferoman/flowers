@@ -1,5 +1,5 @@
 class ColorsController < ApplicationController
-# before_action :authorize, :lock_farms_per_company
+  before_action :authorize
   before_action :find_color, only: [:destroy, :edit, :update]
 
   def index
@@ -14,7 +14,7 @@ class ColorsController < ApplicationController
     new_color = color.new color_params
 
     if new_color.save
-      flash[:success] = 'Bloque creado'
+      flash[:success] = 'Color creado'
       redirect_to colors_path
     else
       flash[:error] = new_color.errors.full_messages.to_sentence
@@ -24,7 +24,7 @@ class ColorsController < ApplicationController
 
   def destroy
     if @color.destroy
-      flash[:success] = 'Bloque eliminado'
+      flash[:success] = 'Color eliminado'
       redirect_to colors_path
     else
       flash[:error] = @color.errors.full_messages.to_sentence
@@ -39,7 +39,7 @@ class ColorsController < ApplicationController
   def update
     @color.attributes = {name: color_params}
     if @color.save
-      flash[:success] = 'Bloque actualizado'
+      flash[:success] = 'Color actualizado'
       redirect_to colors_path
     else
       flash[:error] = @color.errors.full_messages.to_sentence
