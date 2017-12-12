@@ -21,7 +21,7 @@
                      <td> <%= block.name %> </td>
                      <td>
                         <%= link_to 'Editar', "" %> |
-                        <%= link_to 'Borrar', block, method: :delete, data: { confirm: 'Esta seguro?' }%>
+                        <%= link_to 'Destroy',  block,  method: :delete, data: { confirm: 'Are you sure?' } %>
                      </td>
                   </tr>
                <% end %>

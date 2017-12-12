@@ -17,7 +17,7 @@ class BlocksController < ApplicationController
 
     if new_block.save
       flash[:success] = 'Bloque creado'
-      redirect_to "/company/" + session[:company_id].to_s + "/farms/" + session[:farm_id].to_s + "/blocks"
+      redirect_to index_route
     else
       flash[:error] = new_block.errors.full_messages.to_sentence
       redirect_to :new_block
@@ -26,7 +26,13 @@ class BlocksController < ApplicationController
 
 
   def destroy
-
+    if @block.destroy
+      flash[:success] = 'Bloque eliminado'
+      redirect_to index_route
+    else
+      flash[:error] = @block.errors.full_messages.to_sentence
+      redirect_to index_route
+    end
   end
 
   def update
@@ -40,6 +46,14 @@ class BlocksController < ApplicationController
 
   def find_farm
     farm = Farm.find(session[:farm_id])
+  end
+
+  def index_route
+    "/company/" + session[:company_id].to_s + "/farms/" + session[:farm_id].to_s + "/blocks"
+  end
+
+  def find_block
+    @block = Block.find(params[:id])
   end
 
 end
