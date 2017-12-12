@@ -80,7 +80,7 @@
         </a>
         <ul id="tables" class="nav sidebar-subnav collapse">
           <li class="<%= 'active' if controller?('blocks') && action?('index') %>">
-            <a href= <%= "/company/" + session[:company_id].to_s + "/farms/" + session[:farm_id].to_s + "/blocks"  %> title="Bloques">
+            <a href= <%= "/farms/" + session[:farm_id].to_s + "/blocks"  %> title="Bloques">
               <span>Bloques</span>
             </a>
           </li>
