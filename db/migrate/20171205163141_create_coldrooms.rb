@@ -8,5 +8,6 @@ class CreateColdrooms < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+    add_index :coldrooms, [:name, :farm_id], unique: true
   end
 end
