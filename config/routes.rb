@@ -23,7 +23,5 @@ Rails.application.routes.draw do
     resources :blocks, only: [:index, :create, :show, :new, :edit, :destroy, :update]
   end
   
-
-
   resources :colors, :varieties, only: [:index, :create, :show, :new, :edit, :destroy, :update]
 end
