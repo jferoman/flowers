@@ -14,4 +14,21 @@ describe Block do
     it { should have_many(:block_color_flowers) }
     it { should have_many(:sowing_solutions) }
   end
+
+  describe 'class methods' do
+    describe '#import_file' do
+      let!(:blocks_csv_path) { 'spec/files/bloques1.csv' }
+      it 'creates blocks from provided file' do
+        expect{ described_class.import blocks_csv_path }.to_not raise_error
+      end
+    end
+
+    describe '#import_file' do
+      let!(:blocks_csv_path) { 'spec/files/bloques2.csv' }
+      it 'not creates blocks from provided file' do
+        described_class.import blocks_csv_path
+        expect( Block.count).to be( 0  )
+      end
+    end
+  end
 end

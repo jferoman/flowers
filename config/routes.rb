@@ -19,9 +19,14 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
-  resources :farms do
-    resources :blocks, only: [:index, :create, :show, :new, :edit, :destroy, :update]
+  resources :company do
+    resources :farms do
+      resources :blocks, only: [:index, :create, :new, :edit, :destroy, :update]
+    end
   end
   
   resources :colors, :varieties, only: [:index, :create, :show, :new, :edit, :destroy, :update]
+  resources :blocks, only: [:create, :new, :edit, :destroy, :update]
+  post '/company/:company_id/farms/:farm_id/import_blocks' => 'blocks#import_blocks'
+  post '/colors/csv_import' => 'colors#csv_import'
 end

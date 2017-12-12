@@ -6,7 +6,7 @@
    </p>
 </blockquote>
 <div class="row upload-box">
-   <form id="select_button"  enctype="multipart/form-data" action="buses" accept-charset="UTF-8" method="post">
+   <form id="select_button"  enctype="multipart/form-data" action="colors/csv_import" accept-charset="UTF-8" method="post">
       <div class="row">
          <div class="col-md-3">
             <input   accept="csv" class="form-control-file upload" id="file" name="file" type="file" />
@@ -29,6 +29,7 @@
                   <tr>
                      <th class="sort-alpha">Nombre</th>
                      <th class="sort-alpha">Numero Variedades</th>
+                     <th class="sort-alpha">Acciones</th>
                   </tr>
                </thead>
                <tbody>
@@ -36,6 +37,10 @@
                   <tr class="gradeX">
                      <td> <%= color.name %> </td>
                      <td> </td>
+                     <td>
+                       <%= link_to 'Editar', edit_color_path(color) %> |
+                       <%= link_to 'Eliminar', color,  method: :delete, data: { confirm: 'Desea eliminar el color?' } %>
+                     </td>
                   </tr>
                <% end %>
                </tbody>

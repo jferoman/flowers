@@ -1,5 +1,5 @@
 class Color < ApplicationRecord
-
+  require 'csv'
   validates_presence_of   :name
   validates_uniqueness_of :name
 
@@ -10,8 +10,8 @@ class Color < ApplicationRecord
 
   class << self
     def import file_path
-      attributes = %w(color_name)
-      csv_rows = []
+      attributes = %w(name)
+      colors = []
 
       CSV.foreach(file_path, {
         encoding: "iso-8859-1:utf-8",

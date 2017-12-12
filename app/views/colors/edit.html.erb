@@ -1,9 +1,9 @@
-<%= form_for @block do |f| %>
+<%= form_for @color do |f| %>
   <div class="form-group">
-    <%= f.label :name, 'Nombre del bloque' %>
+    <%= f.label :name, 'Nombre del Color' %>
     <%= f.text_field :name, class: 'form-control' %>
   </div>
   <div>
-    <%= f.submit 'Crear Bloque' %>
+    <%= f.submit 'Editar Color' %>
   </div>
 <% end %>

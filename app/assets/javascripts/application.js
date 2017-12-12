@@ -4,3 +4,5 @@
 
 //--- Angle
 //= require_tree ./angle/
+//= require jquery
+//= require jquery_ujs
