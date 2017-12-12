@@ -10,4 +10,7 @@ class Farm < ApplicationRecord
   has_many :flower_densities
   has_many :productions
 
+  has_many :cuttings
+  has_many :coldrooms
+
 end

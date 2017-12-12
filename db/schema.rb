@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20171206201028) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["farm_id"], name: "index_coldrooms_on_farm_id"
+    t.index ["name", "farm_id"], name: "index_coldrooms_on_name_and_farm_id", unique: true
   end
 
   create_table "color_submarkets", force: :cascade do |t|

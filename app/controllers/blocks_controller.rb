@@ -2,9 +2,11 @@ class BlocksController < ApplicationController
 
   before_action :authorize, :lock_farms_per_company
   before_action :find_block, only: [:destroy, :edit, :update]
+  before_action :find_farm, only: [:index, :create]
+
 
   def index
-    @blocks = find_farm.blocks
+    @blocks = @farm.blocks
   end
 
   def new
@@ -12,13 +14,13 @@ class BlocksController < ApplicationController
   end
 
   def create
-    new_block = Block.new block_params
+    @new_block = @farm.blocks.new(block_params)
 
-    if new_block.save
+    if @new_block.save
       flash[:success] = 'Bloque creado'
       redirect_to index_route
     else
-      flash[:error] = new_block.errors.full_messages.to_sentence
+      flash[:error] = @new_block.errors.full_messages.to_sentence
       redirect_to :new_block
     end
   end
@@ -51,24 +53,23 @@ class BlocksController < ApplicationController
   def import_blocks
     begin
       Block.import(params[:file].path)
-      redirect_to company_farm_blocks_path, notice: "Bloques importados corretamente"
+      redirect_to farm_blocks_path, notice: "Bloques importados corretamente"
     rescue
-     redirect_to company_farm_blocks_path, alert: "El archivo cargado contiene errores."
+     redirect_to farm_blocks_path, alert: "El archivo cargado contiene errores."
     end
   end
 
   private
   def block_params
-    params[:block]["farm_id"] = find_farm.id
-    params.require(:block).permit(:name , :farm_id)
+    params.require(:block).permit(:name, :farm_id)
   end
 
   def find_farm
-    farm = Farm.find(session[:farm_id])
+    @farm = Farm.find(session[:farm_id])
   end
 
   def index_route
-    "/company/" + session[:company_id].to_s + "/farms/" + session[:farm_id].to_s + "/blocks"
+    "/farms/" + session[:farm_id].to_s + "/blocks"
   end
 
   def find_block
