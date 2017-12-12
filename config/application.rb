@@ -53,7 +53,7 @@ module Angle
                                  'main_reports.css',
                                  'blocks.css',
                                  'users.css',
-                                 'coldrooms.css'
+                                 'coldrooms.css',
                                  'varieties.css',
                                  'colors.css'
                                 ]
