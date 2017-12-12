@@ -10,12 +10,13 @@
       <li class="nav-heading">
         <span>Bases de datos</span>
       </li>
+
       <li class="<%= 'active' if controller?('') %>">
         <a href="#infrastructure" title="Infraestructura" data-toggle="collapse">
           <em class="fa fa-map-marker"></em>
           <span>Infraestructura</span>
         </a>
-        <ul id="tables" class="nav sidebar-subnav collapse">
+        <ul id="infrastructure" class="nav sidebar-subnav collapse">
           <li class="<%= 'active' if controller?('blocks') && action?('index') %>">
             <a href= <%= "/farms/" + session[:farm_id].to_s + "/blocks"  %> title="Bloques">
               <span>Bloques</span>
@@ -24,25 +25,11 @@
           <li class="<%= 'active' if controller?('coldroom') && action?('index') %>">
             <a href= <%= "/farms/" + session[:farm_id].to_s + "/coldrooms" %> title="Cuarto frio">
               <span>Cuarto Frio</span>
-
-        <ul id="infrastructure" class="nav sidebar-subnav collapse">
-          <li class="<%= 'active' if controller?('flowers') && action?('index') %>">
-            <a href= "flowers" title="Listado">
-              <span>Fincas</span>
-            </a>
-          </li>
-          <li class="<%= 'active' if controller?('varieties') && action?('index') %>">
-            <a href= <%= "/company/" + session[:company_id].to_s + "/farms/" + session[:farm_id].to_s + "/blocks"  %> title="Bloques">
-              <span>Bloques</span>
-            </a>
-          </li>
-          <li class="<%= 'active' if controller?('colors') && action?('index') %>">
-            <a href="colors" title="Colores">
-              <span>Camas</span>
             </a>
           </li>
         </ul>
       </li>
+
       <li class="<%= 'active' if controller?('') %>">
         <a href="#products" title="Productos" data-toggle="collapse">
           <em class="fa fa-tree"></em>
@@ -76,17 +63,25 @@
           </li>
         </ul>
       </li>
-      <li class="<%= 'active' if controller?('') && action?('') %>">
-        <a href= "" title="IDF">
+      <li class="<%= 'active' if controller?('') %>">
+        <a href= "#market" title="Mercado" data-toggle="collapse">
           <em class="fa fa-bar-chart-o "></em>
           <span>Mercados</span>
         </a>
+        <ul id="market" class="nav sidebar-subnav collapse">
+          <li class="<%= 'active' if controller?('') && action?('index') %>">
+            <a href= "" title="Listado">
+              <span>Demanda</span>
+            </a>
+          </li>
+        </ul>
       </li>
       <li class="<%= 'active' if controller?('') && action?('') %>">
         <a href="" title="Presupuesto">
           <em class="fa fa-area-chart"></em>
           <span>Produccion & Siembra</span>
         </a>
+
       </li>
       <li class="<%= 'active' if controller?('') && action?('') %>">
         <a href= "#parameters" title="Widgets" data-toggle="collapse">
