@@ -1,0 +1,9 @@
+<%= form_for @block do |f| %>
+  <div class="form-group">
+    <%= f.label :name, 'Nombre de Ruta' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div>
+    <%= f.submit 'Editar Bloque' %>
+  </div>
+<% end %>

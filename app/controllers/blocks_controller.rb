@@ -12,7 +12,6 @@ class BlocksController < ApplicationController
   end
 
   def create
-
     new_block = Block.new block_params
 
     if new_block.save
@@ -35,8 +34,19 @@ class BlocksController < ApplicationController
     end
   end
 
-  def update
+  def edit
 
+  end
+
+  def update
+    @block.attributes = block_params
+    if @block.save
+      flash[:success] = 'Bloque actualizado'
+      redirect_to index_route
+    else
+      flash[:error] = @block.errors.full_messages.to_sentence
+      redirect_to index_route
+    end
   end
 
   def block_params

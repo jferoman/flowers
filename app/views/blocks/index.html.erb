@@ -20,8 +20,8 @@
                   <tr class="gradeX">
                      <td> <%= block.name %> </td>
                      <td>
-                        <%= link_to 'Editar', "" %> |
-                        <%= link_to 'Destroy',  block,  method: :delete, data: { confirm: 'Are you sure?' } %>
+                        <%= link_to 'Editar', edit_block_path(block) %> |
+                        <%= link_to 'Eliminar', block,  method: :delete, data: { confirm: 'Desea eliminar el bloque?' } %>
                      </td>
                   </tr>
                <% end %>
