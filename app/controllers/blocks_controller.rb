@@ -60,7 +60,7 @@ class BlocksController < ApplicationController
   private
   def block_params
     params[:block]["farm_id"] = find_farm.id
-    params.require(:block).permit(:name , :farm_id)
+    params.require(:block).permit(:name, :capacity, :farm_id)
   end
 
   def find_farm
@@ -68,7 +68,7 @@ class BlocksController < ApplicationController
   end
 
   def index_route
-    "/company/" + session[:company_id].to_s + "/farms/" + session[:farm_id].to_s + "/blocks"
+    "/company/" + session[:company_id].to_s + "/farms/" + session[:farm_id].to_s + "/coldrooms"
   end
 
   def find_block

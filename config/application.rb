@@ -46,10 +46,12 @@ module Angle
                                  'main_reports.js',
                                  'users.js',
                                  'blocks.js',
+                                 'coldrooms.js',
                                  # 'Styles',
                                  'main_reports.css',
                                  'blocks.css',
-                                 'users.css'
+                                 'users.css',
+                                 'coldrooms.css'
                                 ]
 
   end

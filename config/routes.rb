@@ -18,11 +18,14 @@ Rails.application.routes.draw do
   resources :company do
     resources :farms do
       resources :blocks, only: [:index, :create, :new, :edit, :destroy, :update]
+      resources :coldrooms, only: [:index, :create, :new, :edit, :destroy, :update]
     end
   end
 
   resources :blocks, only: [:create, :new, :edit, :destroy, :update]
   post "/company/:company_id/farms/:farm_id/import_blocks" => "blocks#import_blocks"
+
+  resources :coldrooms, only: [:create, :new, :edit, :destroy, :update]
 
 
 end
