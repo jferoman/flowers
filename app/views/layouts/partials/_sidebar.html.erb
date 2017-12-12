@@ -15,6 +15,16 @@
           <em class="fa fa-map-marker"></em>
           <span>Infraestructura</span>
         </a>
+        <ul id="tables" class="nav sidebar-subnav collapse">
+          <li class="<%= 'active' if controller?('blocks') && action?('index') %>">
+            <a href= <%= "/farms/" + session[:farm_id].to_s + "/blocks"  %> title="Bloques">
+              <span>Bloques</span>
+            </a>
+          </li>
+          <li class="<%= 'active' if controller?('coldroom') && action?('index') %>">
+            <a href= <%= "/farms/" + session[:farm_id].to_s + "/coldrooms" %> title="Cuarto frio">
+              <span>Cuarto Frio</span>
+
         <ul id="infrastructure" class="nav sidebar-subnav collapse">
           <li class="<%= 'active' if controller?('flowers') && action?('index') %>">
             <a href= "flowers" title="Listado">
