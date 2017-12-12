@@ -46,10 +46,14 @@ module Angle
                                  'main_reports.js',
                                  'users.js',
                                  'blocks.js',
+                                 'varieties.js',
+                                 'colors.js',
                                  # 'Styles',
                                  'main_reports.css',
                                  'blocks.css',
-                                 'users.css'
+                                 'users.css',
+                                 'varieties.css',
+                                 'colors.css'
                                 ]
 
   end
