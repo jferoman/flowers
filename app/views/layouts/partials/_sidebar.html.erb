@@ -1,9 +1,6 @@
-<!-- START Sidebar (left)-->
 <div class="aside-inner">
   <nav class="sidebar" data-sidebar-anyclick-close="">
-    <!-- START sidebar nav-->
     <ul class="nav">
-      <!-- Iterates over all sidebar items-->
       <li class="<%= 'active' if controller?('main_reports') && action?('index') %>">
         <a href= "/main_reports" title="IDF">
           <em class="icon-graph"></em>
@@ -11,71 +8,11 @@
         </a>
       </li>
       <li class="nav-heading">
-        <span>Análisis</span>
-      </li>
-
-      <li class="<%= 'active' if controller?('') && action?('') %>">
-        <a href= "" title="IDF">
-          <em class="fa fa-bar-chart-o "></em>
-          <span>MENU</span>
-        </a>
-      </li>
-
-      <li class="<%= 'active' if controller?('') && action?('') %>">
-        <a href="" title="Presupuesto">
-          <em class="fa fa-area-chart"></em>
-          <span>MENU2</span>
-        </a>
-      </li>
-
-      <li class="<%= 'active' if controller?('') && action?('') %>">
-        <a href= "" title="Widgets">
-          <em class="fa fa-bus"></em>
-          <span >MENU3</span>
-        </a>
-      </li>
-
-        <!-- <li class="<%= 'active' if controller?('bus_incidents') %>">
-          <a href=<%="#incidencias"%> title="incidencias" data-toggle="collapse">
-            <em class="fa fa-exclamation-triangle"></em>
-            <span>Incidencias</span>
-          </a>
-          <ul id="incidencias" class="nav sidebar-subnav collapse">
-            <li class="<%= 'active' if controller?('bus_incidents') && action?('incidents_quantity') %>">
-              <a href= <%="/depots/" + session[:depot_id].to_s + "/incidents_quantity"%> title="Incidentes">
-                <span>Incidencias</span>
-              </a>
-            </li>
-            <li class="<%= 'active' if controller?('bus_incidents') && action?('buses_reliability') %>">
-              <a href= <%="/depots/" + session[:depot_id].to_s + "/buses_reliability"%> title="Incidentes">
-                <span>Confiabilidad</span>
-              </a>
-            </li>
-            <li class="<%= 'active' if controller?('bus_incidents') && action?('typology_reliability') %>">
-              <a href= <%="/depots/" + session[:depot_id].to_s + "/typology_reliability"%> title="Incidentes">
-                <span>Confiabilidad por Tipología</span>
-              </a>
-            </li>
-            <li class="<%= 'active' if controller?('bus_incidents') && action?('incidents_by_route') %>">
-              <a href= <%="/depots/" + session[:depot_id].to_s + "/incidents_by_route"%> title="Incidentes">
-                <span>Incidencias por ruta</span>
-              </a>
-            </li>
-            <li class="<%= 'active' if controller?('bus_incidents') && action?('drivers_incidents') %>">
-              <a href= <%="/depots/" + session[:depot_id].to_s + "/incidents_by_driver"%> title="Incidentes">
-                <span>Incidencias por conductor</span>
-              </a>
-            </li>
-        </ul>
-      </li> -->
-
-      <!-- Second group -->
-      <li class="nav-heading">
-        <span>Bases de Datos</span>
+        <span>Bases de datos</span>
       </li>
       <li class="<%= 'active' if controller?('') %>">
-        <a href="#tables" title="Tables" data-toggle="collapse">
-          <em class="fa fa-tasks "></em>
+        <a href="#infrastructure" title="Infraestructura" data-toggle="collapse">
+          <em class="fa fa-map-marker"></em>
           <span>Infraestructura</span>
         </a>
         <ul id="tables" class="nav sidebar-subnav collapse">
@@ -87,27 +24,76 @@
           <li class="<%= 'active' if controller?('coldroom') && action?('index') %>">
             <a href= <%= "/farms/" + session[:farm_id].to_s + "/coldrooms" %> title="Cuarto frio">
               <span>Cuarto Frio</span>
+
+        <ul id="infrastructure" class="nav sidebar-subnav collapse">
+          <li class="<%= 'active' if controller?('flowers') && action?('index') %>">
+            <a href= "flowers" title="Listado">
+              <span>Fincas</span>
             </a>
           </li>
-          <li class="<%= 'active' if controller?('') && action?('') %>">
-            <a href="" title="Kilometraje">
-              <span>Submenu3</span>
+          <li class="<%= 'active' if controller?('varieties') && action?('index') %>">
+            <a href= <%= "/company/" + session[:company_id].to_s + "/farms/" + session[:farm_id].to_s + "/blocks"  %> title="Bloques">
+              <span>Bloques</span>
             </a>
-          </li><li class="<%= 'active' if controller?('') && action?('') %>">
-            <a href="" title="Incidentes">
-              <span>Submenu4</span>
+          </li>
+          <li class="<%= 'active' if controller?('colors') && action?('index') %>">
+            <a href="colors" title="Colores">
+              <span>Camas</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="<%= 'active' if controller?('') %>">
+        <a href="#products" title="Productos" data-toggle="collapse">
+          <em class="fa fa-tree"></em>
+          <span>Productos</span>
+        </a>
+        <ul id="products" class="nav sidebar-subnav collapse">
+          <li class="<%= 'active' if controller?('flowers') && action?('index') %>">
+            <a href= "flowers" title="Listado">
+              <span>Flores</span>
+            </a>
+          </li>
+          <li class="<%= 'active' if controller?('varieties') && action?('index') %>">
+            <a href="varieties" title="Variedades">
+              <span>Variedades</span>
+            </a>
+          </li>
+          <li class="<%= 'active' if controller?('colors') && action?('index') %>">
+            <a href="colors" title="Colores">
+              <span>Colores</span>
+            </a>
+          </li>
+          <li class="<%= 'active' if controller?('productivity_curves') && action?('index') %>">
+            <a href="productivity_curves" title="Curvas de Variedad">
+              <span>Curvas de Variedad</span>
+            </a>
+          </li>
+          <li class="<%= 'active' if controller?('block_color_flowers') && action?('index') %>">
+            <a href="block_color_flowers" title="Uso de Bloques">
+              <span>Uso de Bloques</span>
             </a>
           </li>
         </ul>
       </li>
       <li class="<%= 'active' if controller?('') && action?('') %>">
-        <a href="" title="Asig. Operadores<">
-          <em class="icon-directions"> </em>
-          <span >MENUX</span>
+        <a href= "" title="IDF">
+          <em class="fa fa-bar-chart-o "></em>
+          <span>Mercados</span>
+        </a>
+      </li>
+      <li class="<%= 'active' if controller?('') && action?('') %>">
+        <a href="" title="Presupuesto">
+          <em class="fa fa-area-chart"></em>
+          <span>Produccion & Siembra</span>
+        </a>
+      </li>
+      <li class="<%= 'active' if controller?('') && action?('') %>">
+        <a href= "" title="Widgets">
+          <em class="fa fa-bus"></em>
+          <span >Parametros</span>
         </a>
       </li>
     </ul>
-    <!-- END sidebar nav-->
   </nav>
 </div>
-<!-- END Sidebar (left)-->

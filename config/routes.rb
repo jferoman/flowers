@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'colors/index'
+
+  get 'varieties/index'
+
   #get 'main_reports/index'
   get '/home' => 'main_reports#index'
 
@@ -25,11 +29,11 @@ Rails.application.routes.draw do
     resources :coldrooms, only: [:index, :create, :new, :edit, :destroy, :update]
   end
 
-  resources :blocks, only: [:create, :new, :edit, :destroy, :update]
-  post "farms/:farm_id/import_blocks" => "blocks#import_blocks"
-
   resources :coldrooms, only: [:create, :new, :edit, :destroy, :update]
-
-
-
+  resources :colors, :varieties, only: [:index, :create, :show, :new, :edit, :destroy, :update]
+  resources :blocks, only: [:create, :new, :edit, :destroy, :update]
+  post '/company/:company_id/farms/:farm_id/import_blocks' => 'blocks#import_blocks'
+  post '/colors/csv_import' => 'colors#csv_import'
+  post 'farms/:farm_id/import_blocks' => 'blocks#import_blocks'
+ 
 end

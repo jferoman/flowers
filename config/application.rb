@@ -47,11 +47,15 @@ module Angle
                                  'users.js',
                                  'blocks.js',
                                  'coldrooms.js',
+                                 'varieties.js',
+                                 'colors.js',
                                  # 'Styles',
                                  'main_reports.css',
                                  'blocks.css',
                                  'users.css',
                                  'coldrooms.css'
+                                 'varieties.css',
+                                 'colors.css'
                                 ]
 
   end
