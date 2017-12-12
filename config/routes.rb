@@ -32,8 +32,9 @@ Rails.application.routes.draw do
   resources :coldrooms, only: [:create, :new, :edit, :destroy, :update]
   resources :colors, :varieties, only: [:index, :create, :show, :new, :edit, :destroy, :update]
   resources :blocks, only: [:create, :new, :edit, :destroy, :update]
-  post '/company/:company_id/farms/:farm_id/import_blocks' => 'blocks#import_blocks'
+  resources :weeks
   post '/colors/csv_import' => 'colors#csv_import'
   post 'farms/:farm_id/import_blocks' => 'blocks#import_blocks'
- 
+  post '/import_weeks' => 'weeks#import_weeks'
+
 end

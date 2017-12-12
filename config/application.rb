@@ -49,13 +49,15 @@ module Angle
                                  'coldrooms.js',
                                  'varieties.js',
                                  'colors.js',
+                                 'weeks.js',
                                  # 'Styles',
                                  'main_reports.css',
                                  'blocks.css',
                                  'users.css',
                                  'coldrooms.css',
                                  'varieties.css',
-                                 'colors.css'
+                                 'colors.css',
+                                 'weeks.css'
                                 ]
 
   end
