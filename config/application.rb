@@ -48,12 +48,14 @@ module Angle
                                  'blocks.js',
                                  'varieties.js',
                                  'colors.js',
+                                 'storage_resistances.js',
                                  # 'Styles',
                                  'main_reports.css',
                                  'blocks.css',
                                  'users.css',
                                  'varieties.css',
-                                 'colors.css'
+                                 'colors.css',
+                                 'storage_resistances.css'
                                 ]
 
   end
