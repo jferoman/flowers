@@ -63,17 +63,25 @@
           </li>
         </ul>
       </li>
-      <li class="<%= 'active' if controller?('') && action?('') %>">
-        <a href= "" title="IDF">
+      <li class="<%= 'active' if controller?('') %>">
+        <a href= "#market" title="Mercado" data-toggle="collapse">
           <em class="fa fa-bar-chart-o "></em>
           <span>Mercados</span>
         </a>
+        <ul id="market" class="nav sidebar-subnav collapse">
+          <li class="<%= 'active' if controller?('') && action?('index') %>">
+            <a href= "" title="Listado">
+              <span>Demanda</span>
+            </a>
+          </li>
+        </ul>
       </li>
       <li class="<%= 'active' if controller?('') && action?('') %>">
         <a href="" title="Presupuesto">
           <em class="fa fa-area-chart"></em>
           <span>Produccion & Siembra</span>
         </a>
+
       </li>
       <li class="<%= 'active' if controller?('') && action?('') %>">
         <a href= "" title="Widgets">
