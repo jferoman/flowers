@@ -23,7 +23,6 @@ class BlocksController < ApplicationController
     end
   end
 
-
   def destroy
     if @block.destroy
       flash[:success] = 'Bloque eliminado'
@@ -49,6 +48,16 @@ class BlocksController < ApplicationController
     end
   end
 
+  def import_blocks
+    begin
+      Block.import(params[:file].path)
+      redirect_to company_farm_blocks_path, notice: "Bloques importados corretamente"
+    rescue
+     redirect_to company_farm_blocks_path, alert: "El archivo cargado contiene errores."
+    end
+  end
+
+  private
   def block_params
     params[:block]["farm_id"] = find_farm.id
     params.require(:block).permit(:name , :farm_id)

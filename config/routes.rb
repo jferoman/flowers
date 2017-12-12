@@ -22,5 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :blocks, only: [:create, :new, :edit, :destroy, :update]
+  post "/company/:company_id/farms/:farm_id/import_blocks" => "blocks#import_blocks"
+
 
 end
