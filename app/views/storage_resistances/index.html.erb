@@ -16,12 +16,12 @@
                   </tr>
                </thead>
                <tbody>
-                <% @storage_resistance_types.each do |color| %>
-                  <tr class="gradeX">
-                     <td> <%= color.name %> </td>
+                <% @storage_resistance_types.each do |storage_resistance_type| %>
+                  <tr class="gradeXa">
+                     <td> <%= storage_resistance_type.name %> </td>
                      <td>
-                       <%= link_to 'Editar', edit_color_path(color) %> |
-                       <%= link_to 'Eliminar', color,  method: :delete, data: { confirm: 'Desea eliminar el color?' } %>
+                       <%= link_to 'Editar', edit_storage_resistance_type_path(storage_resistance_type) %> |
+                       <%= link_to 'Eliminar', storage_resistance_type ,  method: :delete, data: { confirm: 'Desea eliminar el tipo de resistencia al guarde?' } %>
                      </td>
                   </tr>
                <% end %>
@@ -37,10 +37,10 @@
          <div class="panel-heading">
            Resistencias al guarde |
            <small></small> 
-           <%= link_to 'Nueva resistencia al guarde', new_color_path %>
+           <%= link_to 'Nueva resistencia al guarde', new_storage_resistance_path %>
          </div>
          <div class="panel-body">
-            <table id="datatable1" class="table table-striped table-hover">
+            <table id="datatable2" class="table table-striped table-hover">
                <thead>
                   <tr>
                      <th class="sort-alpha">Tipo de resistencia al guarde</th>
