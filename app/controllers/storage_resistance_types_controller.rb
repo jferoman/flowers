@@ -15,7 +15,7 @@ class StorageResistanceTypesController < ApplicationController
       redirect_to storage_resistances_path
     else
       flash[:error] = new_storage_resistance_type.errors.full_messages.to_sentence
-      redirect_to :new_storage_resistance
+      redirect_to storage_resistances_path
     end
   end
 

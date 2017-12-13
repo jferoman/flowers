@@ -33,7 +33,7 @@ class StorageResistance < ApplicationRecord
           storage_resistance.merge!('storage_resistance_type_id' => storage_resistance_type.id)
         end
       end
-      binding.pry
+
       StorageResistance.bulk_insert values: storage_resistances
     end
   end

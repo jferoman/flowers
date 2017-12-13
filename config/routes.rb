@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   post '/company/:company_id/farms/:farm_id/import_blocks' => 'blocks#import_blocks'
   post '/colors/csv_import' => 'colors#csv_import'
+  post '/varieties/csv_import' => 'varieties#csv_import'
   post '/storage_resistances/csv_import' => 'storage_resistances#csv_import'
   post 'farms/:farm_id/import_blocks' => 'blocks#import_blocks'
  
