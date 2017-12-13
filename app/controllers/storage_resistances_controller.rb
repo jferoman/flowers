@@ -27,7 +27,8 @@ class StorageResistancesController < ApplicationController
   end
    
   def edit
-
+    @storage_resistance_types = StorageResistanceType.all
+    @week_numbers = [1,2,3,4]
   end
 
 	def csv_import
@@ -38,6 +39,18 @@ class StorageResistancesController < ApplicationController
 	     redirect_to storage_resistances_path, alert: "El archivo cargado contiene errores."
 	    end
 	end
+
+  def update
+    @storage_resistance.attributes = storage_resistance_params
+    if @storage_resistance.save
+      flash[:success] = 'Resistencia al guarde actualizado'
+      redirect_to storage_resistances_path
+    else
+      flash[:error] = @storage_resistance.errors.full_messages.to_sentence
+      redirect_to storage_resistances_path
+    end
+  end
+
 
 
   def destroy

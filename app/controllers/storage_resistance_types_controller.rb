@@ -33,6 +33,17 @@ class StorageResistanceTypesController < ApplicationController
 
   end
 
+  def update
+    @storage_resistance_type.attributes = {name: storage_resistance_type_params}
+    if @storage_resistance_type.save
+      flash[:success] = 'Tipo de resistencia al guarde actualizado'
+      redirect_to storage_resistances_path
+    else
+      flash[:error] = @storage_resistance_type.errors.full_messages.to_sentence
+      redirect_to storage_resistances_path
+    end
+  end
+
 
   private
 
