@@ -1,15 +1,24 @@
 class WeeksController < ApplicationController
+  before_action :find_week, only: [:edit, :update]
 
   def index
     @weeks = Week.all
   end
 
-  def new
+  def edit
 
   end
 
-  def create
+  def update
 
+    @week.attributes = week_params
+    if @week.save
+      flash[:success] = 'Bloque actualizado'
+      redirect_to weeks_path
+    else
+      flash[:error] = @week.errors.full_messages.to_sentence
+      redirect_to weeks_path
+    end
   end
 
   def import_weeks
@@ -19,5 +28,14 @@ class WeeksController < ApplicationController
     rescue
      redirect_to weeks_path, alert: "El archivo cargado contiene errores."
     end
+  end
+
+  private
+  def week_params
+    params.require(:week).permit(:initial_day, :week)
+  end
+
+  def find_week
+    @week = Week.find(params[:id])
   end
 end

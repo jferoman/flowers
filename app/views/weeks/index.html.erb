@@ -14,6 +14,7 @@
             <tr>
               <th class="sort-alpha">Inicio semana</th>
               <th class="sort-alpha">Semana</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -21,6 +22,9 @@
             <tr class="gradeX">
               <td> <%= week.initial_day %> </td>
               <td> <%= week.week %> </td>
+              <td>
+                <%= link_to 'Editar', edit_week_path(week) %>
+              </td>
               </td>
             </tr>
             <% end %>
@@ -52,4 +56,3 @@
    </form>
 </div>
 <!-- END CSV Importer -->
-
