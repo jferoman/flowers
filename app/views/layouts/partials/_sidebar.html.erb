@@ -76,19 +76,33 @@
           </li>
         </ul>
       </li>
-      <li class="<%= 'active' if controller?('') && action?('') %>">
+
+      <li class="<%= 'active' if controller?('')%>">
         <a href="" title="Presupuesto">
           <em class="fa fa-area-chart"></em>
           <span>Produccion & Siembra</span>
         </a>
-
       </li>
-      <li class="<%= 'active' if controller?('') && action?('') %>">
-        <a href= "" title="Widgets">
-          <em class="fa fa-bus"></em>
+
+      <li class="<%= 'active' if controller?('') %>">
+        <a href= "#parameters" title="Parametros" data-toggle="collapse">
+          <em class="fa fa-wrench"></em>
           <span >Parametros</span>
         </a>
+        <ul id="parameters" class="nav sidebar-subnav collapse">
+          <li class="<%= 'active' if controller?('weeks') && action?('index') %>">
+            <a href= "/weeks" title="Calendario">
+              <span>Calendario</span>
+            </a>
+          </li>
+          <li class="<%= 'active' if controller?('bed_type') && action?('index') %>">
+            <a href= "/bed_types" title="Tipos de cama">
+              <span>Tipos de cama</span>
+            </a>
+          </li>
+        </ul>
       </li>
+
     </ul>
   </nav>
 </div>
