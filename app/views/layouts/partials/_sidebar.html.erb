@@ -22,6 +22,11 @@
               <span>Bloques</span>
             </a>
           </li>
+          <li class="<%= 'active' if controller?('beds') && action?('index') %>">
+            <a href= <%= "/beds" %> title="Camas">
+              <span>Camas</span>
+            </a>
+          </li>
           <li class="<%= 'active' if controller?('coldroom') && action?('index') %>">
             <a href= <%= "/farms/" + session[:farm_id].to_s + "/coldrooms" %> title="Cuarto frio">
               <span>Cuarto Frio</span>

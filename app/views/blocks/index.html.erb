@@ -23,7 +23,8 @@
               <td> <%= block.name %> </td>
               <td>
                 <%= link_to 'Editar', edit_block_path(block) %> |
-                <%= link_to 'Eliminar', block,  method: :delete, data: { confirm: 'Desea eliminar el bloque?' } %>
+                <%= link_to 'Eliminar', block,  method: :delete, data: { confirm: 'Desea eliminar el bloque?' } %> |
+                <%= link_to 'Camas', block_beds_path(block) %> |
               </td>
             </tr>
             <% end %>

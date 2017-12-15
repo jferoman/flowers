@@ -48,15 +48,6 @@ class BedTypesController < ApplicationController
     end
   end
 
-  def import_bed_types
-    begin
-      bed_type.import(params[:file].path)
-      redirect_to farm_bed_types_path, notice: "Tipos de camas importados corretamente"
-    rescue
-     redirect_to farm_bed_types_path, alert: "El archivo cargado contiene errores."
-    end
-  end
-
   private
   def bed_type_params
     params.require(:bed_type).permit(:name, :width)

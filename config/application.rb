@@ -50,6 +50,7 @@ module Angle
                                  'varieties.js',
                                  'colors.js',
                                  'bed_types.js',
+                                 'beds.js',
                                  # 'Styles',
                                  'main_reports.css',
                                  'blocks.css',
@@ -57,7 +58,8 @@ module Angle
                                  'coldrooms.css',
                                  'varieties.css',
                                  'colors.css',
-                                 'bed_types.css'
+                                 'bed_types.css',
+                                 'beds.css'
                                 ]
 
   end

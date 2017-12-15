@@ -31,11 +31,17 @@ Rails.application.routes.draw do
 
   resources :coldrooms, only: [:create, :new, :edit, :destroy, :update]
   resources :colors, :varieties, only: [:index, :create, :show, :new, :edit, :destroy, :update]
-  resources :blocks, only: [:create, :new, :edit, :destroy, :update]
+  resources :blocks, :beds, only: [:create, :new, :edit, :destroy, :update]
 
   resources :bed_types
   post '/company/:company_id/farms/:farm_id/import_blocks' => 'blocks#import_blocks'
   post '/colors/csv_import' => 'colors#csv_import'
   post 'farms/:farm_id/import_blocks' => 'blocks#import_blocks'
+
+
+  resources :blocks do
+    resources :beds, only: [:index, :create, :new, :edit, :destroy, :update]
+  end
+  resources :beds
 
 end

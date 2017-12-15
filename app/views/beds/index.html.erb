@@ -1,0 +1,66 @@
+<!-- START DATATABLE 1 -->
+<h3>Camas</h3>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Camas | Camas por finca
+        <small></small> |
+        <%= if params[:block_id].present?
+              link_to 'Nueva cama', new_block_bed_path
+        end %>
+
+      </div>
+      <div class="panel-body">
+        <table id="datatable1" class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th class="sort-alpha">Numero</th>
+              <th>Area total</th>
+              <th>Area usable</th>
+              <th>Bloque</th>
+              <th>Tipo de cama</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @beds.each do |bed| %>
+            <tr class="gradeX">
+              <td> <%= bed.number %> </td>
+              <td> <%= bed.total_area %> </td>
+              <td> <%= bed.usable_area %> </td>
+              <td> <%= bed.block.name %> </td>
+              <td> <%= bed.bed_type.name %> </td>
+              <td>
+                <%= link_to 'Editar', edit_block_bed_path(bed) %> |
+                <%= link_to 'Eliminar', bed,  method: :delete, data: { confirm: 'Desea eliminar el Cama?' } %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END DATATABLE 1 -->
+<!-- CSV Importer -->
+<br>
+<br>
+<h3>Importar lista de Camas</h3>
+<blockquote class="box-placeholder">
+  <p>Importar archivo CSV</p>
+</blockquote>
+<div class="row upload-box">
+  <form id="select_button"  enctype="multipart/form-data" action="import_beds" accept-charset="UTF-8" method="post">
+    <div class="row">
+      <div class="col-md-3">
+        <input   accept="csv" class="form-control-file upload" id="file" name="file" type="file" />
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary start"><i class="fa fa-fw fa-upload"></i>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- END CSV Importer -->
