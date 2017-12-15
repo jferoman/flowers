@@ -13,7 +13,7 @@ class WeeksController < ApplicationController
 
     @week.attributes = week_params
     if @week.save
-      flash[:success] = 'Bloque actualizado'
+      flash[:success] = 'Informacion de la semana actualizada'
       redirect_to weeks_path
     else
       flash[:error] = @week.errors.full_messages.to_sentence
