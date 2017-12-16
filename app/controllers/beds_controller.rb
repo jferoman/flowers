@@ -4,7 +4,6 @@ class BedsController < ApplicationController
   before_action :find_bed, only: [:destroy, :edit, :update]
   before_action :find_block, only: [:create]
 
-
   def index
     if params[:block_id].present?
       @beds = Block.find(params[:block_id]).beds
@@ -15,6 +14,7 @@ class BedsController < ApplicationController
 
   def new
     @bed = Bed.new
+    find_block
   end
 
   def create
@@ -23,7 +23,7 @@ class BedsController < ApplicationController
 
     if @new_bed.save
       flash[:success] = 'Tipos de cama creado'
-      redirect_to block_beds_path
+      redirect_to block_beds_path(@block)
     else
       flash[:error] = @new_bed.errors.full_messages.to_sentence
       redirect_to :new_bed
@@ -65,8 +65,7 @@ class BedsController < ApplicationController
     end
 
     def find_block
-    binding.pry
-
+      binding.pry
       @block = Block.find(params[:block_id])
     end
 

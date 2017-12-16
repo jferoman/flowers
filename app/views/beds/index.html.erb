@@ -32,7 +32,7 @@
               <td> <%= bed.block.name %> </td>
               <td> <%= bed.bed_type.name %> </td>
               <td>
-                <%= link_to 'Editar', edit_block_bed_path(bed) %> |
+                <%= link_to 'Editar', edit_bed_path(bed) %> |
                 <%= link_to 'Eliminar', bed,  method: :delete, data: { confirm: 'Desea eliminar el Cama?' } %>
               </td>
             </tr>
