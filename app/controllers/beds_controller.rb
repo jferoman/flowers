@@ -18,7 +18,6 @@ class BedsController < ApplicationController
   end
 
   def create
-    binding.pry
     @new_bed = @block.beds.new(bed_params)
 
     if @new_bed.save
@@ -32,7 +31,7 @@ class BedsController < ApplicationController
 
   def destroy
     if @bed.destroy
-      flash[:success] = 'Tipos de cama eliminado'
+      flash[:success] = 'Cama eliminada'
       redirect_to beds_path
     else
       flash[:error] = @bed.errors.full_messages.to_sentence
@@ -65,7 +64,6 @@ class BedsController < ApplicationController
     end
 
     def find_block
-      binding.pry
       @block = Block.find(params[:block_id])
     end
 

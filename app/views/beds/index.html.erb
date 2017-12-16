@@ -5,7 +5,7 @@
   <div class="col-lg-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        Camas | Camas por finca
+        Camas
         <small></small> |
         <%= if params[:block_id].present?
               link_to 'Nueva cama', new_block_bed_path
@@ -33,7 +33,7 @@
               <td> <%= bed.bed_type.name %> </td>
               <td>
                 <%= link_to 'Editar', edit_bed_path(bed) %> |
-                <%= link_to 'Eliminar', bed,  method: :delete, data: { confirm: 'Desea eliminar el Cama?' } %>
+                <%= link_to 'Eliminar', bed_path(bed, :block_id => bed.block.id),  method: :delete, data: { confirm: 'Desea eliminar el Cama?' } %>
               </td>
             </tr>
             <% end %>
