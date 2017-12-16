@@ -45,9 +45,9 @@ class BedsController < ApplicationController
   def update
   end
 
-  def import_beds
+  def import
     begin
-      bed.import(params[:file].path)
+      Bed.import(params[:file].path)
       redirect_to beds_path, notice: "Tipos de camas importados corretamente"
     rescue
      redirect_to beds_path, alert: "El archivo cargado contiene errores."

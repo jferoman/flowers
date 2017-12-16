@@ -44,4 +44,6 @@ Rails.application.routes.draw do
   end
   resources :beds
 
+  post '/beds/import_beds' => 'beds#import'
+
 end
