@@ -1,0 +1,13 @@
+<%= form_for @bed_type do |f| %>
+  <div class="form-group">
+    <%= f.label :name, 'Nombre del tipo' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :width, 'Medida' %>
+    <%= f.text_field :width, class: 'form-control' %>
+  </div>
+  <div>
+    <%= f.submit 'Editar Tipo de cama' %>
+  </div>
+<% end %>
