@@ -1,0 +1,9 @@
+<%= form_for @color do |f| %>
+  <div class="form-group">
+    <%= f.label :name, 'Nombre del color' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div>
+    <%= f.submit 'Crear Color' %>
+  </div>
+<% end %>

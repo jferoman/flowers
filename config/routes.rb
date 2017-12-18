@@ -20,20 +20,22 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   resources :company do
-    resources :farms do
-    end
+    resources :farms 
   end
 
+  resources :coldrooms, only: [:create, :new, :edit, :destroy, :update]
+  resources :storage_resistance_types, only: [:create, :show, :new, :edit, :destroy, :update]
+  resources :colors, :varieties, :storage_resistances, only: [:index, :create, :show, :new, :edit, :destroy, :update]
+  resources :blocks, only: [:create, :new, :edit, :destroy, :update]
+
+  post '/company/:company_id/farms/:farm_id/import_blocks' => 'blocks#import_blocks'
+  post '/colors/csv_import' => 'colors#csv_import'
+  post '/varieties/csv_import' => 'varieties#csv_import'
+  post '/storage_resistances/csv_import' => 'storage_resistances#csv_import'
+  post 'farms/:farm_id/import_blocks' => 'blocks#import_blocks'
+ 
   resources :farms do
     resources :blocks, only: [:index, :create, :new, :edit, :destroy, :update]
     resources :coldrooms, only: [:index, :create, :new, :edit, :destroy, :update]
   end
-
-  resources :coldrooms, only: [:create, :new, :edit, :destroy, :update]
-  resources :colors, :varieties, only: [:index, :create, :show, :new, :edit, :destroy, :update]
-  resources :blocks, only: [:create, :new, :edit, :destroy, :update]
-  post '/company/:company_id/farms/:farm_id/import_blocks' => 'blocks#import_blocks'
-  post '/colors/csv_import' => 'colors#csv_import'
-  post 'farms/:farm_id/import_blocks' => 'blocks#import_blocks'
- 
 end
