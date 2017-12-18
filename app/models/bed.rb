@@ -44,6 +44,15 @@ class Bed < ApplicationRecord
             next
           end
 
+          bed = Bed.find_by(number: row["bed_number"], block_id: block_id)
+          if !bed.nil?
+            errors << {
+              initial_values: row.to_h,
+              error: "Cama numero #{row["bed_number"]} y bloque: #{row["block_name"]} ya existe"
+            }
+            next
+          end
+
           beds << {
             number: row["bed_number"],
             total_area: row["total_area"],
@@ -54,7 +63,7 @@ class Bed < ApplicationRecord
         end
 
         if errors.empty?
-            Bed.bulk_insert values: beds
+          Bed.bulk_insert values: beds
         else
           csv_with_errors errors
         end
