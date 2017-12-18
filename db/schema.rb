@@ -276,6 +276,7 @@ ActiveRecord::Schema.define(version: 20171206201028) do
 
   create_table "varieties", force: :cascade do |t|
     t.float "participation", null: false
+    t.string "name", null: false
     t.bigint "storage_resistance_type_id", null: false
     t.bigint "flower_id", null: false
     t.bigint "color_id", null: false
@@ -283,12 +284,14 @@ ActiveRecord::Schema.define(version: 20171206201028) do
     t.datetime "updated_at", null: false
     t.index ["color_id"], name: "index_varieties_on_color_id"
     t.index ["flower_id"], name: "index_varieties_on_flower_id"
+    t.index ["name", "flower_id"], name: "index_varieties_on_name_and_flower_id", unique: true
     t.index ["storage_resistance_type_id"], name: "index_varieties_on_storage_resistance_type_id"
   end
 
   create_table "weeks", force: :cascade do |t|
     t.date "initial_day", null: false
     t.integer "week", null: false
+    t.integer "model_week"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["initial_day", "week"], name: "index_weeks_on_initial_day_and_week", unique: true

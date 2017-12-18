@@ -1,0 +1,9 @@
+<%= form_for @flower do |f| %>
+  <div class="form-group">
+    <%= f.label :name, 'Nombre de la flor' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div>
+    <%= f.submit 'Crear flor' %>
+  </div>
+<% end %>

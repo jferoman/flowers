@@ -1,0 +1,10 @@
+storage_resistance_type_name,week_number,lost_percentage
+debil,1,0.04
+medio,1,0.03
+fuerte,1,0.02
+debil,2,0.05
+medio,2,0.04
+fuerte,2,0.03
+debil,3,0.1
+medio,3,0.09
+fuerte,3,0.08
