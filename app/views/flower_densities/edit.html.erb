@@ -1,2 +1,9 @@
-<h1>FlowerDensities#edit</h1>
-<p>Find me in app/views/flower_densities/edit.html.erb</p>
+<%= form_for @flower_density do |f| %>
+  <div class="form-group">
+    <%= f.label :density, 'Densidad' %>
+    <%= f.text_field :density, class: 'form-control' %>
+  </div>
+  <div>
+    <%= f.submit 'Editar Densidad' %>
+  </div>
+<% end %>
