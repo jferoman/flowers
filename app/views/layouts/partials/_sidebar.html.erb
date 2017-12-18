@@ -104,11 +104,16 @@
               <span>Tipos de cama</span>
             </a>
           </li>
-            <li class="<%= 'active' if controller?('storage_resistances') && action?('index') %>">
+          <li class="<%= 'active' if controller?('storage_resistances') && action?('index') %>">
             <a href= "storage_resistances" title="Resistencia al Guarde">
               <span>Resistencias al Guarde</span>
             </a>
-          </li> 
+          </li>
+          <li class="<%= 'active' if controller?('flower_densities') && action?('index') %>">
+            <a href= <%= "/farms/" + session[:farm_id].to_s + "/flower_densities" %> title="Densidad por flor">
+              <span>Densidad por flor</span>
+            </a>
+          </li>
         </ul>
       </li>
     </ul>

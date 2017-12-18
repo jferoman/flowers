@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   resources :company do
-    resources :farms 
+    resources :farms
   end
 
   resources :coldrooms, only: [:create, :new, :edit, :destroy, :update]
@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :colors, :varieties, :storage_resistances, only: [:index, :create, :show, :new, :edit, :destroy, :update]
   resources :weeks
   resources :beds
+  resources :flower_densities
   resources :flowers
 
   post '/company/:company_id/farms/:farm_id/import_blocks' => 'blocks#import_blocks'
@@ -44,10 +45,11 @@ Rails.application.routes.draw do
   resources :blocks do
     resources :beds, only: [:index, :create, :new, :edit, :destroy, :update]
   end
-  
+
   resources :farms do
     resources :blocks, only: [:index, :create, :new, :edit, :destroy, :update]
     resources :coldrooms, only: [:index, :create, :new, :edit, :destroy, :update]
+    resources :flower_densities, only: [:index, :create, :new, :edit, :destroy, :update]
   end
 
 end

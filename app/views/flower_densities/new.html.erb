@@ -1,0 +1,13 @@
+<%= form_for @flower_density do |f| %>
+  <div class="form-group">
+    <%= f.label :flower_id, 'Flor' %>
+    <%= f.collection_select(:flower_id, Flower.all, :id, :name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :density, 'Densidad' %>
+    <%= f.text_field :density, class: 'form-control' %>
+  </div>
+  <div>
+    <%= f.submit 'Crear Densidad' %>
+  </div>
+<% end %>
