@@ -88,7 +88,6 @@
           <span>Produccion & Siembra</span>
         </a>
       </li>
-
       <li class="<%= 'active' if controller?('') %>">
         <a href= "#parameters" title="Parametros" data-toggle="collapse">
           <em class="fa fa-wrench"></em>
@@ -105,9 +104,13 @@
               <span>Tipos de cama</span>
             </a>
           </li>
+            <li class="<%= 'active' if controller?('storage_resistances') && action?('index') %>">
+            <a href= "storage_resistances" title="Resistencia al Guarde">
+              <span>Resistencias al Guarde</span>
+            </a>
+          </li> 
         </ul>
       </li>
-
     </ul>
   </nav>
 </div>

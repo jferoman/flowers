@@ -1,0 +1,9 @@
+<%= form_for @storage_resistance_type do |f| %>
+  <div class="form-group">
+    <%= f.label :name, 'Nombre del tipo de resistencia al guarde' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div>
+    <%= f.submit 'Crear tipo de resistencia al guarde' %>
+  </div>
+<% end %>

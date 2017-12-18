@@ -51,6 +51,9 @@ module Angle
                                  'colors.js',
                                  'bed_types.js',
                                  'beds.js',
+                                 'weeks.js',
+                                 'storage_resistances.js',
+                                 'storage_resistance_types.js',
                                  # 'Styles',
                                  'main_reports.css',
                                  'blocks.css',
@@ -59,7 +62,10 @@ module Angle
                                  'varieties.css',
                                  'colors.css',
                                  'bed_types.css',
-                                 'beds.css'
+                                 'beds.css',
+                                 'weeks.css',
+                                 'storage_resistances.css',
+                                 'storage_resistance_types.css'
                                 ]
 
   end
