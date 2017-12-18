@@ -3,7 +3,10 @@ require 'rails_helper'
 describe Variety do
   describe '#create' do
     it {should validate_presence_of(:participation)}
+    it {should validate_presence_of(:name)}
     it {should validate_inclusion_of(:participation).in_range(0.0..1.0)}
+
+    it { should have_db_index( [:name, :flower_id] ).unique(true) }
   end
 
   describe 'associations' do

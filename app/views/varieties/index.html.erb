@@ -31,15 +31,17 @@
                      <th class="sort-alpha">Color</th>
                      <th class="sort-alpha">Flor</th>
                      <th class="sort-alpha">Resistencia al Guarde</th>
+                     <th class="sort-alpha">Participación</th>
                   </tr>
                </thead>
                <tbody>
                 <% @varieties.each do |variety| %>
                   <tr class="gradeX">
                      <td> <%= variety.name %> </td>
-                     <td> </td>
-                     <td> </td>
-                     <td> </td>
+                     <td> <%= variety.color_name %> </td>
+                     <td> <%= variety.flower_name %> </td>
+                     <td> <%= variety.storage_resistance_type_name %> <td>
+                     <td> <%= variety.participation %> <td>
                   </tr>
                <% end %>
                </tbody>
