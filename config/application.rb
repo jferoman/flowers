@@ -49,6 +49,7 @@ module Angle
                                  'coldrooms.js',
                                  'varieties.js',
                                  'colors.js',
+                                 'weeks.js',
                                  'storage_resistances.js',
                                  'storage_resistance_types.js',
                                  # 'Styles',
@@ -58,6 +59,7 @@ module Angle
                                  'coldrooms.css',
                                  'varieties.css',
                                  'colors.css',
+                                 'weeks.css'
                                  'storage_resistances.css',
                                  'storage_resistance_types.css'
                                 ]

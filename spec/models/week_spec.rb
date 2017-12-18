@@ -14,4 +14,14 @@ describe Week do
 		it {should have_many(:productions)}
 		it {should have_many(:bed_productions)}
 	end
+
+	describe 'class methods' do
+    describe '#import_file' do
+      let!(:weeks_csv_path) { 'db/seeds_data/weeks.csv' }
+      it 'creates weeks from provided file' do
+        expect{ described_class.import weeks_csv_path }.to_not raise_error
+      end
+    end
+  end
+
 end

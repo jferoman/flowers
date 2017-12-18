@@ -1,0 +1,13 @@
+<%= form_for @week do |f| %>
+  <div class="form-group">
+    <%= f.label :initial_day, 'Fecha inicio de la semana' %>
+    <%= f.text_field :initial_day, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :week, 'Numero de semana' %>
+    <%= f.text_field :week, class: 'form-control' %>
+  </div>
+  <div>
+    <%= f.submit 'Editar Semana' %>
+  </div>
+<% end %>
