@@ -54,6 +54,7 @@ module Angle
                                  'weeks.js',
                                  'storage_resistances.js',
                                  'storage_resistance_types.js',
+                                 'flowers.js',
                                  # 'Styles',
                                  'main_reports.css',
                                  'blocks.css',
@@ -65,7 +66,8 @@ module Angle
                                  'beds.css',
                                  'weeks.css',
                                  'storage_resistances.css',
-                                 'storage_resistance_types.css'
+                                 'storage_resistance_types.css',
+                                'flowers.css'
                                 ]
 
   end

@@ -1,7 +1,9 @@
 class Variety < ApplicationRecord
+  require 'csv'
 
-  validates_presence_of  :participation, :storage_resistance_type_id, :flower_id, :color_id
+  validates_presence_of  :participation, :storage_resistance_type_id, :flower_id, :color_id, :name
   validates_inclusion_of :participation, :in => 0.0..1.0
+  validates :flower_id, uniqueness: { scope: :name }
 
   belongs_to :storage_resistance_type
   belongs_to :flower
@@ -14,10 +16,14 @@ class Variety < ApplicationRecord
   has_many :productions
   has_many :bed_productions
 
+  delegate :name, to: :flower, prefix: true
+  delegate :name, to: :color, prefix: true
+  delegate :name, to: :storage_resistance_type, prefix: true
+
+
   class << self
     def import file_path
-      binding.pry
-      attributes = %w(name resistance_to_storage_name flower_name)
+      attributes = %w(name resistance_to_storage_name flower_name participation color_name)
       varieties = []
       errors = []
    
@@ -35,15 +41,16 @@ class Variety < ApplicationRecord
         
         flower = Flower.find_by(name: I18n.transliterate(variety['flower_name']).upcase)
         storage_resistance_type = StorageResistanceType.find_by(name: I18n.transliterate(variety['resistance_to_storage_name']).upcase)
-
+        color = Color.find_by(name: I18n.transliterate(variety['color_name']).upcase)
+        
         if flower.nil? or storage_resistance_type.nil?
           errors << variety
         else
           variety.except!('resistance_to_storage_name','flower_name')
-          variety.merge!(storage_resistance_type_id: storage_resistance_type.id, flower_id: flower )
+          variety.merge!(storage_resistance_type_id: storage_resistance_type.id, flower_id: flower.id, color_id: color.id )
         end
       end
-      binding.pry
+      
       Variety.bulk_insert values: varieties
     end
   end

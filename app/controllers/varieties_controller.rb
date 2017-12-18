@@ -22,7 +22,7 @@ class VarietiesController < ApplicationController
 	def csv_import
 		begin
 			Variety.import(params[:file].path)
-			redirect_to varieties_path, notice: "Resistencias al guarde importados corretamente"
+			redirect_to varieties_path, notice: "Variedades importadas corretamente"
 		rescue
 		  redirect_to varieties_path, alert: "El archivo cargado contiene errores."
 		end
