@@ -50,6 +50,8 @@ module Angle
                                  'varieties.js',
                                  'colors.js',
                                  'weeks.js',
+                                 'storage_resistances.js',
+                                 'storage_resistance_types.js',
                                  # 'Styles',
                                  'main_reports.css',
                                  'blocks.css',
@@ -58,6 +60,8 @@ module Angle
                                  'varieties.css',
                                  'colors.css',
                                  'weeks.css'
+                                 'storage_resistances.css',
+                                 'storage_resistance_types.css'
                                 ]
 
   end

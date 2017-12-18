@@ -1,4 +1,5 @@
 class ColorsController < ApplicationController
+  
   before_action :authorize
   before_action :find_color, only: [:destroy, :edit, :update]
 
@@ -6,12 +7,12 @@ class ColorsController < ApplicationController
   	@colors = Color.all
   end
 
-   def new
-    @color = color.new
+  def new
+    @color = Color.new
   end
 
   def create
-    new_color = color.new color_params
+    new_color = Color.new({name: color_params})
 
     if new_color.save
       flash[:success] = 'Color creado'

@@ -83,7 +83,6 @@
           <span>Produccion & Siembra</span>
         </a>
       </li>
-
       <li class="<%= 'active' if controller?('') %>">
         <a href= "#parameters" title="Parametros" data-toggle="collapse">
           <em class="fa fa-wrench"></em>
@@ -95,6 +94,18 @@
               <span>Calendario</span>
             </a>
           </li>
+      <li class="<%= 'active' if controller?('') && action?('') %>">
+        <a href= "#parameters" title="Widgets" data-toggle="collapse">
+          <em class="fa fa-bus"></em>
+          <span >Parametros</span>
+        </a>
+        <ul id='parameters' class="nav sidebar-subnav collapse">
+           <li class="<%= 'active' if controller?('storage_resistances') && action?('index') %>">
+            <a href= "storage_resistances" title="Resistencia al Guarde">
+              <span>Resistencias al Guarde</span>
+            </a>
+          </li> 
+
         </ul>
       </li>
 
