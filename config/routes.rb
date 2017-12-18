@@ -1,5 +1,29 @@
 Rails.application.routes.draw do
 
+  get 'cuttings/index'
+
+  get 'cuttings/new'
+
+  get 'cuttings/create'
+
+  get 'cuttings/edit'
+
+  get 'cuttings/update'
+
+  get 'cuttings/destroy'
+
+  get 'cutings/index'
+
+  get 'cutings/new'
+
+  get 'cutings/create'
+
+  get 'cutings/edit'
+
+  get 'cutings/update'
+
+  get 'cutings/destroy'
+
   get 'colors/index'
 
   get 'varieties/index'
