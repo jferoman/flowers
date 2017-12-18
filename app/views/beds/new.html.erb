@@ -12,7 +12,7 @@
   <%= f.text_field :usable_area, class: 'form-control' %>
 </div>
 <div class="form-group">
-  <%= f.label :usable_area, 'Tipo de cama' %>
+  <%= f.label :bed_type_id, 'Tipo de cama' %>
   <%= f.collection_select(:bed_type_id, BedType.all, :id, :name) %>
 </div>
 <%= hidden_field_tag(:block_id, params[:block_id]) %>
