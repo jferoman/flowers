@@ -22,4 +22,22 @@ describe Bed do
     it { should have_many(:sowing_details) }
     it { should have_many(:bed_productions) }
   end
+
+  describe 'class methods' do
+    describe '#import_file' do
+      let!(:beds_csv_path) { 'db/seeds_data/beds.csv' }
+      it 'creates beds from provided file' do
+        expect{ described_class.import beds_csv_path }.to_not raise_error
+      end
+    end
+
+    # describe '#import_file' do
+    #   let!(:beds_csv_path) { 'spec/files/bloques2.csv' }
+    #   it 'not creates blocks from provided file' do
+    #     described_class.import beds_csv_path
+    #     expect( Block.count).to be( 0  )
+    #   end
+    # end
+  end
+
 end

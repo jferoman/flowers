@@ -47,10 +47,16 @@ class BedsController < ApplicationController
 
   def import
     begin
-      Bed.import(params[:file].path)
+      file_path = Bed.import(params[:file].path)
+    rescue Exception => e
+      p e
+    end
+
+    if file_path.is_a? String
+      redirect_to beds_path, alert: "El archivo cargado contiene errores."
+      send_file file_path
+    else
       redirect_to beds_path, notice: "Tipos de camas importados corretamente"
-    rescue
-     redirect_to beds_path, alert: "El archivo cargado contiene errores."
     end
   end
 
