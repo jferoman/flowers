@@ -9,18 +9,43 @@ class MarketsController < ApplicationController
   end
 
   def new
+    @market = Market.new
   end
 
   def create
+    @new_market = @company.markets.new(market_params)
+
+    if @new_market.save
+      flash[:success] = 'Mercado creado'
+      redirect_to index_route
+    else
+      flash[:error] = @new_market.errors.full_messages.to_sentence
+      redirect_to :new_market
+    end
   end
 
   def destroy
+    if @market.destroy
+      flash[:success] = 'Mercado eliminado'
+      redirect_to index_route
+    else
+      flash[:error] = @market.errors.full_messages.to_sentence
+      redirect_to index_route
+    end
   end
 
   def edit
   end
 
   def update
+    @market.attributes = market_params
+    if @market.save
+      flash[:success] = 'Mercado actualizado'
+      redirect_to index_route
+    else
+      flash[:error] = @market.errors.full_messages.to_sentence
+      redirect_to index_route
+    end
   end
 
   private
@@ -33,7 +58,7 @@ class MarketsController < ApplicationController
   end
 
   def index_route
-    "/farms/" + session[:farm_id].to_s + "/markets"
+    "/company/" + session[:company_id].to_s + "/markets"
   end
 
   def find_market

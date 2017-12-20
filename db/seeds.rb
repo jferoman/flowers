@@ -10,3 +10,9 @@ aurora = Farm.create!(code: "AR", name: "AURORA", mamsl: 2600, pluviosity: 0.0, 
 StorageResistance.import('db/seeds_data/storage_resistances.csv')
 Color.import('db/seeds_data/colors.csv')
 Variety.import('db/seeds_data/varieties.csv')
+
+Market.create(name: "United Kingdom", code: "UK")
+Market.create(name: "Europuean Union ", code: "EU")
+Market.create(name: "United States", code: "US")
+Market.create(name: "Rusia", code: "RU")
+Market.create(name: "Japan", code: "JA")
