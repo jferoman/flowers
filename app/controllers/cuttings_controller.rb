@@ -28,9 +28,40 @@ class CuttingsController < ApplicationController
   end
 
   def update
+    @cutting.attributes = cutting_params
+    if @cutting.save
+      flash[:success] = 'Corte actualizado'
+      redirect_to index_route
+    else
+      flash[:error] = @cutting.errors.full_messages.to_sentence
+      redirect_to index_route
+    end
   end
 
   def destroy
+    if @cutting.destroy
+      flash[:success] = 'Corte eliminado'
+      redirect_to index_route
+    else
+      flash[:error] = @cutting.errors.full_messages.to_sentence
+      redirect_to index_route
+    end
+  end
+
+  def import_cuttings
+    begin
+      file_path = Cutting.import(params[:file].path)
+    rescue Exception => e
+      p e
+    end
+
+    if file_path.is_a? String
+      redirect_to farm_cuttings_path, alert: "El archivo cargado contiene errores."
+      send_file file_path
+    else
+      redirect_to farm_cuttings_path, notice: "Cortes importados correctamente."
+    end
+
   end
 
   private
