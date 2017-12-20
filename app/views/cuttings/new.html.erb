@@ -1,2 +1,22 @@
-<h1>Cuttings#new</h1>
-<p>Find me in app/views/cuttings/new.html.erb</p>
+<%= form_for @cutting do |f| %>
+<div class="form-group">
+  <%= f.label :quantity, 'Candidad' %>
+  <%= f.text_field :quantity, class: 'form-control' %>
+</div>
+<div class="form-group">
+  <%= f.label :status, 'Estado' %>
+  <%= f.text_field :status, class: 'form-control' %>
+</div>
+<div class="form-group">
+  <%= f.label :variety_id, 'Variedad' %>
+  <%= f.collection_select(:variety_id, Variety.all, :id, :name) %>
+</div>
+<div class="form-group">
+  <%= f.label :week_id, 'Semana' %>
+  <%= f.collection_select(:week_id, Week.all, :id, :initial_day) %>
+</div>
+
+<div>
+  <%= f.submit 'Registrar corte' %>
+</div>
+<% end %>
