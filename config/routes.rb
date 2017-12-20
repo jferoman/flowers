@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   resources :beds
   resources :flower_densities
   resources :flowers
+  resources :submarkets
 
   post '/company/:company_id/farms/:farm_id/import_blocks' => 'blocks#import_blocks'
   post '/colors/csv_import' => 'colors#csv_import'

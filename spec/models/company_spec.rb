@@ -14,6 +14,7 @@ describe Company do
   describe 'associations' do
     it { should have_many(:farms) }
     it { should have_many(:markets) }
+    it { should have_many(:submarkets) }
   end
 
 end
