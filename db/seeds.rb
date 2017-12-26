@@ -11,8 +11,21 @@ StorageResistance.import('db/seeds_data/storage_resistances.csv')
 Color.import('db/seeds_data/colors.csv')
 Variety.import('db/seeds_data/varieties.csv')
 
+
 Market.create(name: "United Kingdom", code: "UK")
 Market.create(name: "Europuean Union ", code: "EU")
 Market.create(name: "United States", code: "US")
 Market.create(name: "Rusia", code: "RU")
 Market.create(name: "Japan", code: "JA")
+
+Block.import('db/seeds_data/blocks.csv')
+BedType.create(name: "ANGOSTA", width: 50)
+BedType.create(name: "ANCHA", width: 64)
+Bed.import('db/seeds_data/beds.csv')
+Coldroom.create( name: "Cuarto-001", capacity: 1000, farm_id: 1)
+Coldroom.create( name: "Cuarto-002", capacity: 1000, farm_id: 1)
+FlowerDensity.create( density: 30, farm_id: 1, flower_id: 1)
+FlowerDensity.create( density: 30, farm_id: 1, flower_id: 2)
+Week.import('db/seeds_data/weeks.csv')
+Cutting.import('db/seeds_data/cuttings.csv')
+

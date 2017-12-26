@@ -46,7 +46,6 @@ class BedsController < ApplicationController
   end
 
   def import
-
     begin
       file_path = Bed.import(params[:file].path)
     rescue Exception => e

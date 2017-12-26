@@ -1,4 +1,0 @@
-bed_number,block_name,total_area,usable_area,bed_type_width,errores
-32,G-09,35.1,19.6,64,Cama numero 32 y bloque: G-09 ya existe
-32,G-0900,35.1,19.6,64,Bloque G-0900 no encontrado.
-34,G-09,35.1,19.6,520,Ancho del tipo de cama: 520 no encontrado.

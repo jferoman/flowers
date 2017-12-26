@@ -35,35 +35,40 @@
         </ul>
       </li>
 
-      <li class="<%= 'active' if controller?('') %>">
+      <li class="<%= 'active' if controller?('flowers') %>">
         <a href="#products" title="Productos" data-toggle="collapse">
           <em class="fa fa-tree"></em>
           <span>Productos</span>
         </a>
         <ul id="products" class="nav sidebar-subnav collapse">
           <li class="<%= 'active' if controller?('flowers') && action?('index') %>">
-            <a href= "flowers" title="Listado">
+            <a href= "/flowers" title="Listado">
               <span>Flores</span>
             </a>
           </li>
           <li class="<%= 'active' if controller?('varieties') && action?('index') %>">
-            <a href="varieties" title="Variedades">
+            <a href="/varieties" title="Variedades">
               <span>Variedades</span>
             </a>
           </li>
           <li class="<%= 'active' if controller?('colors') && action?('index') %>">
-            <a href="colors" title="Colores">
+            <a href="/colors" title="Colores">
               <span>Colores</span>
             </a>
           </li>
           <li class="<%= 'active' if controller?('productivity_curves') && action?('index') %>">
-            <a href="productivity_curves" title="Curvas de Variedad">
+            <a href="/productivity_curves" title="Curvas de Variedad">
               <span>Curvas de Variedad</span>
             </a>
           </li>
           <li class="<%= 'active' if controller?('block_color_flowers') && action?('index') %>">
-            <a href="block_color_flowers" title="Uso de Bloques">
+            <a href="/block_color_flowers" title="Uso de Bloques">
               <span>Uso de Bloques</span>
+            </a>
+          </li>
+          <li class="<%= 'active' if controller?('cuttings') && action?('index') %>">
+            <a href= <%= "/farms/" + session[:farm_id].to_s + "/cuttings" %> title="Cortes">
+              <span>Cortes</span>
             </a>
           </li>
         </ul>
@@ -93,7 +98,7 @@
           <span>Produccion & Siembra</span>
         </a>
       </li>
-      <li class="<%= 'active' if controller?('') %>">
+      <li class="<%= 'active' if controller?('weeks') %>">
         <a href= "#parameters" title="Parametros" data-toggle="collapse">
           <em class="fa fa-wrench"></em>
           <span >Parametros</span>
