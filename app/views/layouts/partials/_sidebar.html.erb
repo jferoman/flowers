@@ -84,6 +84,11 @@
               <span>Demanda</span>
             </a>
           </li>
+          <li class="<%= 'active' if controller?('markets') && action?('index') %>">
+            <a href= <%= "/company/" + session[:company_id].to_s + "/markets" %> title="Mercados">
+              <span>Mercados</span>
+            </a>
+          </li>
         </ul>
       </li>
 

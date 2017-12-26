@@ -56,6 +56,7 @@ module Angle
                                  'storage_resistance_types.js',
                                  'flower_densities.js',
                                  'flowers.js',
+                                 'markets.js',
                                  'cuttings.js',
                                  # 'Styles',
                                  'main_reports.css',
@@ -71,6 +72,7 @@ module Angle
                                  'storage_resistance_types.css',
                                  'flower_densities.css',
                                  'flowers.css',
+                                 'markets.css',
                                  'cuttings.css'
                                 ]
 
