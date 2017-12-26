@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   resources :beds
   resources :flower_densities
   resources :flowers
+  resources :cuttings
 
   post '/company/:company_id/farms/:farm_id/import_blocks' => 'blocks#import_blocks'
   post '/colors/csv_import' => 'colors#csv_import'
@@ -41,6 +42,7 @@ Rails.application.routes.draw do
   post 'farms/:farm_id/import_blocks' => 'blocks#import_blocks'
   post '/beds/import_beds' => 'beds#import'
   post '/import_weeks' => 'weeks#import_weeks'
+  post 'farms/:farm_id/import_cuttings' => 'cuttings#import_cuttings'
 
   resources :blocks do
     resources :beds, only: [:index, :create, :new, :edit, :destroy, :update]
@@ -50,6 +52,7 @@ Rails.application.routes.draw do
     resources :blocks, only: [:index, :create, :new, :edit, :destroy, :update]
     resources :coldrooms, only: [:index, :create, :new, :edit, :destroy, :update]
     resources :flower_densities, only: [:index, :create, :new, :edit, :destroy, :update]
+    resources :cuttings, only: [:index, :create, :new, :edit, :destroy, :update]
   end
 
 end

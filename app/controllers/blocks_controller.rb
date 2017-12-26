@@ -53,7 +53,7 @@ class BlocksController < ApplicationController
   def import_blocks
     begin
       Block.import(params[:file].path)
-      redirect_to farm_blocks_path, notice: "Bloques importados corretamente"
+      redirect_to farm_blocks_path, notice: "Bloques importados correctamente"
     rescue
      redirect_to farm_blocks_path, alert: "El archivo cargado contiene errores."
     end
