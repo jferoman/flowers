@@ -1,0 +1,15 @@
+<%= form_for @submarket do |f| %>
+<div class="form-group">
+  <%= f.label :code, 'Codigo' %>
+  <%= f.text_field :code, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :name, 'Nombre' %>
+  <%= f.text_field :name, class: 'form-control' %>
+</div>
+
+<div>
+  <%= f.submit 'Editar Submercado' %>
+</div>
+<% end %>

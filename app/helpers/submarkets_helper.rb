@@ -1,0 +1,2 @@
+module SubmarketsHelper
+end

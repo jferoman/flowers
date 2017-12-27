@@ -6,4 +6,6 @@ class Company < ApplicationRecord
   has_many :farms
   has_many :markets
 
+  has_many :submarkets, through: :markets
+
 end
