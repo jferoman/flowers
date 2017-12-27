@@ -57,6 +57,8 @@ module Angle
                                  'flower_densities.js',
                                  'flowers.js',
                                  'submarkets.js',
+                                 'markets.js',
+                                 'cuttings.js',
                                  # 'Styles',
                                  'main_reports.css',
                                  'blocks.css',
@@ -71,7 +73,9 @@ module Angle
                                  'storage_resistance_types.css',
                                  'flower_densities.css',
                                  'flowers.css',
-                                 'submarkets.css'
+                                 'submarkets.css',
+                                 'markets.css',
+                                 'cuttings.css'
                                 ]
 
   end
