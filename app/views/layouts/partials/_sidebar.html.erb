@@ -1,131 +1,130 @@
 <div class="aside-inner">
-  <nav class="sidebar" data-sidebar-anyclick-close="">
-    <ul class="nav">
-      <li class="<%= 'active' if controller?('main_reports') && action?('index') %>">
-        <a href= "/main_reports" title="IDF">
-          <em class="icon-graph"></em>
-          <span>Inicio</span>
-        </a>
-      </li>
-      <li class="nav-heading">
-        <span>Bases de datos</span>
-      </li>
-
-      <li class="<%= 'active' if controller?('') %>">
-        <a href="#infrastructure" title="Infraestructura" data-toggle="collapse">
-          <em class="fa fa-map-marker"></em>
-          <span>Infraestructura</span>
-        </a>
-        <ul id="infrastructure" class="nav sidebar-subnav collapse">
-          <li class="<%= 'active' if controller?('blocks') && action?('index') %>">
-            <a href= <%= "/farms/" + session[:farm_id].to_s + "/blocks"  %> title="Bloques">
-              <span>Bloques</span>
-            </a>
-          </li>
-          <li class="<%= 'active' if controller?('beds') && action?('index') %>">
-            <a href= <%= "/beds" %> title="Camas">
-              <span>Camas</span>
-            </a>
-          </li>
-          <li class="<%= 'active' if controller?('coldroom') && action?('index') %>">
-            <a href= <%= "/farms/" + session[:farm_id].to_s + "/coldrooms" %> title="Cuarto frio">
-              <span>Cuarto Frio</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-      <li class="<%= 'active' if controller?('flowers') %>">
-        <a href="#products" title="Productos" data-toggle="collapse">
-          <em class="fa fa-tree"></em>
-          <span>Productos</span>
-        </a>
-        <ul id="products" class="nav sidebar-subnav collapse">
-          <li class="<%= 'active' if controller?('flowers') && action?('index') %>">
-            <a href= "/flowers" title="Listado">
-              <span>Flores</span>
-            </a>
-          </li>
-          <li class="<%= 'active' if controller?('varieties') && action?('index') %>">
-            <a href="/varieties" title="Variedades">
-              <span>Variedades</span>
-            </a>
-          </li>
-          <li class="<%= 'active' if controller?('colors') && action?('index') %>">
-            <a href="/colors" title="Colores">
-              <span>Colores</span>
-            </a>
-          </li>
-          <li class="<%= 'active' if controller?('productivity_curves') && action?('index') %>">
-            <a href="/productivity_curves" title="Curvas de Variedad">
-              <span>Curvas de Variedad</span>
-            </a>
-          </li>
-          <li class="<%= 'active' if controller?('block_color_flowers') && action?('index') %>">
-            <a href="/block_color_flowers" title="Uso de Bloques">
-              <span>Uso de Bloques</span>
-            </a>
-          </li>
-          <li class="<%= 'active' if controller?('cuttings') && action?('index') %>">
-            <a href= <%= "/farms/" + session[:farm_id].to_s + "/cuttings" %> title="Cortes">
-              <span>Cortes</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li class="<%= 'active' if controller?('') %>">
-        <a href= "#market" title="Mercado" data-toggle="collapse">
-          <em class="fa fa-bar-chart-o "></em>
-          <span>Mercados</span>
-        </a>
-        <ul id="market" class="nav sidebar-subnav collapse">
-          <li class="<%= 'active' if controller?('') && action?('index') %>">
-            <a href= "" title="Listado">
-              <span>Demanda</span>
-            </a>
-          </li>
-          <li class="<%= 'active' if controller?('markets') && action?('index') %>">
-            <a href= <%= "/company/" + session[:company_id].to_s + "/markets" %> title="Mercados">
-              <span>Mercados</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-      <li class="<%= 'active' if controller?('')%>">
-        <a href="" title="Presupuesto">
-          <em class="fa fa-area-chart"></em>
-          <span>Produccion & Siembra</span>
-        </a>
-      </li>
-      <li class="<%= 'active' if controller?('weeks') %>">
-        <a href= "#parameters" title="Parametros" data-toggle="collapse">
-          <em class="fa fa-wrench"></em>
-          <span >Parametros</span>
-        </a>
-        <ul id="parameters" class="nav sidebar-subnav collapse">
-          <li class="<%= 'active' if controller?('weeks') && action?('index') %>">
-            <a href= "/weeks" title="Calendario">
-              <span>Calendario</span>
-            </a>
-          </li>
-          <li class="<%= 'active' if controller?('bed_type') && action?('index') %>">
-            <a href= "/bed_types" title="Tipos de cama">
-              <span>Tipos de cama</span>
-            </a>
-          </li>
-          <li class="<%= 'active' if controller?('storage_resistances') && action?('index') %>">
-            <a href= "storage_resistances" title="Resistencia al Guarde">
-              <span>Resistencias al Guarde</span>
-            </a>
-          </li>
-          <li class="<%= 'active' if controller?('flower_densities') && action?('index') %>">
-            <a href= <%= "/farms/" + session[:farm_id].to_s + "/flower_densities" %> title="Densidad por flor">
-              <span>Densidad por flor</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
+<nav class="sidebar" data-sidebar-anyclick-close="">
+  <ul class="nav">
+    <li class="<%= 'active' if controller?('main_reports') && action?('index') %>">
+      <a href= "/main_reports" title="IDF">
+        <em class="icon-graph"></em>
+        <span>Inicio</span>
+      </a>
+    </li>
+    <li class="nav-heading">
+      <span>Bases de datos</span>
+    </li>
+    <li class="<%= 'active' if controller?('') %>">
+      <a href="#infrastructure" title="Infraestructura" data-toggle="collapse">
+        <em class="fa fa-map-marker"></em>
+        <span>Infraestructura</span>
+      </a>
+      <ul id="infrastructure" class="nav sidebar-subnav collapse">
+        <li class="<%= 'active' if controller?('blocks') && action?('index') %>">
+          <a href= <%= "/farms/" + session[:farm_id].to_s + "/blocks"  %> title="Bloques">
+            <span>Bloques</span>
+          </a>
+        </li>
+        <li class="<%= 'active' if controller?('beds') && action?('index') %>">
+          <a href= <%= "/beds" %> title="Camas">
+            <span>Camas</span>
+          </a>
+        </li>
+        <li class="<%= 'active' if controller?('coldroom') && action?('index') %>">
+          <a href= <%= "/farms/" + session[:farm_id].to_s + "/coldrooms" %> title="Cuarto frio">
+            <span>Cuarto Frio</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="<%= 'active' if controller?('flowers') %>">
+      <a href="#products" title="Productos" data-toggle="collapse">
+        <em class="fa fa-tree"></em>
+        <span>Productos</span>
+      </a>
+      <ul id="products" class="nav sidebar-subnav collapse">
+        <li class="<%= 'active' if controller?('flowers') && action?('index') %>">
+          <a href= "/flowers" title="Listado">
+            <span>Flores</span>
+          </a>
+        </li>
+        <li class="<%= 'active' if controller?('varieties') && action?('index') %>">
+          <a href="/varieties" title="Variedades">
+            <span>Variedades</span>
+          </a>
+        </li>
+        <li class="<%= 'active' if controller?('colors') && action?('index') %>">
+          <a href="/colors" title="Colores">
+            <span>Colores</span>
+          </a>
+        </li>
+        <li class="<%= 'active' if controller?('productivity_curves') && action?('index') %>">
+          <a href="/productivity_curves" title="Curvas de Variedad">
+            <span>Curvas de Variedad</span>
+          </a>
+        </li>
+        <li class="<%= 'active' if controller?('block_color_flowers') && action?('index') %>">
+          <a href="/block_color_flowers" title="Uso de Bloques">
+            <span>Uso de Bloques</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="<%= 'active' if controller?('') %>">
+      <a href= "#market" title="Mercado" data-toggle="collapse">
+        <em class="fa fa-bar-chart-o "></em>
+        <span>Mercados</span>
+      </a>
+      <ul id="market" class="nav sidebar-subnav collapse">
+        <li class="<%= 'active' if controller?('') && action?('index') %>">
+          <a href= "#" title="Listado">
+            <span>Demanda</span>
+          </a>
+        </li>
+        <li class="<%= 'active' if controller?('markets') && action?('index') %>">
+          <a href= <%= "/company/" + session[:company_id].to_s + "/markets" %> title="Mercados">
+            <span>Mercados</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="<%= 'active' if controller?('')%>">
+      <a href="#production" title="Producion" data-toggle="collapse">
+        <em class="fa fa-area-chart"></em>
+        <span>Produccion & Siembra</span>
+      </a>
+      <ul id="production" class="nav sidebar-subnav collapse">
+        <li class="<%= 'active' if controller?('cuttings') && action?('index') %>">
+          <a href= <%= "/farms/" + session[:farm_id].to_s + "/cuttings" %> title="Cortes">
+            <span>Esquejes</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="<%= 'active' if controller?('weeks') %>">
+      <a href= "#parameters" title="Parametros" data-toggle="collapse">
+        <em class="fa fa-wrench"></em>
+        <span >Parametros</span>
+      </a>
+      <ul id="parameters" class="nav sidebar-subnav collapse">
+        <li class="<%= 'active' if controller?('weeks') && action?('index') %>">
+          <a href= "/weeks" title="Calendario">
+            <span>Calendario</span>
+          </a>
+        </li>
+        <li class="<%= 'active' if controller?('bed_type') && action?('index') %>">
+          <a href= "/bed_types" title="Tipos de cama">
+            <span>Tipos de cama</span>
+          </a>
+        </li>
+        <li class="<%= 'active' if controller?('storage_resistances') && action?('index') %>">
+          <a href= "storage_resistances" title="Resistencia al Guarde">
+            <span>Resistencias al Guarde</span>
+          </a>
+        </li>
+        <li class="<%= 'active' if controller?('flower_densities') && action?('index') %>">
+          <a href= <%= "/farms/" + session[:farm_id].to_s + "/flower_densities" %> title="Densidad por flor">
+            <span>Densidad por flor</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 </div>

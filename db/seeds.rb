@@ -12,11 +12,11 @@ Color.import('db/seeds_data/colors.csv')
 Variety.import('db/seeds_data/varieties.csv')
 
 
-Market.create(name: "United Kingdom", code: "UK")
-Market.create(name: "Europuean Union ", code: "EU")
-Market.create(name: "United States", code: "US")
-Market.create(name: "Rusia", code: "RU")
-Market.create(name: "Japan", code: "JA")
+Market.create(name: "United Kingdom", code: "UK", company_id: comp.id)
+Market.create(name: "Europuean Union ", code: "EU", company_id: comp.id)
+Market.create(name: "United States", code: "US", company_id: comp.id)
+Market.create(name: "Rusia", code: "RU", company_id: comp.id)
+Market.create(name: "Japan", code: "JA", company_id: comp.id)
 
 Block.import('db/seeds_data/blocks.csv')
 BedType.create(name: "ANGOSTA", width: 50)
