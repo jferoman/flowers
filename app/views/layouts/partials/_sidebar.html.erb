@@ -78,14 +78,16 @@
           <span>Mercados</span>
         </a>
         <ul id="market" class="nav sidebar-subnav collapse">
-          <li class="<%= 'active' if controller?('') && action?('index') %>">
-            <a href= "" title="Listado">
+          <li class="<%= 'active' if controller?('demands') && action?('index') %>">
+            <a href= "/demands" title="Demanda">
               <span>Demanda</span>
             </a>
           </li>
           <li class="<%= 'active' if controller?('submarkets') && action?('index') %>">
             <a href= "/submarkets" title="Submercados">
               <span>Submercados</span>
+            </a>
+          </li>
           <li class="<%= 'active' if controller?('markets') && action?('index') %>">
             <a href= <%= "/company/" + session[:company_id].to_s + "/markets" %> title="Mercados">
               <span>Mercados</span>
