@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   resources :weeks
   resources :beds
   resources :flower_densities
-  resources :flowers
+  resources :submarkets
   resources :markets
   resources :cuttings
 
@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   post 'farms/:farm_id/import_blocks' => 'blocks#import_blocks'
   post '/beds/import_beds' => 'beds#import'
   post '/import_weeks' => 'weeks#import_weeks'
+  post '/import_submarkets' => 'submarkets#import'
   post 'farms/:farm_id/import_cuttings' => 'cuttings#import_cuttings'
 
   resources :blocks do
