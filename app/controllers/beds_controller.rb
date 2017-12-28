@@ -43,6 +43,14 @@ class BedsController < ApplicationController
   end
 
   def update
+    @bed.attributes = bed_params
+    if @bed.save
+      flash[:success] = 'Cama actualizada'
+      redirect_to beds_path
+    else
+      flash[:error] = @bed.errors.full_messages.to_sentence
+      redirect_to beds_path
+    end
   end
 
   def import
