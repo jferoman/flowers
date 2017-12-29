@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   post '/import_weeks' => 'weeks#import_weeks'
   post '/import_submarkets' => 'submarkets#import'
   post 'farms/:farm_id/import_cuttings' => 'cuttings#import_cuttings'
-  post '/import_demands' => 'demands#import'
+  post '/company/:company_id/import_demands' => 'demands#import_demands'
 
   resources :blocks do
     resources :beds, only: [:index, :create, :new, :edit, :destroy, :update]

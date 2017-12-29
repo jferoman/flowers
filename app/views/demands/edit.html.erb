@@ -1,2 +1,26 @@
-<h1>Demands#edit</h1>
-<p>Find me in app/views/demands/edit.html.erb</p>
+<%= form_for @demand do |f| %>
+<div class="form-group">
+  <%= f.label :quantity, 'Cantidad' %>
+  <%= f.text_field :quantity, class: 'form-control' %>
+</div>
+<div class="form-group">
+  <%= f.label :color_id, 'Color' %>
+  <%= f.collection_select(:color_id, Color.all, :id, :name) %>
+</div>
+<div class="form-group">
+  <%= f.label :market_id, 'Mercado' %>
+  <%= f.collection_select(:market_id, @company.markets, :id, :name) %>
+</div>
+<div class="form-group">
+  <%= f.label :flower_id, 'Flor' %>
+  <%= f.collection_select(:flower_id, Flower.all, :id, :name) %>
+</div>
+<div class="form-group">
+  <%= f.label :week_id, 'Semana' %>
+  <%= f.collection_select(:week_id, Week.all, :id, :initial_day) %>
+</div>
+
+<div>
+  <%= f.submit 'Editar Demanda' %>
+</div>
+<% end %>
