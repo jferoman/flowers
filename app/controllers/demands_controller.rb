@@ -56,10 +56,10 @@ class DemandsController < ApplicationController
     end
 
     if file_path.is_a? String
-      redirect_to farm_demands_path, alert: "El archivo cargado contiene errores."
+      redirect_to demands_path, alert: "El archivo cargado contiene errores."
       send_file file_path
     else
-      redirect_to farm_demands_path, notice: "Demanda importadas correctamente."
+      redirect_to demands_path, notice: "Demanda importadas correctamente."
     end
   end
 
