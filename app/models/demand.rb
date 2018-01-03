@@ -1,4 +1,5 @@
 class Demand < ApplicationRecord
+  require 'csv'
 
   validates_numericality_of :quantity, :allow_nil => false, :greater_than => 0
   validates_presence_of :color_id, :flower_id, :market_id, :week_id

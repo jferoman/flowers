@@ -5,7 +5,7 @@ class DemandsController < ApplicationController
   before_action :find_company, only: [:index, :new, :create, :edit]
 
   def index
-    @demands = @company.demands
+    @demands = @company.demands.includes(:color, :flower, :market, :week)
   end
 
   def new

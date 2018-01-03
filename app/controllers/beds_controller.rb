@@ -6,9 +6,9 @@ class BedsController < ApplicationController
 
   def index
     if params[:block_id].present?
-      @beds = Block.find(params[:block_id]).beds
+      @beds = Block.find(params[:block_id]).beds.includes(:bed_type, :block)
     else
-      @beds = Farm.find(session[:farm_id]).beds
+      @beds = Farm.find(session[:farm_id]).beds.includes(:bed_type, :block)
     end
   end
 
