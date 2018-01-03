@@ -7,5 +7,6 @@ class Company < ApplicationRecord
   has_many :markets
 
   has_many :submarkets, through: :markets
+  has_many :color_submarkets, through: :markets
 
 end

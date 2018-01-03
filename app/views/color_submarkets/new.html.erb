@@ -1,0 +1,23 @@
+<%= form_for @color_submarket do |f| %>
+
+<div class="form-group">
+  <%= f.label :submarket_id, 'Submercado: ' %>
+  <%= f.collection_select(:submarket_id, @company.submarkets, :id, :name) %>
+</div>
+<div class="form-group">
+  <%= f.label :color_id, 'Color: ' %>
+  <%= f.collection_select(:color_id, Color.all, :id, :name) %>
+</div>
+<div class="form-group">
+  <%= f.label :price, 'Precio: ' %>
+  <%= f.text_field :price, class: 'form-control' %>
+</div>
+<div class="field">
+  <%= f.label 'Defecto: ' %>
+  <%= f.check_box :default, {}, "true", "false"%>
+</div>
+<br>
+<div>
+  <%= f.submit 'Crear Precio y defecto' %>
+</div>
+<% end %>
