@@ -2,7 +2,7 @@ class ColorSubmarketsController < ApplicationController
 
   before_action :authorize, :lock_farms_per_company
   before_action :find_color_submarket, only: [:destroy, :edit, :update]
-  before_action :find_company, only: [:index, :new]
+  before_action :find_company, only: [:index, :new, :edit]
 
   def index
     @color_submarkets = @company.color_submarkets
@@ -25,12 +25,27 @@ class ColorSubmarketsController < ApplicationController
   end
 
   def destroy
+    if @color_submarket.destroy
+      flash[:success] = 'Registro eliminado.'
+      redirect_to color_submarkets_path
+    else
+      flash[:error] = @color_submarket.errors.full_messages.to_sentence
+      redirect_to submarkets_path
+    end
   end
 
   def edit
   end
 
   def update
+    @color_submarket.attributes = color_submarket_params
+    if @color_submarket.save
+      flash[:success] = 'Registro actualizado'
+      redirect_to color_submarkets_path
+    else
+      flash[:error] = @color_submarket.errors.full_messages.to_sentence
+      redirect_to color_submarkets_path
+    end
   end
 
   private
