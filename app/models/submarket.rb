@@ -7,6 +7,8 @@ class Submarket < ApplicationRecord
   belongs_to :market
   has_many :color_submarkets
   has_many :submarket_weeks
+  has_many :weeks, through: :submarket_weeks
+
 
 
   class << self
