@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :submarkets
   resources :markets
   resources :cuttings
+  resources :flowers
   resources :color_submarkets
   resources :weeks, :beds, :flower_densities, :submarkets, :markets, :cuttings, :demands
 
@@ -47,6 +48,7 @@ Rails.application.routes.draw do
   post '/import_color_submarkets' => 'color_submarkets#import'
   post '/import_submarket_weeks' => 'submarkets#import_submarket_weeks'
   post '/import_demands' => 'demands#import_demands'
+  post '/farms/:farm_id/productivity_curves' => 'productivity_curves#csv_import'
 
   resources :blocks do
     resources :beds, only: [:index, :create, :new, :edit, :destroy, :update]
@@ -57,6 +59,7 @@ Rails.application.routes.draw do
     resources :coldrooms, only: [:index, :create, :new, :edit, :destroy, :update]
     resources :flower_densities, only: [:index, :create, :new, :edit, :destroy, :update]
     resources :cuttings, only: [:index, :create, :new, :edit, :destroy, :update]
+    resources :productivity_curves, only: [:index]
   end
 
 end

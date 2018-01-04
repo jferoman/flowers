@@ -3,8 +3,8 @@ class CreateProductivityCurves < ActiveRecord::Migration[5.1]
     create_table :productivity_curves do |t|
       t.integer :week_number, null: false
       t.float :cost, null: false
-      t.integer :production, null: false
-      t.integer :cut, null: false
+      t.float :production, null: false
+      t.integer :cut
 
       t.references :farm, null: false, index: true
       t.references :variety, null: false, index: true

@@ -56,7 +56,7 @@
             </a>
           </li>
           <li class="<%= 'active' if controller?('productivity_curves') && action?('index') %>">
-            <a href="/productivity_curves" title="Curvas de Variedad">
+            <a href= <%='/farms/' + session[:farm_id].to_s + '/productivity_curves' %> title="Curvas de Variedad">
               <span>Curvas de Variedad</span>
             </a>
           </li>
