@@ -1,8 +1,8 @@
 class SubmarketsController < ApplicationController
 
-    before_action :authorize, :lock_farms_per_company
-    before_action :find_submarket, only: [:destroy, :edit, :update]
-    before_action :find_company, only: [:index, :new]
+  before_action :authorize, :lock_farms_per_company
+  before_action :find_submarket, only: [:destroy, :edit, :update]
+  before_action :find_company, only: [:index, :new]
 
   def index
     @submarkets = @company.submarkets
@@ -61,6 +61,21 @@ class SubmarketsController < ApplicationController
       send_file file_path
     else
       redirect_to submarkets_path, notice: "Submercados importados corretamente"
+    end
+  end
+
+  def import_submarket_weeks
+    begin
+      file_path = Submarket.import_submarket_weeks(params[:file].path)
+    rescue Exception => e
+      p e
+    end
+
+    if file_path.is_a? String
+      redirect_to submarkets_path, alert: "El archivo cargado contiene errores."
+      send_file file_path
+    else
+      redirect_to submarkets_path, notice: "Temporadas de submercados importados corretamente"
     end
   end
 

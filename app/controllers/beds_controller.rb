@@ -6,9 +6,9 @@ class BedsController < ApplicationController
 
   def index
     if params[:block_id].present?
-      @beds = Block.find(params[:block_id]).beds
+      @beds = Block.find(params[:block_id]).beds.includes(:bed_type, :block)
     else
-      @beds = Farm.find(session[:farm_id]).beds
+      @beds = Farm.find(session[:farm_id]).beds.includes(:bed_type, :block)
     end
   end
 
@@ -43,6 +43,14 @@ class BedsController < ApplicationController
   end
 
   def update
+    @bed.attributes = bed_params
+    if @bed.save
+      flash[:success] = 'Cama actualizada'
+      redirect_to beds_path
+    else
+      flash[:error] = @bed.errors.full_messages.to_sentence
+      redirect_to beds_path
+    end
   end
 
   def import

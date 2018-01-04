@@ -15,6 +15,7 @@ describe Company do
     it { should have_many(:farms) }
     it { should have_many(:markets) }
     it { should have_many(:submarkets) }
+    it { should have_many(:color_submarkets) }
   end
 
 end
