@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   resources :coldrooms, :blocks, :beds, only: [:create, :new, :edit, :destroy, :update]
   resources :colors, :storage_resistance_types, :varieties, :storage_resistances, only: [:index, :create, :show, :new, :edit, :destroy, :update]
-  resources :weeks, :beds, :flower_densities, :submarkets, :markets, :cuttings, :demands, :color_submarkets, :bed_types, :block_color_flower
+  resources :weeks, :beds, :flower_densities, :submarkets, :markets, :cuttings, :demands, :color_submarkets, :bed_types, :block_color_flowers
 
   resources :blocks do
     resources :beds, only: [:index, :create, :new, :edit, :destroy, :update]

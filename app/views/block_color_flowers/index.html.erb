@@ -5,7 +5,7 @@
   <div class="col-lg-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        Uso de Bloques |
+        Uso de Bloques
         <small></small> |
         <%= link_to 'Nuevo Uso de Bloque', new_farm_block_color_flower_path %>
       </div>
@@ -24,11 +24,11 @@
             <% @block_color_flowers.each do |block_color_flower| %>
             <tr class="gradeX">
               <td> <%= block_color_flower.flower.name %> </td>
-              <td> <%= block_color_flower.bolor.name %> </td>
+              <td> <%= block_color_flower.color.name %> </td>
               <td> <%= block_color_flower.block.name %> </td>
               <td> <%= block_color_flower.usage %> </td>
-              <td>
-                <%= link_to 'Editar', edit_farm_block_color_flower_path(block_color_flower) %> |
+              <td>|
+                <%= link_to 'Editar', edit_block_color_flower_path(block_color_flower) %> |
                 <%= link_to 'Eliminar', block_color_flower,  method: :delete, data: { confirm: 'Desea eliminar el bloque?' } %> |
               </td>
             </tr>

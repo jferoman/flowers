@@ -1,6 +1,6 @@
 class BlockColorFlower < ApplicationRecord
 
-  validates_presence_of :usage
+  validates :usage, inclusion: { in: [ true, false ] }
   validates :block_id, uniqueness: { scope: [:flower_id, :color_id] }
 
   belongs_to :block

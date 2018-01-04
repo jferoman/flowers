@@ -2,7 +2,7 @@ class BlockColorFlowersController < ApplicationController
 
   before_action :authorize, :lock_farms_per_company
   before_action :find_block_color_flower, only: [:destroy, :edit, :update]
-  before_action :find_farm, only: [:index, :create]
+  before_action :find_farm, only: [:index, :create, :new, :edit]
 
   def index
     @block_color_flowers = @farm.block_color_flowers
@@ -24,12 +24,27 @@ class BlockColorFlowersController < ApplicationController
   end
 
   def destroy
+    if @block_color_flower.destroy
+      flash[:success] = 'Uso de bloque eliminado'
+      redirect_to index_route
+    else
+      flash[:error] = @block_color_flower.errors.full_messages.to_sentence
+      redirect_to index_route
+    end
   end
 
   def edit
   end
 
   def update
+    @block_color_flower.attributes = block_color_flower_params
+    if @block_color_flower.save
+      flash[:success] = 'Uso de bloque actualizado'
+      redirect_to index_route
+    else
+      flash[:error] = @block_color_flower.errors.full_messages.to_sentence
+      redirect_to index_route
+    end
   end
 
   private
