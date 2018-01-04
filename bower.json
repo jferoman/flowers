@@ -42,7 +42,7 @@
     "fullcalendar": "3.0.0",
     "animate.css": "3.5.2",
     "fastclick": "1.0.6",
-    "modernizr": "https://modernizr.com/download?backgroundsize-bgpositionshorthand-bgpositionxy-bgrepeatspace_bgrepeatround-bgsizecover-borderradius-cssanimations-csscalc-csstransforms-csstransforms3d-csstransitions-flexboxtweener-fontface-inlinesvg-localstorage-multiplebgs-preserve3d-sessionstorage-smil-svgclippaths-svgfilters-svgforeignobject-todataurljpeg_todataurlpng_todataurlwebp-setclasses&q=background.zip",
+    "modernizr": "https://github.com/jferoman/modernizr.git",    
     "animo.js": "ThrivingKings/animo.js#1.0.2",
     "jquery-classyloader": "http://themicon.co/vox.space/jquery-classyloader.zip",
     "whirl": "1.0.0",
