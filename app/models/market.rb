@@ -6,4 +6,7 @@ class Market < ApplicationRecord
   belongs_to :company
   has_many :demands
   has_many :submarkets
+
+  has_many :color_submarkets, through: :submarkets
+
 end

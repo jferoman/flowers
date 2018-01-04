@@ -104,6 +104,7 @@ class Submarket < ApplicationRecord
     end
 
     private
+
       def csv_with_errors(list, attributes, file_path)
 
         CSV.open(file_path, "wb") do |csv|
