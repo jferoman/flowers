@@ -60,6 +60,7 @@ module Angle
                                  'markets.js',
                                  'cuttings.js',
                                  'color_submarkets.js',
+                                 'demands.js',
                                  # 'Styles',
                                  'main_reports.css',
                                  'blocks.css',
@@ -77,7 +78,8 @@ module Angle
                                  'submarkets.css',
                                  'markets.css',
                                  'cuttings.css',
-                                 'color_submarkets.css'
+                                 'color_submarkets.css',
+                                 'demands.css'
                                 ]
 
   end

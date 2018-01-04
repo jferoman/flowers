@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'colors/index'
-
-  get 'varieties/index'
-
   #get 'main_reports/index'
   get '/home' => 'main_reports#index'
 
@@ -21,7 +17,7 @@ Rails.application.routes.draw do
 
   resources :company do
     resources :farms
-    resources :markets, only: [:index, :create, :new, :edit, :destroy, :update]
+    resources :markets, :demands, only: [:index, :create, :new, :edit, :destroy, :update]
   end
 
   resources :coldrooms, only: [:create, :new, :edit, :destroy, :update]
@@ -37,6 +33,7 @@ Rails.application.routes.draw do
   resources :markets
   resources :cuttings
   resources :color_submarkets
+  resources :weeks, :beds, :flower_densities, :submarkets, :markets, :cuttings, :demands
 
   post '/company/:company_id/farms/:farm_id/import_blocks' => 'blocks#import_blocks'
   post '/colors/csv_import' => 'colors#csv_import'
@@ -48,7 +45,8 @@ Rails.application.routes.draw do
   post '/import_submarkets' => 'submarkets#import'
   post 'farms/:farm_id/import_cuttings' => 'cuttings#import_cuttings'
   post '/import_color_submarkets' => 'color_submarkets#import'
-
+  post '/import_submarket_weeks' => 'submarkets#import_submarket_weeks'
+  post '/import_demands' => 'demands#import_demands'
 
   resources :blocks do
     resources :beds, only: [:index, :create, :new, :edit, :destroy, :update]
