@@ -20,16 +20,16 @@ Rails.application.routes.draw do
     resources :markets, :demands, only: [:index, :create, :new, :edit, :destroy, :update]
   end
 
+  resources :farms do
+    resources :flower_densities, :cuttings, :blocks, :coldrooms, :block_color_flowers, only: [:index, :create, :new, :edit, :destroy, :update]
+  end
+
   resources :coldrooms, :blocks, :beds, only: [:create, :new, :edit, :destroy, :update]
   resources :colors, :storage_resistance_types, :varieties, :storage_resistances, only: [:index, :create, :show, :new, :edit, :destroy, :update]
-  resources :weeks, :beds, :flower_densities, :submarkets, :markets, :cuttings, :demands, :color_submarkets, :bed_types
+  resources :weeks, :beds, :flower_densities, :submarkets, :markets, :cuttings, :demands, :color_submarkets, :bed_types, :block_color_flower
 
   resources :blocks do
     resources :beds, only: [:index, :create, :new, :edit, :destroy, :update]
-  end
-
-  resources :farms do
-    resources :flower_densities, :cuttings, :blocks, :coldrooms, only: [:index, :create, :new, :edit, :destroy, :update]
   end
 
   post '/company/:company_id/farms/:farm_id/import_blocks' => 'blocks#import_blocks'
