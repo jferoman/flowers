@@ -28,4 +28,5 @@ FlowerDensity.create( density: 30, farm_id: 1, flower_id: 1)
 FlowerDensity.create( density: 30, farm_id: 1, flower_id: 2)
 Week.import('db/seeds_data/weeks.csv')
 Cutting.import('db/seeds_data/cuttings.csv')
+Demand.import('db/seeds_data/demands.csv')
 
