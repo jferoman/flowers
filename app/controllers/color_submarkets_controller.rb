@@ -30,7 +30,7 @@ class ColorSubmarketsController < ApplicationController
       redirect_to color_submarkets_path
     else
       flash[:error] = @color_submarket.errors.full_messages.to_sentence
-      redirect_to submarkets_path
+      redirect_to color_submarkets_path
     end
   end
 
@@ -45,6 +45,20 @@ class ColorSubmarketsController < ApplicationController
     else
       flash[:error] = @color_submarket.errors.full_messages.to_sentence
       redirect_to color_submarkets_path
+    end
+  end
+
+  def import
+    begin
+      file_path = ColorSubmarket.import(params[:file].path)
+    rescue Exception => e
+      p e
+    end
+    if file_path.is_a? String
+      redirect_to color_submarkets_path, alert: "El archivo cargado contiene errores."
+      send_file file_path
+    else
+      redirect_to color_submarkets_path, notice: "Archivo importado corretamente"
     end
   end
 

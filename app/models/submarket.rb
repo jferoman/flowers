@@ -54,7 +54,7 @@ class Submarket < ApplicationRecord
 
     private
       def csv_with_errors submarket_list
-        attributes = %w{code,market_name}
+        attributes = %w{code market_name errore}
         file_path = "db/tmp_files/errores_submercados.csv"
 
         CSV.open(file_path, "wb") do |csv|
