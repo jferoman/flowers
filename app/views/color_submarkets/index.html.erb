@@ -23,7 +23,7 @@
           <tbody>
             <% @color_submarkets.each do |color_submarket| %>
             <tr class="gradeX">
-              <td> <%= color_submarket.submarket.name %> </td>
+              <td> <%= color_submarket.submarket.code %> </td>
               <td> <%= color_submarket.color.name %> </td>
               <td>$ <%= color_submarket.price %> </td>
               <td> <%= color_submarket.default %> </td>

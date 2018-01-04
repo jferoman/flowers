@@ -36,6 +36,15 @@ class ColorSubmarket < ApplicationRecord
             next
           end
 
+          color_submarket = ColorSubmarket.find_by(color_id: color_id, submarket_id: submarket_id)
+          if !color_submarket.nil?
+            errors << {
+              initial_values: row.to_h,
+              error: "Combinacion de Submercado #{row["market_code"]} y color #{row["color"]} ya existe."
+            }
+            next
+          end
+
           color_submarkets << {
             price: row["price"],
             default: (row["default"] == 1 ? true : false),
