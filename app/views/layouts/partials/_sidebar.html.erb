@@ -10,9 +10,8 @@
       <li class="nav-heading">
         <span>Bases de datos</span>
       </li>
-
-      <li class="<%= 'active' if controller?('') %>">
-        <a href="#infrastructure" title="Infraestructura" data-toggle="collapse">
+      <li class="<%= 'active' if controller?('blocks') %>">
+        <a href= <%= "#infrastructure"%> title="Infraestructura" data-toggle="collapse">
           <em class="fa fa-map-marker"></em>
           <span>Infraestructura</span>
         </a>
@@ -27,7 +26,7 @@
               <span>Camas</span>
             </a>
           </li>
-          <li class="<%= 'active' if controller?('coldroom') && action?('index') %>">
+          <li class="<%= 'active' if controller?('coldrooms') && action?('index') %>">
             <a href= <%= "/farms/" + session[:farm_id].to_s + "/coldrooms" %> title="Cuarto frio">
               <span>Cuarto Frio</span>
             </a>
@@ -79,14 +78,16 @@
           <span>Mercados</span>
         </a>
         <ul id="market" class="nav sidebar-subnav collapse">
-          <li class="<%= 'active' if controller?('') && action?('index') %>">
-            <a href= "" title="Listado">
+          <li class="<%= 'active' if controller?('demands') && action?('index') %>">
+            <a href= "/demands" title="Demanda">
               <span>Demanda</span>
             </a>
           </li>
           <li class="<%= 'active' if controller?('submarkets') && action?('index') %>">
             <a href= "/submarkets" title="Submercados">
               <span>Submercados</span>
+            </a>
+          </li>
           <li class="<%= 'active' if controller?('markets') && action?('index') %>">
             <a href= <%= "/company/" + session[:company_id].to_s + "/markets" %> title="Mercados">
               <span>Mercados</span>

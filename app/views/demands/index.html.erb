@@ -1,39 +1,37 @@
 <!-- START DATATABLE 1 -->
-<h3>Camas</h3>
+<h3>Demanda</h3>
 
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        Camas
+        Demanda
         <small></small> |
-        <%= if params[:block_id].present?
-              link_to 'Nueva cama', new_block_bed_path
-        end %>
+        <%= link_to 'Nueva Demanda', new_demand_path %>
       </div>
       <div class="panel-body">
         <table id="datatable1" class="table table-striped table-hover">
           <thead>
             <tr>
-              <th class="sort-alpha">Numero</th>
-              <th>Area total</th>
-              <th>Area usable</th>
-              <th>Bloque</th>
-              <th>Tipo de cama</th>
+              <th class="sort-alpha">Cantidad</th>
+              <th>Color</th>
+              <th>Flor</th>
+              <th>Mercado</th>
+              <th>Semana</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
-            <% @beds.each do |bed| %>
+            <% @demands.each do |demand| %>
             <tr class="gradeX">
-              <td> <%= bed.number %> </td>
-              <td> <%= bed.total_area %> </td>
-              <td> <%= bed.usable_area %> </td>
-              <td> <%= bed.block.name %> </td>
-              <td> <%= bed.bed_type.name %> </td>
+              <td> <%= demand.quantity %> </td>
+              <td> <%= demand.color.name %> </td>
+              <td> <%= demand.flower.name %> </td>
+              <td> <%= demand.market.name %> </td>
+              <td> <%= demand.week.week %> </td>
               <td>
-                <%= link_to 'Editar', edit_bed_path(bed) %> |
-                <%= link_to 'Eliminar', bed_path(bed, :block_id => bed.block.id),  method: :delete, data: { confirm: 'Desea eliminar la Cama?' } %>
+                <%= link_to 'Editar', edit_demand_path(demand) %> |
+                <%= link_to 'Eliminar', demand_path(demand),  method: :delete, data: { confirm: 'Desea eliminar el Demanda?' } %>
               </td>
             </tr>
             <% end %>
@@ -47,20 +45,20 @@
 <!-- CSV Importer -->
 <br>
 <br>
-<h3>Importar lista de Camas</h3>
+<h3>Importar lista de Demandas</h3>
 <blockquote class="box-placeholder">
   <p>Importar archivo CSV</p>
 </blockquote>
 <div class="row upload-box">
-  <form id="select_button"  enctype="multipart/form-data" action="beds/import_beds" accept-charset="UTF-8" method="post">
+  <form id="select_button"  enctype="multipart/form-data" action="import_demands" accept-charset="UTF-8" method="post">
     <div class="row">
       <div class="col-md-3">
         <input   accept="csv" class="form-control-file upload" id="file" name="file" type="file" />
       </div>
       <div class="col-md-2">
         <button type="submit" class="btn btn-primary start"><i class="fa fa-fw fa-upload"></i>
+        </div>
       </div>
-    </div>
-  </form>
-</div>
+    </form>
+  </div>
   <!-- END CSV Importer -->
