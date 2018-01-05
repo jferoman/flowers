@@ -68,7 +68,7 @@ class BlockColorFlower < ApplicationRecord
           csv_with_errors errors
         end
     end
-  end
+
     private
     def csv_with_errors blocks_color_flowers_list
 
@@ -78,10 +78,12 @@ class BlockColorFlower < ApplicationRecord
       CSV.open(file_path, "wb") do |csv|
 
         csv << attributes
-        demands_list.each do |data|
+        blocks_color_flowers_list.each do |data|
           csv << [data[:initial_values].values, data[:error]].flatten
         end
       end
       file_path
     end
+  end
+
 end

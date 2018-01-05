@@ -8,8 +8,9 @@ class SowingDetail < ApplicationRecord
   belongs_to :bed
 
   class << self
+
     def import file_path
-      blocks_color_flowers = []
+      sowing_details = []
       errors = []
 
         CSV.foreach(file_path, {
@@ -18,71 +19,72 @@ class SowingDetail < ApplicationRecord
           converters: :all,
           header_converters: lambda { |h| I18n.transliterate(h.downcase.gsub(' ','_'))}} ) do |row|
 
-          color_id = (Color.find_by(name: row["color"].to_s.upcase).id rescue nil)
-          if color_id.nil?
+          bed_id = (Block.find_by(name: row["block_name"].to_s.upcase).beds.find_by(number: row["bed_number"].to_s).id rescue nil)
+          if bed_id.nil?
             errors << {
               initial_values: row.to_h,
-              error: "Color #{row["color"]} no encontrado."
+              error: "Cama #{row["bed_number"]} no encontrado."
             }
             next
           end
 
-          flower_id = (Flower.find_by(name: row["flor"].to_s.upcase).id rescue nil)
-          if flower_id.nil?
+          variety_id = (Variety.find_by(name: row["variety_name"].to_s.upcase).id rescue nil)
+          if variety_id.nil?
             errors << {
               initial_values: row.to_h,
-              error: "Flor: #{row["flor"]} no encontrada."
+              error: "Variedad: #{row["variety_name"]} no encontrada."
             }
             next
           end
 
-          block_id = (Block.find_by(name: row["bloque"].to_s.upcase).id rescue nil)
-          if block_id.nil?
+          week_id = (Week.find_by(initial_day: row["sowing_date"]).id rescue nil)
+          if week_id.nil?
             errors << {
               initial_values: row.to_h,
-              error: "Bloque: #{row["bloque"]} no encontrado."
+              error: "Fecha: #{row["sowing_date"]} no encontrada."
             }
             next
           end
 
-          blocks_color_flower = BlockColorFlower.find_by(block_id: block_id, flower_id: flower_id, color_id: color_id)
-          if !blocks_color_flower.nil?
+          sowing_detail = SowingDetail.find_by(variety_id: variety_id, week_id: week_id, bed_id: bed_id)
+          if !sowing_detail.nil?
             errors << {
               initial_values: row.to_h,
-              error: "El resgsitro #{row["color"]}, #{row["flor"]}, #{row["bloque"]} ya existe."
+              error: "El resgsitro #{row["variety_name"]}, #{row["bed_number"]}, #{row["block_name"]} #{row["sowing_date"]} ya existe."
             }
             next
           end
 
-          blocks_color_flowers << {
-            usage: (row["uso"] == 1 ? true : false),
-            color_id: color_id,
-            block_id: block_id,
-            flower_id: flower_id
+          sowing_details << {
+            quantity: row["quantity"],
+            cutting_week: row["cutting_week"],
+            bed_id: bed_id,
+            variety_id: variety_id,
+            week_id: week_id
           }
         end
 
         if errors.empty?
-          BlockColorFlower.bulk_insert values: blocks_color_flowers
+          SowingDetail.bulk_insert values: sowing_details
         else
           csv_with_errors errors
         end
     end
-  end
+
     private
-    def csv_with_errors blocks_color_flowers_list
+      def csv_with_errors sowing_detail_list
 
-      attributes = %w{bloque color flor uso errores}
-      file_path = "db/tmp_files/errores_uso_bloques.csv"
+        attributes = %w{block_name bed_number sowing_date variaty_name quantity cutting_week errores}
+        file_path = "db/tmp_files/errores_detalle_siembra.csv"
 
-      CSV.open(file_path, "wb") do |csv|
+        CSV.open(file_path, "wb") do |csv|
 
-        csv << attributes
-        demands_list.each do |data|
-          csv << [data[:initial_values].values, data[:error]].flatten
+          csv << attributes
+          sowing_detail_list.each do |data|
+            csv << [data[:initial_values].values, data[:error]].flatten
+          end
         end
+        file_path
       end
-      file_path
-    end
-
+  end
 end
