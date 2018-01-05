@@ -192,8 +192,8 @@ ActiveRecord::Schema.define(version: 20171206201028) do
   create_table "productivity_curves", force: :cascade do |t|
     t.integer "week_number", null: false
     t.float "cost", null: false
-    t.integer "production", null: false
-    t.integer "cut", null: false
+    t.float "production", null: false
+    t.integer "cut"
     t.bigint "farm_id", null: false
     t.bigint "variety_id", null: false
     t.datetime "created_at", null: false

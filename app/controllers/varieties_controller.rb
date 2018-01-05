@@ -4,7 +4,12 @@ class VarietiesController < ApplicationController
   before_action :find_variety, only: [:destroy, :edit, :update]
 
   def index
-  	@varieties = Variety.all
+    if params[:farm_id].nil?
+  	  @varieties = Variety.all
+    else
+      @farm = Farm.find(params[:farm_id])
+      @varieties
+    end 
   end
 
   def create
