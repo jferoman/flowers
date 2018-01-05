@@ -20,20 +20,17 @@ Rails.application.routes.draw do
     resources :markets, :demands, only: [:index, :create, :new, :edit, :destroy, :update]
   end
 
-  resources :coldrooms, only: [:create, :new, :edit, :destroy, :update]
-  resources :colors, :varieties, only: [:index, :create, :show, :new, :edit, :destroy, :update]
-  resources :blocks, :beds, only: [:create, :new, :edit, :destroy, :update]
-  resources :bed_types
-  resources :storage_resistance_types, only: [:create, :show, :new, :edit, :destroy, :update]
-  resources :colors, :varieties, :storage_resistances, only: [:index, :create, :show, :new, :edit, :destroy, :update]
-  resources :weeks
-  resources :beds
-  resources :flower_densities
-  resources :submarkets
-  resources :markets
-  resources :cuttings
-  resources :color_submarkets
-  resources :weeks, :beds, :flower_densities, :submarkets, :markets, :cuttings, :demands
+  resources :farms do
+    resources :flower_densities, :cuttings, :blocks, :coldrooms, :block_color_flowers, only: [:index, :create, :new, :edit, :destroy, :update]
+  end
+
+  resources :coldrooms, :blocks, :beds, only: [:create, :new, :edit, :destroy, :update]
+  resources :colors, :storage_resistance_types, :varieties, :storage_resistances, only: [:index, :create, :show, :new, :edit, :destroy, :update]
+  resources :weeks, :beds, :flower_densities, :submarkets, :markets, :cuttings, :demands, :color_submarkets, :bed_types, :block_color_flowers
+
+  resources :blocks do
+    resources :beds, only: [:index, :create, :new, :edit, :destroy, :update]
+  end
 
   post '/company/:company_id/farms/:farm_id/import_blocks' => 'blocks#import_blocks'
   post '/colors/csv_import' => 'colors#csv_import'
@@ -47,16 +44,7 @@ Rails.application.routes.draw do
   post '/import_color_submarkets' => 'color_submarkets#import'
   post '/import_submarket_weeks' => 'submarkets#import_submarket_weeks'
   post '/import_demands' => 'demands#import_demands'
+  post 'farms/:farm_id/import_block_color_flowers' => 'block_color_flowers#import'
 
-  resources :blocks do
-    resources :beds, only: [:index, :create, :new, :edit, :destroy, :update]
-  end
-
-  resources :farms do
-    resources :blocks, only: [:index, :create, :new, :edit, :destroy, :update]
-    resources :coldrooms, only: [:index, :create, :new, :edit, :destroy, :update]
-    resources :flower_densities, only: [:index, :create, :new, :edit, :destroy, :update]
-    resources :cuttings, only: [:index, :create, :new, :edit, :destroy, :update]
-  end
 
 end

@@ -31,4 +31,5 @@ Demand.import('db/seeds_data/demands.csv')
 Cutting.import('db/seeds_data/cuttings.csv')
 Submarket.import_submarket_weeks('db/seeds_data/submarket_weeks.csv')
 ColorSubmarket.import('db/seeds_data/color_submarket.csv')
+BlockColorFlower.import('db/seeds_data/block_color_flower.csv')
 
