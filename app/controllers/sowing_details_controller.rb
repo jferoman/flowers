@@ -24,12 +24,42 @@ class SowingDetailsController < ApplicationController
   end
 
   def destroy
+    if @sowing_detail.destroy
+      flash[:success] = 'Detalle de siembra eliminado.'
+      redirect_to index_route
+    else
+      flash[:error] = @sowing_detail.errors.full_messages.to_sentence
+      redirect_to index_route
+    end
   end
 
   def edit
   end
 
   def update
+    @sowing_detail.attributes = sowing_detail_params
+    if @sowing_detail.save
+      flash[:success] = 'Detalle de siembra actualizado'
+      redirect_to index_route
+    else
+      flash[:error] = @sowing_detail.errors.full_messages.to_sentence
+      redirect_to index_route
+    end
+  end
+
+  def import
+    begin
+      file_path = SowingDetail.import(params[:file].path)
+    rescue Exception => e
+      p e
+    end
+
+    if file_path.is_a? String
+      redirect_to index_route, alert: "El archivo cargado contiene errores."
+      send_file file_path
+    else
+      redirect_to index_route, notice: "Detalle de siembra importado correctamente."
+    end
   end
 
   private
