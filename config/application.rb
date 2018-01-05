@@ -63,6 +63,7 @@ module Angle
                                  'demands.js',
                                  'productivity_curves.js',
                                  'block_color_flowers.js',
+                                 'sowing_details.js',
                                  # 'Styles',
                                  'main_reports.css',
                                  'blocks.css',
@@ -82,6 +83,8 @@ module Angle
                                  'cuttings.css',
                                  'color_submarkets.css',
                                  'demands.css',
+                                 'block_color_flowers.css',
+                                 'sowing_details.css',
                                  'productivity_curves.css',
                                  'block_color_flowers.css'
                                 ]

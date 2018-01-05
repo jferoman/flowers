@@ -8,8 +8,8 @@ class CreateSowingDetails < ActiveRecord::Migration[5.1]
       t.references :week, null: false, index: true
       t.references :bed, null: false, index: true
 
-
       t.timestamps
     end
+    add_index :sowing_details, [:variety_id, :bed_id, :week_id], unique: true,  :name => 'sowing_detail'
   end
 end

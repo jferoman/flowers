@@ -212,6 +212,7 @@ ActiveRecord::Schema.define(version: 20171206201028) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bed_id"], name: "index_sowing_details_on_bed_id"
+    t.index ["variety_id", "bed_id", "week_id"], name: "sowing_detail", unique: true
     t.index ["variety_id"], name: "index_sowing_details_on_variety_id"
     t.index ["week_id"], name: "index_sowing_details_on_week_id"
   end
