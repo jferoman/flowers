@@ -1,0 +1,24 @@
+<%= form_for @block_color_flower do |f| %>
+  <div class="form-group">
+    <%= f.label :flower_id, 'Flor: ' %>
+    <%= f.collection_select(:flower_id, Flower.all, :id, :name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :color_id, 'Color: ' %>
+    <%= f.collection_select(:color_id, Color.all, :id, :name) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :block_id, 'Bloque: ' %>
+    <%= f.collection_select(:block_id, @farm.blocks, :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Uso: ' %>
+    <%= f.check_box :usage, {}, "true", "false"%>
+  </div>
+  <br>
+  <div>
+    <%= f.submit 'Actualizar uso de Bloque' %>
+  </div>
+<% end %>

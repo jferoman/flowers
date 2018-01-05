@@ -61,7 +61,7 @@
             </a>
           </li>
           <li class="<%= 'active' if controller?('block_color_flowers') && action?('index') %>">
-            <a href="/block_color_flowers" title="Uso de Bloques">
+            <a href= <%= "/farms/" + session[:farm_id].to_s + "/block_color_flowers" %> title="Uso de Bloques">
               <span>Uso de Bloques</span>
             </a>
           </li>
@@ -83,14 +83,14 @@
               <span>Demanda</span>
             </a>
           </li>
-          <li class="<%= 'active' if controller?('submarkets') && action?('index') %>">
-            <a href= "/submarkets" title="Submercados">
-              <span>Submercados</span>
-            </a>
-          </li>
           <li class="<%= 'active' if controller?('markets') && action?('index') %>">
             <a href= <%= "/company/" + session[:company_id].to_s + "/markets" %> title="Mercados">
               <span>Mercados</span>
+            </a>
+          </li>
+          <li class="<%= 'active' if controller?('submarkets') && action?('index') %>">
+            <a href= "/submarkets" title="Submercados">
+              <span>Submercados</span>
             </a>
           </li>
           <li class="<%= 'active' if controller?('colos_submarkets') && action?('index') %>">
