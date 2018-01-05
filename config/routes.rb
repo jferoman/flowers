@@ -44,5 +44,7 @@ Rails.application.routes.draw do
   post '/import_color_submarkets' => 'color_submarkets#import'
   post '/import_submarket_weeks' => 'submarkets#import_submarket_weeks'
   post '/import_demands' => 'demands#import_demands'
+  post 'farms/:farm_id/import_block_color_flowers' => 'block_color_flowers#import'
+
 
 end

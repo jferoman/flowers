@@ -47,6 +47,21 @@ class BlockColorFlowersController < ApplicationController
     end
   end
 
+  def import
+    begin
+      file_path = BlockColorFlower.import(params[:file].path)
+    rescue Exception => e
+      p e
+    end
+
+    if file_path.is_a? String
+      redirect_to index_route, alert: "El archivo cargado contiene errores."
+      send_file file_path
+    else
+      redirect_to index_route, notice: "Uso de bloques importados correctamente."
+    end
+  end
+
   private
     def block_color_flower_params
       params.require(:block_color_flower).permit(:usage, :block_id, :flower_id, :color_id)
