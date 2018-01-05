@@ -62,6 +62,7 @@ module Angle
                                  'color_submarkets.js',
                                  'demands.js',
                                  'block_color_flowers.js',
+                                 'sowing_detail.js',
                                  # 'Styles',
                                  'main_reports.css',
                                  'blocks.css',
@@ -81,7 +82,8 @@ module Angle
                                  'cuttings.css',
                                  'color_submarkets.css',
                                  'demands.css',
-                                 'block_color_flowers.css'
+                                 'block_color_flowers.css',
+                                 'sowing_details.css'
                                 ]
 
   end

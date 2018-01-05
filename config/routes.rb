@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   resources :farms do
-    resources :flower_densities, :cuttings, :blocks, :coldrooms, :block_color_flowers, only: [:index, :create, :new, :edit, :destroy, :update]
+    resources :flower_densities, :cuttings, :blocks, :coldrooms, :block_color_flowers, :sowing_details, only: [:index, :create, :new, :edit, :destroy, :update]
   end
 
   resources :coldrooms, :blocks, :beds, only: [:create, :new, :edit, :destroy, :update]
