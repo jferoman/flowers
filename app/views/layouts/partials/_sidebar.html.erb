@@ -102,11 +102,11 @@
       </li>
 
       <li class="<%= 'active' if controller?('')%>">
-        <a href="" title="Produccion">
+        <a href="#productions" title="Produccion" data-toggle="collapse">
           <em class="fa fa-area-chart"></em>
           <span>Produccion & Siembra</span>
         </a>
-        <ul id="parameters" class="nav sidebar-subnav collapse">
+        <ul id="productions" class="nav sidebar-subnav collapse">
           <li class="<%= 'active' if controller?('sowing_details') && action?('index') %>">
             <a href= <%= "/farms/" + session[:farm_id].to_s + "/sowing_details" %> title="Detalle de siembra">
               <span>Detalle de siembra</span>
@@ -114,7 +114,7 @@
           </li>
         </ul>
       </li>
-      <li class="<%= 'active' if controller?('weeks') %>">
+      <li class="<%= 'active' if controller?('') %>">
         <a href= "#parameters" title="Parametros" data-toggle="collapse">
           <em class="fa fa-wrench"></em>
           <span >Parametros</span>
