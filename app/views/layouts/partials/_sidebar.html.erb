@@ -56,7 +56,7 @@
             </a>
           </li>
           <li class="<%= 'active' if controller?('productivity_curves') && action?('index') %>">
-            <a href="/productivity_curves" title="Curvas de Variedad">
+            <a href= <%='/farms/' + session[:farm_id].to_s + '/productivity_curves' %> title="Curvas de Variedad">
               <span>Curvas de Variedad</span>
             </a>
           </li>
@@ -67,7 +67,7 @@
           </li>
           <li class="<%= 'active' if controller?('cuttings') && action?('index') %>">
             <a href= <%= "/farms/" + session[:farm_id].to_s + "/cuttings" %> title="Cortes">
-              <span>Cortes</span>
+              <span>Esquejes Futuros</span>
             </a>
           </li>
         </ul>
@@ -118,13 +118,13 @@
               <span>Calendario</span>
             </a>
           </li>
-          <li class="<%= 'active' if controller?('bed_type') && action?('index') %>">
+          <li class="<%= 'active' if controller?('bed_types') && action?('index') %>">
             <a href= "/bed_types" title="Tipos de cama">
               <span>Tipos de cama</span>
             </a>
           </li>
           <li class="<%= 'active' if controller?('storage_resistances') && action?('index') %>">
-            <a href= "storage_resistances" title="Resistencia al Guarde">
+            <a href= "/storage_resistances" title="Resistencia al Guarde">
               <span>Resistencias al Guarde</span>
             </a>
           </li>
