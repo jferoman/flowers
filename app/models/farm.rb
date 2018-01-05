@@ -14,5 +14,6 @@ class Farm < ApplicationRecord
 
   has_many :beds, through: :blocks
   has_many :block_color_flowers, through: :blocks
+  has_many :sowing_details, through: :beds
 
 end

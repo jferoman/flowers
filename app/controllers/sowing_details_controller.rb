@@ -5,12 +5,22 @@ class SowingDetailsController < ApplicationController
   before_action :find_farm, only: [:index, :create, :new, :edit]
 
   def index
+    @sowing_details = @farm.sowing_details
   end
 
   def new
+    @sowing_detail = SowingDetail.new
   end
 
   def create
+    @new_sowing_detail = SowingDetail.new(sowing_detail_params)
+    if @new_sowing_detail.save
+      flash[:success] = 'Detalle de siembra creado'
+      redirect_to index_route
+    else
+      flash[:error] = @new_sowing_detail.errors.full_messages.to_sentence
+      redirect_to :new_sowing_detail
+    end
   end
 
   def destroy
@@ -24,7 +34,7 @@ class SowingDetailsController < ApplicationController
 
   private
     def sowing_detail_params
-      params.require(:sowing_detail).permit(:usage, :block_id, :flower_id, :color_id)
+      params.require(:sowing_detail).permit(:quantity, :cutting_week, :variety_id, :week_id, :bed_id)
     end
 
     def find_sowing_detail
