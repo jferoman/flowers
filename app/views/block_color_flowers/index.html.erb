@@ -2,6 +2,65 @@
 <h3>Uso de Bloques</h3>
 
 <div class="row">
+   <div class="col-lg-6">
+      <div class="panel panel-default">
+         <div class="panel-heading">Importar curvas de produción</div>
+         <div class="panel-body">
+            <blockquote class="box-placeholder">
+               <p>Importar archivo CSV
+                  <br>EL archivo debe contener las <% "hey" %> columnas:
+                  <br>bloque,color,flor,uso
+               </p>
+            </blockquote>
+            <div class="row upload-box">
+              <form id="select_button"  enctype="multipart/form-data" action="import_block_color_flowers" accept-charset="UTF-8" method="post">
+                  <div class="row">
+                     <div class="col-md-6">
+                        <input   accept="csv" class="form-control-file upload" id="file" name="file" type="file" />
+                     </div>
+                     <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary start"><i class="fa fa-fw fa-upload"></i>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Borrar Uso de bloques</div>
+        <div class="panel-body">
+          <form action= <%= block_color_flowers_batch_delete_path(farm_id: params[:farm_id]) %> enctype="multipart/form-data"  accept-charset="UTF-8" method="post" class="form-horizontal">
+            <input type="hidden" name="_method" value="delete" />
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Bloque:  </label>
+                  <div class="col-md-6">
+                     <select name="block_id" class="form-control m-b">
+                        <option value="all">BORRAR TODOS</option>
+                        <%= get_blocks.each do |block| %>
+                        <option value="<%= block.id %>"><%= block.name %></option>
+                        <% end %>
+                     </select>
+                  </div>
+               </div>
+            <button type="submit" class="btn btn-primary start"><i> Borrar uso de bloques</i>
+          </form>
+        </div>
+      </div>
+   </div>
+</div>
+
+
+<!-- CSV Importer -->
+<h3>Importar lista de Uso de bloques</h3>
+<blockquote class="box-placeholder">
+   <p>Importar archivo CSV
+   </p>
+</blockquote>
+
+<!-- END CSV Importer -->
+<div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -40,25 +99,3 @@
   </div>
 </div>
 <!-- END DATATABLE 1 -->
-<!-- CSV Importer -->
-<br>
-<br>
-<h3>Importar lista de Uso de bloques</h3>
-<blockquote class="box-placeholder">
-   <p>Importar archivo CSV
-   </p>
-</blockquote>
-<div class="row upload-box">
-   <form id="select_button"  enctype="multipart/form-data" action="import_block_color_flowers" accept-charset="UTF-8" method="post">
-      <div class="row">
-         <div class="col-md-3">
-            <input   accept="csv" class="form-control-file upload" id="file" name="file" type="file" />
-         </div>
-         <div class="col-md-2">
-            <button type="submit" class="btn btn-primary start"><i class="fa fa-fw fa-upload"></i>
-         </div>
-      </div>
-   </form>
-</div>
-<!-- END CSV Importer -->
-
