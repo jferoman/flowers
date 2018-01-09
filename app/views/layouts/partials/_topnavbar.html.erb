@@ -34,10 +34,11 @@
          </li>
       </ul>
 
+
       <ul class="nav navbar-nav navbar-right">
-         <li class="visible-lg">
-            <a href="#" data-toggle-fullscreen="" data-no-persist="true">
-               <em class="fa fa-expand"></em>
+         <li class="visible-lg" style="height: 50%;">
+            <a href="#" data-no-persist="true">
+              <%= Company.find(session[:company_id]).name %>
             </a>
          </li>
          <li>
