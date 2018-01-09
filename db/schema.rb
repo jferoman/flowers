@@ -206,6 +206,7 @@ ActiveRecord::Schema.define(version: 20171206201028) do
   create_table "sowing_details", force: :cascade do |t|
     t.integer "quantity", null: false
     t.integer "cutting_week", null: false
+    t.integer "status", default: 0
     t.bigint "variety_id", null: false
     t.bigint "week_id", null: false
     t.bigint "bed_id", null: false

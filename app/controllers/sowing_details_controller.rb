@@ -5,7 +5,7 @@ class SowingDetailsController < ApplicationController
   before_action :find_farm, only: [:index, :create, :new, :edit]
 
   def index
-    @sowing_details = @farm.sowing_details
+    @sowing_details = @farm.sowing_details.includes(:bed, :week, :variety)
   end
 
   def new
@@ -64,7 +64,7 @@ class SowingDetailsController < ApplicationController
 
   private
     def sowing_detail_params
-      params.require(:sowing_detail).permit(:quantity, :cutting_week, :variety_id, :week_id, :bed_id)
+      params.require(:sowing_detail).permit(:quantity, :cutting_week, :status, :variety_id, :week_id, :bed_id)
     end
 
     def find_sowing_detail

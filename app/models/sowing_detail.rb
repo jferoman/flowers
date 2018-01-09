@@ -1,4 +1,5 @@
 class SowingDetail < ApplicationRecord
+  require 'csv'
 
   validates_presence_of :quantity, :cutting_week
   validates_numericality_of :quantity, :allow_nil => false, :greater_than => 0.0
@@ -6,6 +7,9 @@ class SowingDetail < ApplicationRecord
   belongs_to :variety
   belongs_to :week
   belongs_to :bed
+
+  enum status: %w(Programado Ejecutado)
+
 
   class << self
 
@@ -58,6 +62,7 @@ class SowingDetail < ApplicationRecord
           sowing_details << {
             quantity: row["quantity"],
             cutting_week: row["cutting_week"],
+            status: row["status"],
             bed_id: bed_id,
             variety_id: variety_id,
             week_id: week_id

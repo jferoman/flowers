@@ -19,6 +19,10 @@
     <%= f.label :cutting_week, 'Semana de corte' %>
     <%= f.text_field :cutting_week, class: 'form-control' %>
   </div>
+  <div class="form-group">
+    <%= f.label :status, 'Estado' %>
+    <%= f.select :status, %w(Programado Ejecutado) %>
+  </div>
   <br>
   <div>
     <%= f.submit 'Crear detalle de siembra' %>

@@ -3,6 +3,7 @@ class CreateSowingDetails < ActiveRecord::Migration[5.1]
     create_table :sowing_details do |t|
       t.integer :quantity, null: false
       t.integer :cutting_week, null: false
+      t.integer :status, default: 0
 
       t.references :variety, null: false, index: true
       t.references :week, null: false, index: true
