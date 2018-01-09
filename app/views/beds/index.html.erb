@@ -1,6 +1,58 @@
 <!-- START DATATABLE 1 -->
 <h3>Camas</h3>
 
+
+<div class="row">
+   <div class="col-lg-6">
+      <div class="panel panel-default">
+         <div class="panel-heading">Importar camas</div>
+         <div class="panel-body">
+            <blockquote class="box-placeholder">
+               <p>Importar archivo CSV
+                  <br>EL archivo debe contener las <% "hey" %> columnas:
+                  <br>bed_number,block_name,total_area,usable_area,
+                  bed_type_width
+               </p>
+            </blockquote>
+            <div class="row upload-box">
+              <form id="select_button"  enctype="multipart/form-data" action="beds/import_beds" accept-charset="UTF-8" method="post">
+                  <div class="row">
+                     <div class="col-md-6">
+                        <input   accept="csv" class="form-control-file upload" id="file" name="file" type="file" />
+                     </div>
+                     <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary start"><i class="fa fa-fw fa-upload"></i>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Borrar Camas</div>
+        <div class="panel-body">
+          <form action= <%= beds_batch_delete_path(farm_id: params[:farm_id]) %> enctype="multipart/form-data"  accept-charset="UTF-8" method="post" class="form-horizontal">
+            <input type="hidden" name="_method" value="delete" />
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Bloque:  </label>
+                  <div class="col-md-6">
+                     <select name="block_id" class="form-control m-b">
+                        <option value="all">BORRAR TODOS</option>
+                        <%= Block.where(id: @beds.pluck(:block_id).uniq).each do |block| %>
+                        <option value="<%= block.id %>"><%= block.name %></option>
+                        <% end %>
+                     </select>
+                  </div>
+               </div>
+            <button type="submit" class="btn btn-primary start"><i> Borrar Camas</i>
+          </form>
+        </div>
+      </div>
+   </div>
+</div>
+
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
@@ -44,23 +96,3 @@
   </div>
 </div>
 <!-- END DATATABLE 1 -->
-<!-- CSV Importer -->
-<br>
-<br>
-<h3>Importar lista de Camas</h3>
-<blockquote class="box-placeholder">
-  <p>Importar archivo CSV</p>
-</blockquote>
-<div class="row upload-box">
-  <form id="select_button"  enctype="multipart/form-data" action="beds/import_beds" accept-charset="UTF-8" method="post">
-    <div class="row">
-      <div class="col-md-3">
-        <input   accept="csv" class="form-control-file upload" id="file" name="file" type="file" />
-      </div>
-      <div class="col-md-2">
-        <button type="submit" class="btn btn-primary start"><i class="fa fa-fw fa-upload"></i>
-      </div>
-    </div>
-  </form>
-</div>
-  <!-- END CSV Importer -->
