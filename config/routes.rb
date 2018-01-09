@@ -54,5 +54,6 @@ Rails.application.routes.draw do
   post 'farms/:farm_id/import_sowing_details' => 'sowing_details#import'
   delete '/farms/:farm_id/productivity_curves' => 'productivity_curves#destroy'
   delete '/farms/:farm_id/block_color_flowers' => 'block_color_flowers#batch_delete', as: :block_color_flowers_batch_delete
+  delete '/farms/:farm_id/sowing_details' => 'sowing_details#batch_delete', as: :sowing_details_batch_delete
 
 end
