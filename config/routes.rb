@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
+  post '/sessions_controller/change_farm' => 'sessions#change_farm'
+
   resources :company do
     resources :farms
     resources :markets, :demands, only: [:index, :create, :new, :edit, :destroy, :update]

@@ -20,7 +20,7 @@
             <div class="idf_group_btn">
                <div class="btn-group">
                   <select id="farm_id" name="intervention_id" class="form-control" onchange="changeFarm()">
-                     <% Company.find(session[:farm_id]).farms.each do |farm| %>
+                     <% Company.find(session[:company_id]).farms.each do |farm| %>
                      <option type= "submit" value=<%= farm.id %>
                         <%= if (farm.id == session[:farm_id])
                            selected="selected"
