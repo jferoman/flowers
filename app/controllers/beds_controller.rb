@@ -72,7 +72,6 @@ class BedsController < ApplicationController
     if params[:block_id] == "all"
       Bed.where(id: Farm.find(session[:farm_id]).beds.pluck(:id)).delete_all
       notice = "Todas las camas fueron borrados"
-
     else
       Bed.where(block_id: params[:block_id]).delete_all
       notice = "las Camas del bloque: " + Block.find(params[:block_id]).name + " fueron borrados."
