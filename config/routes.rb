@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   post 'farms/:farm_id/import_cuttings' => 'cuttings#import_cuttings'
   post '/import_color_submarkets' => 'color_submarkets#import'
   post '/import_submarket_weeks' => 'submarkets#import_submarket_weeks'
-  post '/import_demands' => 'demands#import_demands'
+  post '/company/:company_id/import_demands' => 'demands#import_demands'
   post '/farms/:farm_id/productivity_curves' => 'productivity_curves#csv_import'
   post 'farms/:farm_id/import_block_color_flowers' => 'block_color_flowers#import'
   post 'farms/:farm_id/import_sowing_details' => 'sowing_details#import'
@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   delete '/farms/:farm_id/block_color_flowers' => 'block_color_flowers#batch_delete', as: :block_color_flowers_batch_delete
   delete '/farms/:farm_id/sowing_details' => 'sowing_details#batch_delete', as: :sowing_details_batch_delete
   delete '/beds' => 'beds#batch_delete', as: :beds_batch_delete
+  delete '/demands' => 'demands#batch_delete', as: :demands_batch_delete
 
 
 

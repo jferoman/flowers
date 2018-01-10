@@ -3,7 +3,7 @@ class ProductivityCurvesController < ApplicationController
   before_action :find_farm, only: [:index, :create, :destroy]
 
 	def index
-      @productivity_curves = @farm.productivity_curves
+      @productivity_curves = @farm.productivity_curves.includes(:variety)
       @varieties = @farm.productivity_curves_varieties
 	end
 
@@ -18,7 +18,7 @@ class ProductivityCurvesController < ApplicationController
 		end
 	end
 
-	def destroy 
+	def destroy
 		if params[:variety_id] == "all"
 		  ProductivityCurve.where(farm_id: @farm.id).delete_all
 		  notice = "Todas las curvas de produción fueron borradas"
@@ -29,7 +29,7 @@ class ProductivityCurvesController < ApplicationController
 
        redirect_to index_route, notice: notice
 	end
-	
+
 	private
 
 	def find_farm
