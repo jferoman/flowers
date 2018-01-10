@@ -58,6 +58,7 @@ Rails.application.routes.draw do
   delete '/beds' => 'beds#batch_delete', as: :beds_batch_delete
   delete '/demands' => 'demands#batch_delete', as: :demands_batch_delete
   delete '/color_submarkets' => 'color_submarkets#batch_delete', as: :color_submarkets_batch_delete
+  delete '/weeks' => 'weeks#batch_delete', as: :weeks_batch_delete
 
 
 
