@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   delete '/farms/:farm_id/sowing_details' => 'sowing_details#batch_delete', as: :sowing_details_batch_delete
   delete '/beds' => 'beds#batch_delete', as: :beds_batch_delete
   delete '/demands' => 'demands#batch_delete', as: :demands_batch_delete
+  delete '/color_submarkets' => 'color_submarkets#batch_delete', as: :color_submarkets_batch_delete
 
 
 

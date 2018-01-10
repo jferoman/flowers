@@ -2,10 +2,11 @@ class ColorSubmarketsController < ApplicationController
 
   before_action :authorize, :lock_farms_per_company
   before_action :find_color_submarket, only: [:destroy, :edit, :update]
-  before_action :find_company, only: [:index, :new, :edit]
+  before_action :find_company, only: [:index, :new, :edit, :batch_delete]
 
   def index
     @color_submarkets = @company.color_submarkets
+    @submarkets = Submarket.where(id: @color_submarkets.pluck(:submarket_id).uniq)
   end
 
   def new
@@ -60,6 +61,17 @@ class ColorSubmarketsController < ApplicationController
     else
       redirect_to color_submarkets_path, notice: "Archivo importado corretamente"
     end
+  end
+
+  def batch_delete
+    if params[:submarket_id] == "all"
+      ColorSubmarket.where(id: @company.color_submarkets.pluck(:id) ).delete_all
+      notice = "Todas los precios y defectos fueron borradas."
+    else
+      ColorSubmarket.where(submarket_id: params[:submarket_id]).delete_all
+      notice = "Los precios y defectos del submercado: " + Submarket.find(params[:submarket_id]).name + " fueron borradas."
+    end
+      redirect_to color_submarkets_path, notice: notice
   end
 
   private

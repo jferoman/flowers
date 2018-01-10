@@ -1,6 +1,58 @@
 <!-- START DATATABLE 1 -->
 <h3>Precios y defectos</h3>
 
+
+<div class="row">
+   <div class="col-lg-6">
+      <div class="panel panel-default">
+         <div class="panel-heading">Importar Precios y defecto</div>
+         <div class="panel-body">
+            <blockquote class="box-placeholder">
+               <p>Importar archivo CSV
+                  <br>EL archivo debe contener las <% "hey" %> columnas:
+                  <br>market_code,color,price,default
+               </p>
+            </blockquote>
+            <div class="row upload-box">
+              <form id="select_button"  enctype="multipart/form-data" action="import_color_submarkets" accept-charset="UTF-8" method="post">
+                  <div class="row">
+                     <div class="col-md-6">
+                        <input   accept="csv" class="form-control-file upload" id="file" name="file" type="file" />
+                     </div>
+                     <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary start"><i class="fa fa-fw fa-upload"></i>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Borrar Precios y defectos</div>
+        <div class="panel-body">
+          <form action= <%= color_submarkets_batch_delete_path %> enctype="multipart/form-data"  accept-charset="UTF-8" method="post" class="form-horizontal">
+            <input type="hidden" name="_method" value="delete" />
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">SubMercado:  </label>
+                  <div class="col-md-6">
+                     <select name="submarket_id" class="form-control m-b">
+                        <option value="all">BORRAR TODOS</option>
+                        <%= @submarkets.each do |submarket| %>
+                        <option value="<%= submarket.id %>"><%= submarket.name %></option>
+                        <% end %>
+                     </select>
+                  </div>
+               </div>
+            <button type="submit" class="btn btn-primary start"><i> Borrar Precios y defectos</i>
+          </form>
+        </div>
+      </div>
+   </div>
+</div>
+
+
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
