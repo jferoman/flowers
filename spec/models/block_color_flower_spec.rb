@@ -2,8 +2,6 @@ require 'rails_helper'
 
 describe BlockColorFlower do
   describe '#create' do
-
-    it { should validate_presence_of(:usage) }
     it { should have_db_index( [:block_id, :flower_id, :color_id] ).unique(true) }
 
   end
