@@ -35,6 +35,10 @@
         <div class="panel-body">
           <form action= <%= beds_batch_delete_path(farm_id: params[:farm_id]) %> enctype="multipart/form-data"  accept-charset="UTF-8" method="post" class="form-horizontal">
             <input type="hidden" name="_method" value="delete" />
+            <input type="hidden" name="block" value=
+            <%= if params[:block_id].present?
+                  params[:block_id]
+                end %> />
                <div class="form-group">
                   <label class="col-sm-2 control-label">Bloque:  </label>
                   <div class="col-md-6">
