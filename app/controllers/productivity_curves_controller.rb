@@ -1,16 +1,12 @@
 class ProductivityCurvesController < ApplicationController
   before_action :authorize, :lock_farms_per_company
-  before_action :find_farm, only: [:index, :create, :destroy]
   before_action :find_productivity_curve, only: [:edit, :update]
-
+  before_action :find_farm, only: [:index, :create, :destroy]
 
 	def index
     @productivity_curves = @farm.productivity_curves.includes(:variety)
     @varieties = @farm.productivity_curves_varieties
 	end
-
-  def edit
-  end
 
   def new
     @productivity_curve = ProductivityCurve.new
@@ -30,8 +26,9 @@ class ProductivityCurvesController < ApplicationController
 
 	def csv_import
 		begin
+      binding.pry
 			@company = Company.find(session[:company_id])
-			ProductivityCurve.import(params[:file].path,@company.id)
+			ProductivityCurve.import(params[:file].path, @company.id)
 			redirect_to index_route, notice: "Curvas de produción importadas corretamente"
 		rescue
 		  redirect_to index_route , alert: "El archivo cargado contiene errores."
@@ -50,21 +47,33 @@ class ProductivityCurvesController < ApplicationController
        redirect_to index_route, notice: notice
 	end
 
+  def edit
+
+  end
+
+  def update
+    @productivity_curve.attributes = productivity_curve_params
+    if @productivity_curve.save
+      flash[:success] = 'Registro actualizado'
+      redirect_to index_route
+    else
+      flash[:error] = @productivity_curve.errors.full_messages.to_sentence
+      redirect_to index_route
+    end
+  end
+
 
 	private
-
   def productivity_curve_params
     params.require(:productivity_curve).permit(:week_number, :cost, :production, :cut, :farm_id, :variety_id)
   end
 
 	def find_farm
-    @farm = Farm.find(params[:farm_id])
+    @farm = Farm.find(session[:farm_id])
 	end
 
 	def index_route
-    "/farms/" + session[:farm_id].to_s + "/productivity_curves"
-
-    # farm_productivity_curves_path(farm_id: params[:farm_id])
+    farm_productivity_curves_path(farm_id: session[:farm_id])
 	end
 
   def find_productivity_curve
