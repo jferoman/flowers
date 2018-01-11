@@ -64,9 +64,9 @@
         <table id="datatable1" class="table table-striped table-hover">
           <thead>
             <tr>
+              <th>Semana</th>
               <th class="sort-alpha">Variedad</th>
               <th>Cama</th>
-              <th>Semana</th>
               <th>Cantidad</th>
               <th>Semana de Corte</th>
               <th>Estado</th>
@@ -76,9 +76,9 @@
           <tbody>
             <% @sowing_details.each do |sowing_detail| %>
             <tr class="gradeX">
+              <td> <%= sowing_detail.week.week.to_s + " : " + sowing_detail.week.initial_day.to_s %> </td>
               <td> <%= sowing_detail.variety.name %> </td>
               <td> <%= sowing_detail.bed.number %> </td>
-              <td> <%= sowing_detail.week.week.to_s + " : " + sowing_detail.week.initial_day.to_s %> </td>
               <td> <%= sowing_detail.quantity %> </td>
               <td> <%= sowing_detail.cutting_week %> </td>
               <td> <%= sowing_detail.status %> </td>

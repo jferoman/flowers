@@ -13,18 +13,18 @@
         <table id="datatable1" class="table table-striped table-hover">
           <thead>
             <tr>
-              <th class="sort-alpha">Codigo</th>
-              <th>Submercado</th>
               <th>Mercado</th>
+              <th>Submercado</th>
+              <th class="sort-alpha">Codigo</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             <% @submarkets.each do |submarket| %>
             <tr class="gradeX">
-              <td> <%= submarket.code %> </td>
-              <td> <%= submarket.name %> </td>
               <td> <%= submarket.market.name %> </td>
+              <td> <%= submarket.name %> </td>
+              <td> <%= submarket.code %> </td>
               <td>
                 <%= link_to 'Editar', edit_submarket_path(submarket) %> |
                 <%= link_to 'Eliminar', submarket_path(submarket),  method: :delete, data: { confirm: 'Desea eliminar el Submercado?' } %>

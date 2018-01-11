@@ -71,22 +71,22 @@
         <table id="datatable1" class="table table-striped table-hover">
           <thead>
             <tr>
+              <th>Bloque</th>
+              <th>Tipo de cama</th>
               <th class="sort-alpha">Numero</th>
               <th>Area total</th>
               <th>Area usable</th>
-              <th>Bloque</th>
-              <th>Tipo de cama</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             <% @beds.each do |bed| %>
             <tr class="gradeX">
+              <td> <%= bed.block.name %> </td>
+              <td> <%= bed.bed_type.name %> </td>
               <td> <%= bed.number %> </td>
               <td> <%= bed.total_area %> </td>
               <td> <%= bed.usable_area %> </td>
-              <td> <%= bed.block.name %> </td>
-              <td> <%= bed.bed_type.name %> </td>
               <td>
                 <%= link_to 'Editar', edit_bed_path(bed) %> |
                 <%= link_to 'Eliminar', bed_path(bed, :block_id => bed.block.id),  method: :delete, data: { confirm: 'Desea eliminar la Cama?' } %>

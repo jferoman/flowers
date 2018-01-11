@@ -64,8 +64,8 @@
         <table id="datatable1" class="table table-striped table-hover">
           <thead>
             <tr>
-              <th class="sort-alpha">Submercado</th>
               <th>Color</th>
+              <th class="sort-alpha">Submercado</th>
               <th>Precio</th>
               <th>Defecto</th>
               <th>Acciones</th>
@@ -74,8 +74,8 @@
           <tbody>
             <% @color_submarkets.each do |color_submarket| %>
             <tr class="gradeX">
-              <td> <%= color_submarket.submarket.code %> </td>
               <td> <%= color_submarket.color.name %> </td>
+              <td> <%= color_submarket.submarket.code %> </td>
               <td>$ <%= color_submarket.price %> </td>
               <td> <%= color_submarket.default %> </td>
               <td>
