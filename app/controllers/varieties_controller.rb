@@ -9,17 +9,46 @@ class VarietiesController < ApplicationController
     else
       @farm = Farm.find(params[:farm_id])
       @varieties
-    end 
+    end
+  end
+
+  def new
+    @variety = Variety.new
   end
 
   def create
-     new_variety = StorageResistanceType.new(variety_params)
+     new_variety = Variety.new(variety_params)
 
     if new_variety.save
-      flash[:success] = 'variety creado'
+      flash[:success] = 'Variedad creada'
       redirect_to varieties_path
     else
       flash[:error] = new_variety.errors.full_messages.to_sentence
+      redirect_to varieties_path
+    end
+  end
+
+  def destroy
+    if @variety.destroy
+      flash[:success] = 'Variedad eliminada'
+      redirect_to varieties_path
+    else
+      flash[:error] = @variety.errors.full_messages.to_sentence
+      redirect_to varieties_path
+    end
+  end
+
+  def edit
+
+  end
+
+  def update
+    @variety.attributes = variety_params
+    if @variety.save
+      flash[:success] = 'Variedad actualizada'
+      redirect_to varieties_path
+    else
+      flash[:error] = @variety.errors.full_messages.to_sentence
       redirect_to varieties_path
     end
   end
@@ -40,6 +69,6 @@ class VarietiesController < ApplicationController
   end
 
   def variety_params
-     params.permit('name','resistance_to_storage_name','flowe_name')
+     params.require(:variety).permit(:name, :participation, :storage_resistance_type_id, :flower_id, :color_id)
   end
 end
