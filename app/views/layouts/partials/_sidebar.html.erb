@@ -93,6 +93,11 @@
               <span>Submercados</span>
             </a>
           </li>
+          <li class="<%= 'active' if controller?('submarket_weeks') && action?('index') %>">
+            <a href= "/submarket_weeks" title="Temporadas por submercado">
+              <span>Temporadas por Submercado</span>
+            </a>
+          </li>
           <li class="<%= 'active' if controller?('color_submarkets') && action?('index') %>">
             <a href= "/color_submarkets" title="Precios y defecto">
               <span>Precios y defecto</span>

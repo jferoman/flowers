@@ -29,7 +29,8 @@ Rails.application.routes.draw do
 
   resources :coldrooms, :blocks, :beds, only: [:create, :new, :edit, :destroy, :update]
   resources :flowers, :colors, :storage_resistance_types, :varieties, :storage_resistances, only: [:index, :create, :show, :new, :edit, :destroy, :update]
-  resources :weeks, :beds, :flower_densities, :submarkets, :markets, :cuttings, :demands, :color_submarkets, :bed_types, :block_color_flowers, :sowing_details, :productivity_curves
+  resources :weeks, :beds, :flower_densities, :submarkets, :markets, :cuttings, :demands, :color_submarkets, :bed_types, :block_color_flowers, :sowing_details, :productivity_curves,
+            :submarket_weeks
 
 
   resources :blocks do
@@ -44,6 +45,7 @@ Rails.application.routes.draw do
   post '/beds/import_beds' => 'beds#import'
   post '/import_weeks' => 'weeks#import_weeks'
   post '/import_submarkets' => 'submarkets#import'
+  post '/import_submarket_week' => 'submarket_week#import'
   post 'farms/:farm_id/import_cuttings' => 'cuttings#import_cuttings'
   post '/import_color_submarkets' => 'color_submarkets#import'
   post '/import_submarket_weeks' => 'submarkets#import_submarket_weeks'
