@@ -2,45 +2,72 @@
 <%= include_gon %>
 
 <h3>Temporadas por submercados</h3>
-
 <div class="row">
- <div class="col-lg-6">
-  <div class="panel panel-default">
-   <div class="panel-heading">Importar temporadas por submercados</div>
-   <div class="panel-body">
-    <blockquote class="box-placeholder">
-     <p>Importar archivo CSV
-      <br>EL archivo debe contener las <% "hey" %> columnas:
-      <br>date,submarket_name
-    </p>
-  </blockquote>
-  <div class="row upload-box">
-    <form id="select_button"  enctype="multipart/form-data" action="import_submarket_weeks" accept-charset="UTF-8" method="post">
-      <div class="row">
-       <div class="col-md-6">
-        <input   accept="csv" class="form-control-file upload" id="file" name="file" type="file" />
-      </div>
-      <div class="col-md-2">
-        <button type="submit" class="btn btn-primary start"><i class="fa fa-fw fa-upload"></i>
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">Importar temporadas por submercados</div>
+      <div class="panel-body">
+        <blockquote class="box-placeholder">
+          <p>Importar archivo CSV
+            <br>EL archivo debe contener las <% "hey" %> columnas:
+            <br>date,submarket_name
+          </p>
+        </blockquote>
+        <div class="row upload-box">
+          <form id="select_button"  enctype="multipart/form-data" action="import_submarket_weeks" accept-charset="UTF-8" method="post">
+            <div class="row">
+              <div class="col-md-6">
+                <input   accept="csv" class="form-control-file upload" id="file" name="file" type="file" />
+              </div>
+              <div class="col-md-2">
+                <button type="submit" class="btn btn-primary start"><i class="fa fa-fw fa-upload"></i>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </form>
-  </div>
-</div>
-</div>
-</div>
-
-<div>
-        <div class="col-lg-9 col-md-8">
-         <!-- START panel-->
-         <div class="panel panel-default">
-            <div class="panel-body">
-               <!-- START calendar-->
-               <div id="calendar"></div>
-               <!-- END calendar-->
-            </div>
-         </div>
-         <!-- END panel-->
+    </div>
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Borrar Temporada por submercado</div>
+        <div class="panel-body">
+          <form action= <%= submarket_weeks_batch_delete_path %> enctype="multipart/form-data"  accept-charset="UTF-8" method="post" class="form-horizontal">
+            <input type="hidden" name="_method" value="delete" />
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">SubMercado:  </label>
+                  <div class="col-md-6">
+                     <select name="submarket_id" class="form-control m-b">
+                        <option value="all">BORRAR TODOS</option>
+                        <%= @submarkets.each do |submarket| %>
+                        <option value="<%= submarket.id %>"><%= submarket.name %></option>
+                        <% end %>
+                     </select>
+                  </div>
+               </div>
+            <button type="submit" class="btn btn-primary start"><i> Borrar </i>
+          </form>
+        </div>
       </div>
    </div>
+</div>
+
+<div class="row" >
+  <div class="col-lg-12">
+    <!-- START panel-->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Submercado
+        <small></small> |
+        <%= link_to 'Nueva Temporada', new_submarket_week_path %>
+      </div>
+      <div class="panel-body">
+        <!-- START calendar-->
+        <div id="calendar"></div>
+        <!-- END calendar-->
+      </div>
+    </div>
+    <!-- END panel-->
+  </div>
+</div>
 </div>

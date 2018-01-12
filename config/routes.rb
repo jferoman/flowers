@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   post '/import_submarket_week' => 'submarket_week#import'
   post 'farms/:farm_id/import_cuttings' => 'cuttings#import_cuttings'
   post '/import_color_submarkets' => 'color_submarkets#import'
-  post '/import_submarket_weeks' => 'submarkets#import_submarket_weeks'
+  post '/import_submarket_weeks' => 'submarket_weeks#import'
   post '/company/:company_id/import_demands' => 'demands#import_demands'
   post '/farms/:farm_id/import_productivity_curves' => 'productivity_curves#csv_import'
   post 'farms/:farm_id/import_block_color_flowers' => 'block_color_flowers#import'
@@ -60,5 +60,6 @@ Rails.application.routes.draw do
   delete '/demands' => 'demands#batch_delete', as: :demands_batch_delete
   delete '/color_submarkets' => 'color_submarkets#batch_delete', as: :color_submarkets_batch_delete
   delete '/weeks' => 'weeks#batch_delete', as: :weeks_batch_delete
+  delete '/submarket_weeks' => 'submarket_weeks#batch_delete', as: :submarket_weeks_batch_delete
 
 end

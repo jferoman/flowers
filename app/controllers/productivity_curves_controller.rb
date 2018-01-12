@@ -26,7 +26,6 @@ class ProductivityCurvesController < ApplicationController
 
 	def csv_import
 		begin
-      binding.pry
 			@company = Company.find(session[:company_id])
 			ProductivityCurve.import(params[:file].path, @company.id)
 			redirect_to index_route, notice: "Curvas de produción importadas corretamente"

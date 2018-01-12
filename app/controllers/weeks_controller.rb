@@ -33,7 +33,6 @@ class WeeksController < ApplicationController
   end
 
   def batch_delete
-    binding.pry
     if params[:year] == "all"
       Week.delete_all
       notice = "Todas las fechas fueron borradas."
