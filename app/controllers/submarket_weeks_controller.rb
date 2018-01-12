@@ -5,14 +5,23 @@ class SubmarketWeeksController < ApplicationController
   before_action :find_company, only: [:index, :new]
 
   def index
-    @submarket_weeks = @company.submarket_weeks
+    @submarket_weeks = @company.submarket_weeks.includes(:submarket, :week)
     @submarket_names = Submarket.where(id: @company.submarket_weeks.pluck(:submarket_id).uniq).pluck(:name)
 
+    gon.events = []
+    @submarket_weeks.each do |sb|
+      gon.events << {
+        title: sb.submarket.name,
+        start: sb.week.initial_day,
+        end: sb.week.initial_day.end_of_week ,
+        backgroundColor: '#0073b7',
+        borderColor: '#0073b7'
+      }
+    end
   end
 
   def new
     @submarket_week = SubmarketWeek.new
-
   end
 
   def create
