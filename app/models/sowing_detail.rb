@@ -27,7 +27,7 @@ class SowingDetail < ApplicationRecord
           if bed_id.nil?
             errors << {
               initial_values: row.to_h,
-              error: "Cama #{row["bed_number"]} no encontrado."
+              error: "Cama #{row["bed_number"]} del bloque #{row["block_name"]} no encontrada."
             }
             next
           end
@@ -54,7 +54,7 @@ class SowingDetail < ApplicationRecord
           if !sowing_detail.nil?
             errors << {
               initial_values: row.to_h,
-              error: "El resgsitro #{row["variety_name"]}, #{row["bed_number"]}, #{row["block_name"]} #{row["sowing_date"]} ya existe."
+              error: "El resgistro #{row["variety_name"]}, #{row["bed_number"]}, #{row["block_name"]} #{row["sowing_date"]} ya existe."
             }
             next
           end
