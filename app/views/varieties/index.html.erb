@@ -21,29 +21,36 @@
    <div class="col-lg-12">
       <div class="panel panel-default">
          <div class="panel-heading">
-            Variedades
+            Variedades |
+           <small></small>
+           <%= link_to 'Nueva variedad', new_variety_path %>
          </div>
          <div class="panel-body">
             <table id="datatable1" class="table table-striped table-hover">
                <thead>
                   <tr>
-                     <th class="sort-alpha">Nombre</th>
-                     <th class="sort-alpha">Color</th>
                      <th class="sort-alpha">Flor</th>
+                     <th class="sort-alpha">Color</th>
                      <th class="sort-alpha">Resistencia al Guarde</th>
+                     <th class="sort-alpha">Nombre</th>
                      <th class="sort-alpha">Participación</th>
+                     <th class="sort-alpha">Acciones</th>
                   </tr>
                </thead>
                <tbody>
                   <% @varieties.each do |variety| %>
-                  <tr class="gradeX">
-                     <td> <%= variety.name %> </td>
-                     <td> <%= variety.color_name %> </td>
-                     <td> <%= variety.flower_name %> </td>
-                     <td> <%= variety.storage_resistance_type_name %> </td>
-                     <td> <%= variety.participation %> </td>
-                     <% end %>
-                  </tr>
+                     <tr class="gradeX">
+                        <td> <%= variety.flower_name %> </td>
+                        <td> <%= variety.color_name %> </td>
+                        <td> <%= variety.storage_resistance_type_name %> </td>
+                        <td> <%= variety.name %> </td>
+                        <td> <%= variety.participation %> </td>
+                        <td>
+                            <%= link_to 'Editar', edit_variety_path(variety) %> |
+                            <%= link_to 'Eliminar', variety,  method: :delete, data: { confirm: 'Desea eliminar la variedad?' } %>
+                        </td>
+                  <% end %>
+                     </tr>
                </tbody>
             </table>
          </div>

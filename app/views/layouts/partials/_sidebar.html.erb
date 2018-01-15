@@ -2,7 +2,7 @@
   <nav class="sidebar" data-sidebar-anyclick-close="">
     <ul class="nav">
       <li class="<%= 'active' if controller?('main_reports') && action?('index') %>">
-        <a href= "/main_reports" title="IDF">
+        <a href= "/home" title="IDF">
           <em class="icon-graph"></em>
           <span>Inicio</span>
         </a>
@@ -93,7 +93,12 @@
               <span>Submercados</span>
             </a>
           </li>
-          <li class="<%= 'active' if controller?('colos_submarkets') && action?('index') %>">
+          <li class="<%= 'active' if controller?('submarket_weeks') && action?('index') %>">
+            <a href= "/submarket_weeks" title="Temporadas por submercado">
+              <span>Temporadas por Submercado</span>
+            </a>
+          </li>
+          <li class="<%= 'active' if controller?('color_submarkets') && action?('index') %>">
             <a href= "/color_submarkets" title="Precios y defecto">
               <span>Precios y defecto</span>
             </a>

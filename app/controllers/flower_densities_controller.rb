@@ -49,7 +49,6 @@ class FlowerDensitiesController < ApplicationController
 
   private
   def flower_density_params
-
     params.require(:flower_density).permit(:flower_id, :density, :farm_id)
   end
 

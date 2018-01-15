@@ -1,0 +1,14 @@
+<%= form_for @submarket_week do |f| %>
+  <div class="form-group">
+    <%= f.label :submarket_id, 'SubMercado' %>
+    <%= f.collection_select(:submarket_id, @company.submarkets, :id, :name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :week_id, 'Semana' %>
+    <%= f.collection_select(:week_id, Week.all, :id, :initial_day) %>
+  </div>
+  <div>
+    <%= f.submit 'Crear Submercado' %>
+  </div>
+<% end %>
+

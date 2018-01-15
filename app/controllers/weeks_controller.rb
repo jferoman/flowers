@@ -3,6 +3,8 @@ class WeeksController < ApplicationController
 
   def index
     @weeks = Week.all
+    @years = Week.all.pluck(:initial_day).uniq{|x| x.year}
+
   end
 
   def edit
@@ -28,6 +30,17 @@ class WeeksController < ApplicationController
     rescue
      redirect_to weeks_path, alert: "El archivo cargado contiene errores."
     end
+  end
+
+  def batch_delete
+    if params[:year] == "all"
+      Week.delete_all
+      notice = "Todas las fechas fueron borradas."
+    else
+      Week.where("extract(year from initial_day) = ? ", params[:year]).delete_all
+      notice = "Las fechas del ano " + params[:year] + " fueron borradas."
+    end
+      redirect_to weeks_path, notice: notice
   end
 
   private

@@ -20,7 +20,7 @@
             <div class="idf_group_btn">
                <div class="btn-group">
                   <select id="farm_id" name="intervention_id" class="form-control" onchange="changeFarm()">
-                     <% Company.find(session[:farm_id]).farms.each do |farm| %>
+                     <% Company.find(session[:company_id]).farms.each do |farm| %>
                      <option type= "submit" value=<%= farm.id %>
                         <%= if (farm.id == session[:farm_id])
                            selected="selected"
@@ -34,10 +34,11 @@
          </li>
       </ul>
 
+
       <ul class="nav navbar-nav navbar-right">
-         <li class="visible-lg">
-            <a href="#" data-toggle-fullscreen="" data-no-persist="true">
-               <em class="fa fa-expand"></em>
+         <li class="visible-lg" style="height: 50%;">
+            <a href="#" data-no-persist="true">
+              <%= Company.find(session[:company_id]).name %>
             </a>
          </li>
          <li>

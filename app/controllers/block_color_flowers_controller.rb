@@ -2,7 +2,7 @@ class BlockColorFlowersController < ApplicationController
 
   before_action :authorize, :lock_farms_per_company
   before_action :find_block_color_flower, only: [:destroy, :edit, :update]
-  before_action :find_farm, only: [:index, :create, :new, :edit]
+  before_action :find_farm, only: [:index, :create, :new, :edit, :batch_delete]
 
   def index
     @block_color_flowers = @farm.block_color_flowers
@@ -60,6 +60,17 @@ class BlockColorFlowersController < ApplicationController
     else
       redirect_to index_route, notice: "Uso de bloques importados correctamente."
     end
+  end
+
+  def batch_delete
+    if params[:block_id] == "all"
+      BlockColorFlower.where(id: @farm.block_color_flowers.pluck(:id) ).delete_all
+      notice = "Todas los usos de bloque fueron borrados"
+    else
+      BlockColorFlower.where(block_id: params[:block_id]).delete_all
+      notice = "los usos de bloque del bloque: " + Block.find(params[:block_id]).name + " fueron borrados."
+    end
+      redirect_to index_route, notice: notice
   end
 
   private

@@ -31,7 +31,7 @@ class FlowersController < ApplicationController
       redirect_to flowers_path
     end
   end
-  
+
   def edit
 
   end
@@ -39,7 +39,7 @@ class FlowersController < ApplicationController
   def update
     @flower.attributes = {name: flower_params}
     if @flower.save
-      flash[:success] = 'FLower actualizada'
+      flash[:success] = 'Flor actualizada.'
       redirect_to flowers_path
     else
       flash[:error] = @flower.errors.full_messages.to_sentence

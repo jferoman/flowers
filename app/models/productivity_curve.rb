@@ -11,7 +11,7 @@ class ProductivityCurve < ApplicationRecord
   delegate :name, to: :farm, prefix: true
   delegate :name, to: :variety, prefix: true
 
-  class << self 
+  class << self
 		def import file_path, company_id, permission_farm_id = nil
 		  production_curves = []
 		  errors = []
@@ -19,8 +19,6 @@ class ProductivityCurve < ApplicationRecord
 		  varieties = Variety.all.pluck(:name,:id).to_h
       company = Company.find(company_id)
 		  farms = company.farms.all.pluck(:name,:id).to_h
-     
-		  productivity_curves = []
 
 	    CSV.foreach(file_path, {
 	      encoding: "iso-8859-1:utf-8",
@@ -31,17 +29,17 @@ class ProductivityCurve < ApplicationRecord
 
         farm_id = farms[row['farm_name']]
         variety_id = varieties[row['variety_name']]
-        
+
         errors << row.merge({'No existe finca:' =>  row['farm_name']}) if farm_id.nil?
         errors << row.merge({'No existe Variedad:' =>  row['variety_name']}) if variety_id.nil?
-        
+
         relations = {
         	farm_id: farm_id,
         	variety_id: variety_id
         }
         production_curves << row.except("farm_name","variety_name").merge(relations)
 	    end
-      
+
       if errors.empty?
         ProductivityCurve.bulk_insert values: production_curves
       else

@@ -2,10 +2,10 @@ class SowingDetailsController < ApplicationController
 
   before_action :authorize, :lock_farms_per_company
   before_action :find_sowing_detail, only: [:destroy, :edit, :update]
-  before_action :find_farm, only: [:index, :create, :new, :edit]
+  before_action :find_farm, only: [:index, :create, :new, :edit, :batch_delete]
 
   def index
-    @sowing_details = @farm.sowing_details
+    @sowing_details = @farm.sowing_details.includes(:bed, :week, :variety)
   end
 
   def new
@@ -62,9 +62,20 @@ class SowingDetailsController < ApplicationController
     end
   end
 
+  def batch_delete
+    if params[:variety_id] == "all"
+      SowingDetail.where(id: @farm.sowing_details.pluck(:id) ).delete_all
+      notice = "Todas los detalles de siembra fueron borrados"
+    else
+      SowingDetail.where(variety_id: params[:variety_id]).delete_all
+      notice = "Los detalles de siembra de la variedad: " + Variety.find(params[:variety_id]).name + " fueron borrados."
+    end
+      redirect_to index_route, notice: notice
+  end
+
   private
     def sowing_detail_params
-      params.require(:sowing_detail).permit(:quantity, :cutting_week, :variety_id, :week_id, :bed_id)
+      params.require(:sowing_detail).permit(:quantity, :cutting_week, :status, :variety_id, :week_id, :bed_id)
     end
 
     def find_sowing_detail

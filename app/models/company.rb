@@ -10,5 +10,6 @@ class Company < ApplicationRecord
   has_many :color_submarkets, through: :markets
   has_many :demands, through: :markets
   has_many :blocks, through: :farms
+  has_many :submarket_weeks, through: :submarkets
 
 end

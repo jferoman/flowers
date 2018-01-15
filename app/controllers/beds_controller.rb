@@ -68,6 +68,21 @@ class BedsController < ApplicationController
     end
   end
 
+  def batch_delete
+    if params[:block_id] == "all"
+        if params[:block] == "/"
+          Bed.where(id: Farm.find(session[:farm_id]).beds.pluck(:id)).delete_all
+        else
+          Bed.where(block_id: params[:block]).delete_all
+        end
+        notice = "Todas las camas fueron borradas"
+    else
+      Bed.where(block_id: params[:block_id]).delete_all
+      notice = "las Camas del bloque: " + Block.find(params[:block_id]).name + " fueron borradas."
+    end
+      redirect_to beds_path, notice: notice
+  end
+
   private
     def bed_params
       params.require(:bed).permit(:number, :total_area, :usable_area, :block_id, :bed_type_id)

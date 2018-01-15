@@ -64,21 +64,6 @@ class SubmarketsController < ApplicationController
     end
   end
 
-  def import_submarket_weeks
-    begin
-      file_path = Submarket.import_submarket_weeks(params[:file].path)
-    rescue Exception => e
-      p e
-    end
-
-    if file_path.is_a? String
-      redirect_to submarkets_path, alert: "El archivo cargado contiene errores."
-      send_file file_path
-    else
-      redirect_to submarkets_path, notice: "Temporadas de submercados importados corretamente"
-    end
-  end
-
   private
   def submarket_params
     params.require(:submarket).permit(:name, :code, :market_id)

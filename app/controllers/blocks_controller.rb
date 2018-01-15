@@ -4,7 +4,6 @@ class BlocksController < ApplicationController
   before_action :find_block, only: [:destroy, :edit, :update]
   before_action :find_farm, only: [:index, :create]
 
-
   def index
     @blocks = @farm.blocks
   end

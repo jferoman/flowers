@@ -2,10 +2,11 @@ class DemandsController < ApplicationController
 
   before_action :authorize, :lock_farms_per_company
   before_action :find_demand, only: [:destroy, :edit, :update]
-  before_action :find_company, only: [:index, :new, :create, :edit]
+  before_action :find_company, only: [:index, :new, :create, :edit, :batch_delete]
 
   def index
     @demands = @company.demands.includes(:color, :flower, :market, :week)
+    @markets = Market.where(id: @demands.pluck(:market_id).uniq)
   end
 
   def new
@@ -61,6 +62,17 @@ class DemandsController < ApplicationController
     else
       redirect_to demands_path, notice: "Demanda importadas correctamente."
     end
+  end
+
+  def batch_delete
+    if params[:market_id] == "all"
+      Demand.where(id: @company.demands.pluck(:id) ).delete_all
+      notice = "Todas las demandas fueron borradas."
+    else
+      Demand.where(market_id: params[:market_id]).delete_all
+      notice = "Las demandas del mercado: " + Market.find(params[:market_id]).name + " fueron borradas."
+    end
+      redirect_to index_route, notice: notice
   end
 
   private

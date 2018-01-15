@@ -13,18 +13,18 @@
         <table id="datatable1" class="table table-striped table-hover">
           <thead>
             <tr>
-              <th class="sort-alpha">Codigo</th>
-              <th>Submercado</th>
               <th>Mercado</th>
+              <th>Submercado</th>
+              <th class="sort-alpha">Codigo</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             <% @submarkets.each do |submarket| %>
             <tr class="gradeX">
-              <td> <%= submarket.code %> </td>
-              <td> <%= submarket.name %> </td>
               <td> <%= submarket.market.name %> </td>
+              <td> <%= submarket.name %> </td>
+              <td> <%= submarket.code %> </td>
               <td>
                 <%= link_to 'Editar', edit_submarket_path(submarket) %> |
                 <%= link_to 'Eliminar', submarket_path(submarket),  method: :delete, data: { confirm: 'Desea eliminar el Submercado?' } %>
@@ -47,27 +47,6 @@
 </blockquote>
 <div class="row upload-box">
   <form id="select_button"  enctype="multipart/form-data" action="import_submarkets" accept-charset="UTF-8" method="post">
-    <div class="row">
-      <div class="col-md-3">
-        <input   accept="csv" class="form-control-file upload" id="file" name="file" type="file" />
-      </div>
-      <div class="col-md-2">
-        <button type="submit" class="btn btn-primary start"><i class="fa fa-fw fa-upload"></i>
-        </div>
-      </div>
-    </form>
-  </div>
-  <!-- END CSV Importer -->
-
-<!-- CSV Importer -->
-<br>
-<br>
-<h3>Importar temporadas por submercados</h3>
-<blockquote class="box-placeholder">
-  <p>Importar archivo CSV</p>
-</blockquote>
-<div class="row upload-box">
-  <form id="select_button"  enctype="multipart/form-data" action="import_submarket_weeks" accept-charset="UTF-8" method="post">
     <div class="row">
       <div class="col-md-3">
         <input   accept="csv" class="form-control-file upload" id="file" name="file" type="file" />

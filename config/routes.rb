@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
+  post '/sessions_controller/change_farm' => 'sessions#change_farm'
+
   resources :company do
     resources :farms
     resources :markets, :demands, only: [:index, :create, :new, :edit, :destroy, :update]
@@ -22,13 +24,13 @@ Rails.application.routes.draw do
 
 
   resources :farms do
-    resources :flower_densities, :cuttings, :blocks, :coldrooms, :block_color_flowers, :sowing_details, only: [:index, :create, :new, :edit, :destroy, :update]
-    resources :productivity_curves, only: [:index]
+    resources :flower_densities, :cuttings, :blocks, :coldrooms, :block_color_flowers, :sowing_details, :productivity_curves, only: [:index, :create, :new, :edit, :destroy, :update]
   end
 
   resources :coldrooms, :blocks, :beds, only: [:create, :new, :edit, :destroy, :update]
   resources :flowers, :colors, :storage_resistance_types, :varieties, :storage_resistances, only: [:index, :create, :show, :new, :edit, :destroy, :update]
-  resources :weeks, :beds, :flower_densities, :submarkets, :markets, :cuttings, :demands, :color_submarkets, :bed_types, :block_color_flowers, :sowing_details
+  resources :weeks, :beds, :flower_densities, :submarkets, :markets, :cuttings, :demands, :color_submarkets, :bed_types, :block_color_flowers, :sowing_details, :productivity_curves,
+            :submarket_weeks
 
 
   resources :blocks do
@@ -43,13 +45,21 @@ Rails.application.routes.draw do
   post '/beds/import_beds' => 'beds#import'
   post '/import_weeks' => 'weeks#import_weeks'
   post '/import_submarkets' => 'submarkets#import'
+  post '/import_submarket_week' => 'submarket_week#import'
   post 'farms/:farm_id/import_cuttings' => 'cuttings#import_cuttings'
   post '/import_color_submarkets' => 'color_submarkets#import'
-  post '/import_submarket_weeks' => 'submarkets#import_submarket_weeks'
-  post '/import_demands' => 'demands#import_demands'
-  post '/farms/:farm_id/productivity_curves' => 'productivity_curves#csv_import'
+  post '/import_submarket_weeks' => 'submarket_weeks#import'
+  post '/company/:company_id/import_demands' => 'demands#import_demands'
+  post '/farms/:farm_id/import_productivity_curves' => 'productivity_curves#csv_import'
   post 'farms/:farm_id/import_block_color_flowers' => 'block_color_flowers#import'
   post 'farms/:farm_id/import_sowing_details' => 'sowing_details#import'
   delete '/farms/:farm_id/productivity_curves' => 'productivity_curves#destroy'
+  delete '/farms/:farm_id/block_color_flowers' => 'block_color_flowers#batch_delete', as: :block_color_flowers_batch_delete
+  delete '/farms/:farm_id/sowing_details' => 'sowing_details#batch_delete', as: :sowing_details_batch_delete
+  delete '/beds' => 'beds#batch_delete', as: :beds_batch_delete
+  delete '/demands' => 'demands#batch_delete', as: :demands_batch_delete
+  delete '/color_submarkets' => 'color_submarkets#batch_delete', as: :color_submarkets_batch_delete
+  delete '/weeks' => 'weeks#batch_delete', as: :weeks_batch_delete
+  delete '/submarket_weeks' => 'submarket_weeks#batch_delete', as: :submarket_weeks_batch_delete
 
 end

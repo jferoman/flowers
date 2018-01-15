@@ -10,7 +10,7 @@
                </p>
             </blockquote>
             <div class="row upload-box">
-               <form id="select_button"  enctype="multipart/form-data" action="productivity_curves" accept-charset="UTF-8" method="post">
+               <form id="select_button"  enctype="multipart/form-data" action="import_productivity_curves" accept-charset="UTF-8" method="post">
                   <div class="row">
                      <div class="col-md-6">
                         <input   accept="csv" class="form-control-file upload" id="file" name="file" type="file" />
@@ -52,28 +52,34 @@
       <div class="panel panel-default">
          <div class="panel-heading">
             Curvas de Produción |
+            <small></small>
+           <%= link_to 'Nuevo registro', new_farm_productivity_curve_path %>
          </div>
          <div class="panel-body">
             <table id="datatable1" class="table table-striped table-hover">
                <thead>
                   <tr>
-                     <th class="sort-alpha">Variedad</th>
                      <th class="sort-alpha">Finca</th>
+                     <th class="sort-alpha">Variedad</th>
                      <th class="sort-alpha">Numero de Semana</th>
                      <th class="sort-alpha">Produción</th>
                      <th class="sort-alpha">Costo</th>
                      <th class="sort-alpha">Corte</th>
+                     <th class="sort-alpha">Acciones</th>
                   </tr>
                </thead>
                <tbody>
                   <% @productivity_curves.each do |productivity| %>
                   <tr class="gradeX">
-                     <td> <%= productivity.variety_name %> </td>
                      <td> <%= productivity.farm_name %> </td>
+                     <td> <%= productivity.variety_name %> </td>
                      <td> <%= productivity.week_number %> </td>
                      <td> <%= productivity.production %> </td>
                      <td> <%= productivity.cost %> </td>
                      <td> <%= productivity.cut %></td>
+                     <td>
+                        <%= link_to 'Editar', edit_productivity_curve_path(productivity) %>
+                     </td>
                   </tr>
                   <% end %>
                </tbody>

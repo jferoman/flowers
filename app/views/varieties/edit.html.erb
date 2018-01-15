@@ -1,0 +1,26 @@
+<%= form_for @variety do |f| %>
+  <div class="form-group">
+    <%= f.label :name, 'Nombre: ' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :participation, 'Participacion: ' %>
+    <%= f.text_field :participation, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :color_id, 'Color' %>
+    <%= f.collection_select(:color_id, Color.all, :id, :name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :flower_id, 'Flor' %>
+    <%= f.collection_select(:flower_id, Flower.all, :id, :name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :storage_resistance_type_id, 'Resitencia' %>
+    <%= f.collection_select(:storage_resistance_type_id, StorageResistanceType.all, :id, :name) %>
+  </div>
+  <div>
+    <%= f.submit 'Actualizar Variedad' %>
+  </div>
+<% end %>
+
