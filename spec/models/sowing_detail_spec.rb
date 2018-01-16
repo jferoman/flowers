@@ -14,7 +14,7 @@ describe SowingDetail do
 
   describe 'generate cuttings' do
 
-    let!(:farm) { create :farm, :with_company}
+    #let!(:farm) { create :farm, :with_company}
     let!(:variety) { create :variety, :with_color_flower}
     let!(:week) { create :week , :first_week_2018 }
     let!(:bed) { create :bed }

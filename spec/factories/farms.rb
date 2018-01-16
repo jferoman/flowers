@@ -4,6 +4,7 @@ FactoryGirl.define do
     name Faker::DragonBall.character
     mamsl 1.5
     pluviosity 1.5
+    company
   end
 
   trait :with_company do

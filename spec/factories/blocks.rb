@@ -2,7 +2,6 @@ FactoryGirl.define do
   factory :block do
     name {"Bloque_uno"}
     farm
-
     trait :first_block do
       name "Bloque 100"
       area 100.0
