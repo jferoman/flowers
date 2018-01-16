@@ -13,6 +13,8 @@ describe Week do
 		it {should have_many(:sowing_details)}
 		it {should have_many(:productions)}
 		it {should have_many(:bed_productions)}
+    it {should have_many(:sowing_solutionss)}
+
 	end
 
 	describe 'class methods' do

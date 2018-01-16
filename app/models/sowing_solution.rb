@@ -4,5 +4,6 @@ class SowingSolution < ApplicationRecord
   belongs_to :block
   belongs_to :bed_type
   belongs_to :variety
+  belongs_to :week
 
 end

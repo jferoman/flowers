@@ -16,7 +16,9 @@ describe SowingDetail do
 
     let!(:farm) { create :farm, :with_company}
     let!(:variety) { create :variety, :with_color_flower}
-    let!(:sowing_detail) { create :sowing_detail, :with_variety_and_week}
+    let!(:week) { create :week , :first_week_2018 }
+    let!(:bed) { create :bed }
+    let!(:sowing_detail) { create :sowing_detail, variety: variety, week: week ,bed: bed}
 
     it 'Generate cuttings' do
       binding.pry

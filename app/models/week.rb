@@ -8,7 +8,8 @@ class Week < ApplicationRecord
   has_many :demands
   has_many :sowing_details
   has_many :productions
-  has_many :bed_productions
+  has_many :sowing_details
+  has_many :sowing_solutions
 
   class << self
     def import file_path

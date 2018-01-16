@@ -5,10 +5,10 @@ FactoryGirl.define do
     status { "Ejecutado" }
   end
 
-  trait :with_variety_and_week do
-    variety
-    week
-    bed
-  end
+  # trait :with_variety_and_week do
+  #   variety
+  #   week
+  #   bed
+  # end
 
 end
