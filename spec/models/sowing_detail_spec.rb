@@ -11,4 +11,18 @@ describe SowingDetail do
   	it { should belong_to(:week)}
   	it { should belong_to(:bed)}
   end
+
+  describe 'generate cuttings' do
+
+    let!(:farm) { create :farm, :with_company}
+    let!(:variety) { create :variety, :with_color_flower}
+    let!(:sowing_detail) { create :sowing_detail, :with_variety_and_week}
+
+    it 'Generate cuttings' do
+      binding.pry
+      expect( ).to be true
+    end
+
+  end
+
 end

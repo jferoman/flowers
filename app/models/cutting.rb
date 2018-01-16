@@ -46,8 +46,6 @@ class Cutting < ApplicationRecord
             next
           end
 
-          #TODO: DEfinir stados y validaciones
-
           cuttings << {
             quantity: row["cuttings"],
             # TODO : Definir estados de los cortes

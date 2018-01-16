@@ -5,4 +5,9 @@ FactoryGirl.define do
     mamsl 1.5
     pluviosity 1.5
   end
+
+  trait :with_company do
+    company
+  end
+
 end

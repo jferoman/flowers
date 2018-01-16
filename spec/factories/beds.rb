@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :bed do
-    number 1
-    area 1.5
-    type ""
-    capacity 1
+    number {rand(5000)}
+    total_area { rand (500.0) }
+    usable_area { rand (499.0) }
+    bed_type { bed }
   end
 end
