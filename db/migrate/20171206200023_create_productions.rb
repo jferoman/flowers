@@ -7,10 +7,11 @@ class CreateProductions < ActiveRecord::Migration[5.1]
       t.references :variety, null: false, index: true
       t.references :farm, null: false, index: true
       t.references :week, null: false, index: true
+      t.references :block, null: false, index: true
 
       t.timestamps
     end
-    add_index :productions, [:variety_id, :farm_id, :week_id, :status], unique: true,  :name => 'production_status'
+    add_index :productions, [:variety_id, :farm_id, :week_id, :block_id, :status], unique: true,  :name => 'production_status'
 
   end
 end

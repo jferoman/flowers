@@ -26,23 +26,23 @@ class Variety < ApplicationRecord
       attributes = %w(name resistance_to_storage_name flower_name participation color_name)
       varieties = []
       errors = []
-   
+
       CSV.foreach(file_path, {
         encoding: "iso-8859-1:utf-8",
         headers: true,
         converters: :all,
         skip_lines: /^(?:,\s*)+$/,
         header_converters: lambda {|h| h.downcase.gsub(' ','_') }}) do |row|
-        
+
         varieties << row.to_h.slice(*attributes)
       end
-     
+
       varieties.each do |variety|
-        
+
         flower = Flower.find_by(name: I18n.transliterate(variety['flower_name']).upcase)
         storage_resistance_type = StorageResistanceType.find_by(name: I18n.transliterate(variety['resistance_to_storage_name']).upcase)
         color = Color.find_by(name: I18n.transliterate(variety['color_name']).upcase)
-        
+
         if flower.nil? or storage_resistance_type.nil?
           errors << variety
         else
@@ -50,10 +50,19 @@ class Variety < ApplicationRecord
           variety.merge!(storage_resistance_type_id: storage_resistance_type.id, flower_id: flower.id, color_id: color.id )
         end
       end
-      
+
       Variety.bulk_insert values: varieties
     end
   end
-  
+
+  ##
+  # Return the productivity for this variety in a especific week.
+  # Paramter: week, Number of the week to get the value or prductivity.
+  # Return the valur of th productivity in the week.
+  ##
+  def get_productivity week
+    productivity_curves.find_by(week_number: week).production
+  end
+
 
 end

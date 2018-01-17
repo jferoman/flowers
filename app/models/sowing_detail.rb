@@ -63,7 +63,7 @@ class SowingDetail < ApplicationRecord
             quantity: row["quantity"],
             cutting_week: row["cutting_week"],
             status: row["status"] == "Programado" ? 0 : 1,
-            expiration_week_id: Week.find_by(initial_day: week.initial_day+( row["cutting_week"] * 7.days)).id,
+            expiration_week_id: week.next_week_in(row["cutting_week"].to_i).id,
             bed_id: bed_id,
             variety_id: variety_id,
             week_id: week.id
@@ -84,7 +84,7 @@ class SowingDetail < ApplicationRecord
     # SowingDetail.generate_cuttings("Ejecutado", session[:farm_id])
     #
     ##
-    def self.generate_cuttings status, farm_id
+    def generate_cuttings status, farm_id
       cuttings = []
       Farm.find(farm_id).sowing_details.where(status: status).group(:variety_id, :week_id).sum(:quantity).each do |sowing|
         cuttings << {
@@ -98,20 +98,34 @@ class SowingDetail < ApplicationRecord
       Cutting.bulk_insert values: cuttings
     end
 
-    def self.generate_production status, farm
+    ##
+    # Generate the production from the sowing detail with especified status.
+    # Parameters:
+    # => Status: Status of the soowing solutions to process
+    # => farm: Farm for the sowings solutions
+    #
+    # Generate the production for this sowing.
+    ##
+    def generate_production status, farm
       productions = []
       farm.sowing_details.where(status: status).each do |sowing_detail|
+        production = 0
 
         (sowing_detail.week.week..sowing_detail.expiration_week.week).each do |s|
+          production += (sowing_detail.quantity * sowing_detail.variety.get_productivity(s))
+
           productions << {
-            quantity:,
+            quantity: production,
             status: status,
             variety_id: sowing_detail.variety_id,
-            farm_id: farm.id,
-            week_id:
+            bed_id: farm.id,
+            week_id: sowing_detail.week.next_week_in(s).id
           }
+
         end
       end
+      BedProduction.bulk_insert values: productions
+
     end
 
     private

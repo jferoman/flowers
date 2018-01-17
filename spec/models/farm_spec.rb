@@ -19,7 +19,6 @@ describe Farm do
     it { should have_many(:blocks) }
     it { should have_many(:productivity_curves) }
     it { should have_many(:flower_densities) }
-    it { should have_many(:productions) }
     it { should have_many(:cuttings) }
     it { should have_many(:coldrooms) }
 

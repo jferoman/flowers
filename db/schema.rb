@@ -181,10 +181,12 @@ ActiveRecord::Schema.define(version: 20171206201028) do
     t.bigint "variety_id", null: false
     t.bigint "farm_id", null: false
     t.bigint "week_id", null: false
+    t.bigint "block_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["block_id"], name: "index_productions_on_block_id"
     t.index ["farm_id"], name: "index_productions_on_farm_id"
-    t.index ["variety_id", "farm_id", "week_id", "status"], name: "production_status", unique: true
+    t.index ["variety_id", "farm_id", "week_id", "block_id", "status"], name: "production_status", unique: true
     t.index ["variety_id"], name: "index_productions_on_variety_id"
     t.index ["week_id"], name: "index_productions_on_week_id"
   end
