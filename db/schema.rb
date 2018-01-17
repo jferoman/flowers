@@ -207,13 +207,14 @@ ActiveRecord::Schema.define(version: 20171206201028) do
     t.integer "quantity", null: false
     t.integer "cutting_week", null: false
     t.integer "status", default: 0
-    t.integer "expiration_week", null: false
     t.bigint "variety_id", null: false
-    t.bigint "week_id", null: false
     t.bigint "bed_id", null: false
+    t.bigint "week_id", null: false
+    t.bigint "expiration_week_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bed_id"], name: "index_sowing_details_on_bed_id"
+    t.index ["expiration_week_id"], name: "index_sowing_details_on_expiration_week_id"
     t.index ["variety_id", "bed_id", "week_id"], name: "sowing_detail", unique: true
     t.index ["variety_id"], name: "index_sowing_details_on_variety_id"
     t.index ["week_id"], name: "index_sowing_details_on_week_id"

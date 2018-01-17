@@ -7,6 +7,7 @@ class SowingDetail < ApplicationRecord
   belongs_to :variety
   belongs_to :week
   belongs_to :bed
+  belongs_to :expiration_week, :class_name => 'Week'
 
   enum status: %w(Programado Ejecutado)
 
@@ -62,7 +63,7 @@ class SowingDetail < ApplicationRecord
             quantity: row["quantity"],
             cutting_week: row["cutting_week"],
             status: row["status"] == "Programado" ? 0 : 1,
-            expiration_week: row["cutting_week"].to_i + week.week,
+            expiration_week_id: Week.find_by(initial_day: week.initial_day+( row["cutting_week"] * 8.days)).id,
             bed_id: bed_id,
             variety_id: variety_id,
             week_id: week.id
