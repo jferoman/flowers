@@ -24,6 +24,10 @@ describe SowingDetail do
       # expect( ).to be true
     end
 
+    it 'Generate bed productions' do
+      binding.pry
+    end
+
   end
 
 end

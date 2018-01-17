@@ -108,11 +108,12 @@ class SowingDetail < ApplicationRecord
     ##
     def generate_bed_production status, farm
       bed_productions = []
-      farm.sowing_details.where(status: status, variety_id: 71).each do |sowing_detail|
+      farm.sowing_details.where(status: status).each do |sowing_detail|
         production = 0
-        binding.pry
         (1..(sowing_detail.expiration_week.week-sowing_detail.week.week)).each do |s|
+
           production += (sowing_detail.quantity * sowing_detail.variety.get_productivity(s))
+
           bed_productions << {
             quantity: production,
             status: status,
@@ -124,7 +125,6 @@ class SowingDetail < ApplicationRecord
         end
       end
       BedProduction.bulk_insert values: bed_productions
-
     end
 
     private
