@@ -17,12 +17,12 @@ describe SowingDetail do
     let!(:variety) { create :variety, :with_color_flower}
     let!(:week) { create :week , :first_week_2018 }
     let!(:bed) { create :bed }
-    let!(:sowing_detail) { create :sowing_detail, variety: variety, week: week ,bed: bed}
+    let!(:sowing_detail) { create :sowing_detail, variety: variety, week: week ,bed: bed, expiration_week_id: 1}
 
     it 'Generate cuttings' do
-      binding.pry
-      expect( ).to be true
-    end2
+      # binding.pry
+      # expect( ).to be true
+    end
 
   end
 

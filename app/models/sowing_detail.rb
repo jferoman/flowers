@@ -84,7 +84,7 @@ class SowingDetail < ApplicationRecord
     # SowingDetail.generate_cuttings("Ejecutado", session[:farm_id])
     #
     ##
-    def generate_cuttings status, farm_id
+    def self.generate_cuttings status, farm_id
       cuttings = []
       Farm.find(farm_id).sowing_details.where(status: status).group(:variety_id, :week_id).sum(:quantity).each do |sowing|
         cuttings << {
@@ -96,6 +96,22 @@ class SowingDetail < ApplicationRecord
         }
       end
       Cutting.bulk_insert values: cuttings
+    end
+
+    def self.generate_production status, farm
+      productions = []
+      farm.sowing_details.where(status: status).each do |sowing_detail|
+
+        (sowing_detail.week.week..sowing_detail.expiration_week.week).each do |s|
+          productions << {
+            quantity:,
+            status: status,
+            variety_id: sowing_detail.variety_id,
+            farm_id: farm.id,
+            week_id:
+          }
+        end
+      end
     end
 
     private

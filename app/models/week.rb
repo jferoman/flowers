@@ -8,6 +8,7 @@ class Week < ApplicationRecord
   has_many :demands
   has_many :sowing_details
   has_many :productions
+  has_many :bed_productions
   has_many :sowing_details
   has_many :sowing_solutions
 
@@ -27,6 +28,16 @@ class Week < ApplicationRecord
 
       Week.bulk_insert values: weeks
     end
+  end
+
+  ##
+  #
+  # Devuelve el objeto week que sucede dentro de las semanas indicadas.
+  # Parametro weeks: numero de semanas.
+  #
+  ##
+  def next_week_in weeks
+    Week.find_by(initial_day: initial_day+( weeks * 7.days))
   end
 
 end

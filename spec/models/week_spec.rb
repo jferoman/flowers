@@ -13,7 +13,7 @@ describe Week do
 		it {should have_many(:sowing_details)}
 		it {should have_many(:productions)}
 		it {should have_many(:bed_productions)}
-    it {should have_many(:sowing_solutionss)}
+    it {should have_many(:sowing_solutions)}
 
 	end
 
@@ -23,6 +23,17 @@ describe Week do
       it 'creates weeks from provided file' do
         expect{ described_class.import weeks_csv_path }.to_not raise_error
       end
+    end
+  end
+
+  describe 'Return week X weeks ahead' do
+    let!(:week) { create :week , :first_week_2018 }
+    let!(:second_week) { create :week , :second_week_2018 }
+    let!(:week_24) { create :week , :week_24_2018 }
+
+    it 'Return the next week' do
+      expect{ week.next_week_in(1) } == (Week.find_by(initial_day: Date.parse("2018-01-08"), week: 2))
+      expect{ week.next_week_in(24) } == (Week.find_by(initial_day: Date.parse("2018-06-13"), week: 25))
     end
   end
 
