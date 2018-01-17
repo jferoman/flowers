@@ -14,7 +14,6 @@ describe SowingDetail do
 
   describe 'generate cuttings' do
 
-    #let!(:farm) { create :farm, :with_company}
     let!(:variety) { create :variety, :with_color_flower}
     let!(:week) { create :week , :first_week_2018 }
     let!(:bed) { create :bed }
@@ -23,7 +22,7 @@ describe SowingDetail do
     it 'Generate cuttings' do
       binding.pry
       expect( ).to be true
-    end
+    end2
 
   end
 

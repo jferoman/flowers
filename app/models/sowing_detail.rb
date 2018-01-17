@@ -40,8 +40,8 @@ class SowingDetail < ApplicationRecord
             next
           end
 
-          week_id = (Week.find_by(initial_day: row["sowing_date"]).id rescue nil)
-          if week_id.nil?
+          week = (Week.find_by(initial_day: row["sowing_date"]) rescue nil)
+          if week.nil?
             errors << {
               initial_values: row.to_h,
               error: "Fecha: #{row["sowing_date"]} no encontrada."
@@ -49,7 +49,7 @@ class SowingDetail < ApplicationRecord
             next
           end
 
-          sowing_detail = SowingDetail.find_by(variety_id: variety_id, week_id: week_id, bed_id: bed_id)
+          sowing_detail = SowingDetail.find_by(variety_id: variety_id, week_id: week.id, bed_id: bed_id)
           if !sowing_detail.nil?
             errors << {
               initial_values: row.to_h,
@@ -62,9 +62,10 @@ class SowingDetail < ApplicationRecord
             quantity: row["quantity"],
             cutting_week: row["cutting_week"],
             status: row["status"] == "Programado" ? 0 : 1,
+            expiration_week: row["cutting_week"].to_i + week.week,
             bed_id: bed_id,
             variety_id: variety_id,
-            week_id: week_id
+            week_id: week.id
           }
         end
 
@@ -113,17 +114,4 @@ class SowingDetail < ApplicationRecord
       end
   end
 
-  def method_name status
-
-    Farm.find(session[:farm_id]).sowing_details.where(status: status).group(:variety_id, :week_id).sum(:quantity).each do |sowing|
-      cuttings << {
-        quantity: sowing[1],
-        status: "Ejecutado",
-        farm_id: session[:farm_id],
-        week_id: sowing[0][1],
-        variety_id: sowing[0][0]
-      }
-    end
-    Cutting.bulk_insert values: cuttings
-  end
 end
