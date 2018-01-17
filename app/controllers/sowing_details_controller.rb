@@ -14,6 +14,8 @@ class SowingDetailsController < ApplicationController
 
   def create
     @new_sowing_detail = SowingDetail.new(sowing_detail_params)
+    @new_sowing_detail.expiration_week_id = Week.find_by(initial_day: @new_sowing_detail.week.initial_day+( @new_sowing_detail.cutting_week * 7.days)).id
+
     if @new_sowing_detail.save
       flash[:success] = 'Detalle de siembra creado'
       redirect_to index_route
@@ -38,6 +40,8 @@ class SowingDetailsController < ApplicationController
 
   def update
     @sowing_detail.attributes = sowing_detail_params
+    @sowing_detail.expiration_week_id = Week.find_by(initial_day: @sowing_detail.week.initial_day+( @sowing_detail.cutting_week * 7.days)).id
+
     if @sowing_detail.save
       flash[:success] = 'Detalle de siembra actualizado'
       redirect_to index_route

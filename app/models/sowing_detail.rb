@@ -63,7 +63,7 @@ class SowingDetail < ApplicationRecord
             quantity: row["quantity"],
             cutting_week: row["cutting_week"],
             status: row["status"] == "Programado" ? 0 : 1,
-            expiration_week_id: Week.find_by(initial_day: week.initial_day+( row["cutting_week"] * 8.days)).id,
+            expiration_week_id: Week.find_by(initial_day: week.initial_day+( row["cutting_week"] * 7.days)).id,
             bed_id: bed_id,
             variety_id: variety_id,
             week_id: week.id
