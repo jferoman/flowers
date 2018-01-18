@@ -62,10 +62,16 @@ class BlockProductionsController < ApplicationController
 
   def import_block_productions
     begin
-      BlockProduction.import(params[:file].path)
-      redirect_to farm_blocks_path, notice: "Produccion por bloques importadas correctamente"
-    rescue
-     redirect_to farm_blocks_path, alert: "El archivo cargado contiene errores."
+      file_path = BlockProduction.import(params[:file].path)
+    rescue Exception => e
+      p e
+    end
+
+    if file_path.is_a? String
+      redirect_to index_route, notice: "Produccion por bloques importadas correctamente"
+      send_file file_path
+    else
+     redirect_to index_route, alert: "El archivo cargado contiene errores."
     end
   end
 

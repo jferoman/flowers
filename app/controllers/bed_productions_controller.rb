@@ -62,10 +62,16 @@ class BedProductionsController < ApplicationController
 
   def import_bed_productions
     begin
-      BedProduction.import(params[:file].path)
-      redirect_to farm_blocks_path, notice: "Produccion por camas importadas correctamente"
-    rescue
-     redirect_to farm_blocks_path, alert: "El archivo cargado contiene errores."
+      file_path = BedProduction.import(params[:file].path)
+    rescue Exception => e
+      p e
+    end
+
+    if file_path.is_a? String
+      redirect_to index_route, notice: "Produccion por camas importadas correctamente"
+      send_file file_path
+    else
+     redirect_to index_route, alert: "El archivo cargado contiene errores."
     end
   end
 

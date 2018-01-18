@@ -55,7 +55,7 @@ class BlockProduction < ApplicationRecord
             next
           end
 
-          block_production = BlockProduction.find_by(variety_id: variety_id, farm_id: farm_id, week_id: week_id, block_id: block_id, status: "Ejecutado")
+          block_production = BlockProduction.find_by(variety_id: variety_id, farm_id: farm_id, week_id: week_id, block_id: block_id, status: row["status"])
           if !block_production.nil?
             errors << {
               initial_values: row.to_h,
@@ -66,11 +66,11 @@ class BlockProduction < ApplicationRecord
 
           block_productions << {
             quantity: row["quantity"],
-            status: "Ejecutado",
+            status: row["status"],
             variety_id: variety_id,
             farm_id: farm_id,
             week_id: week_id,
-            block_id: block_id,
+            block_id: block_id
           }
         end
 
