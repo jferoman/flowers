@@ -1,6 +1,6 @@
-class CreateProductions < ActiveRecord::Migration[5.1]
+class CreateBlockProductions < ActiveRecord::Migration[5.1]
   def change
-    create_table :productions do |t|
+    create_table :block_productions do |t|
       t.integer :quantity, null: false
       t.string :status, null: false
 
@@ -11,7 +11,7 @@ class CreateProductions < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :productions, [:variety_id, :farm_id, :week_id, :block_id, :status], unique: true,  :name => 'production_status'
+    add_index :block_productions, [:variety_id, :farm_id, :week_id, :block_id, :status], unique: true,  :name => 'production_status'
 
   end
 end

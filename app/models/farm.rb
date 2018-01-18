@@ -8,7 +8,7 @@ class Farm < ApplicationRecord
   has_many :blocks
   has_many :productivity_curves
   has_many :flower_densities
-  has_many :productions
+  has_many :block_productions
   has_many :cuttings
   has_many :coldrooms
 

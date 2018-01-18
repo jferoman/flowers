@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Production do
+describe BlockProduction do
   describe '#create' do
 
     it { should validate_presence_of(:quantity) }

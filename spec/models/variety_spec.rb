@@ -18,7 +18,7 @@ describe Variety do
     it { should have_many(:cuttings) }
     it { should have_many(:sowing_details) }
     it { should have_many(:sowing_solutions) }
-    it { should have_many(:productions) }
+    it { should have_many(:block_productions) }
     it { should have_many(:bed_productions) }
   end
 end

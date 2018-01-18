@@ -1,4 +1,4 @@
-class Production < ApplicationRecord
+class BlockProduction < ApplicationRecord
 
   validates_presence_of :quantity
   validates :status, uniqueness: { scope: [:variety_id, :farm_id, :week_id] }

@@ -11,7 +11,7 @@ describe Week do
 		it {should have_many(:cuttings)}
 		it {should have_many(:demands)}
 		it {should have_many(:sowing_details)}
-		it {should have_many(:productions)}
+		it {should have_many(:block_productions)}
 		it {should have_many(:bed_productions)}
     it {should have_many(:sowing_solutions)}
 
