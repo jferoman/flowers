@@ -14,13 +14,29 @@ describe SowingDetail do
 
   describe 'generate cuttings' do
 
-    # let!(:variety) { create :variety, :with_color_flower}
-    # let!(:week) { create :week , :first_week_2018 }
-    # let!(:bed) { create :bed }
-    # let!(:sowing_detail) { create :sowing_detail, variety: variety, week: week ,bed: bed, expiration_week_id: 1}
     it 'Generate cuttings' do
 
-      # Generate test Data
+      seed
+      # Execute method for test.
+      SowingDetail.generate_cuttings("Ejecutado", Farm.first.id)
+
+      expect( Cutting.all.count ).to eq(1)
+      expect( Cutting.first.quantity ).to eq(200)
+    end
+
+    it 'Generate bed productions' do
+      seed
+      SowingDetail.generate_bed_production("Ejecutado", Farm.first)
+
+      expect( BedProduction.all.count ).to eq(2)
+      expect( BedProduction.first.quantity ).to eq(SowingDetail.first.quantity*ProductivityCurve.first.production)
+
+    end
+
+  end
+
+  def seed
+    # Generate test Data
       comp = Company.create!(name: "LA GAITANA", nit: 8000000, phone: "1123456789")
       la_gaitana = Farm.create!(code: "LG", name: "LA GAITANA", mamsl: 2600, pluviosity: 0.0, company_id: comp.id)
       ['CLAVEL','MINICLAVEL'].each { |flower| Flower.create(name: flower)}
@@ -51,19 +67,7 @@ describe SowingDetail do
                                        bed_id: cama_2.id,
                                        week_id: jan_1_2018.id,
                                        expiration_week_id: jan_1_2018.next_week_in(1).id)
-
       # End test data.
-      # Execute method for test.
-      SowingDetail.generate_cuttings("Ejecutado", Farm.first.id)
-
-      expect( Cutting.all.count ).to eq(1)
-      expect( Cutting.first.quantity ).to eq(200)
-    end
-
-    it 'Generate bed productions' do
-      #binding.pry
-    end
-
   end
 
 end
