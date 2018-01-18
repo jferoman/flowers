@@ -15,6 +15,7 @@ class Farm < ApplicationRecord
   has_many :beds, through: :blocks
   has_many :block_color_flowers, through: :blocks
   has_many :sowing_details, through: :beds
+  has_many :sowing_solutions, through: :blocks
 
   def productivity_curves_varieties
     Variety.where(id: productivity_curves.all.pluck(:variety_id).uniq)

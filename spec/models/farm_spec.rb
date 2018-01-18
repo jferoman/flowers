@@ -25,6 +25,7 @@ describe Farm do
     it { should have_many(:beds) }
     it { should have_many(:block_color_flowers) }
     it { should have_many(:sowing_details) }
+    it { should have_many(:sowing_solutions) }
 
 
   end
