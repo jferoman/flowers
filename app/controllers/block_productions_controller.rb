@@ -2,7 +2,7 @@ class BlockProductionsController < ApplicationController
 
   before_action :authorize, :lock_farms_per_company
   before_action :find_block_production, only: [:destroy, :edit, :update]
-  before_action :find_farm, only: [:index, :create]
+  before_action :find_farm, only: [:index, :create, :new, :batch_delete, :edit]
 
   def index
     @block_productions = @farm.block_productions.includes(:variety, :week, :block)
@@ -26,11 +26,11 @@ class BlockProductionsController < ApplicationController
   end
 
   def destroy
-    if @block_prodcution.destroy
+    if @block_production.destroy
       flash[:success] = 'Produccion por bloque eliminada.'
       redirect_to index_route
     else
-      flash[:error] = @block_prodcution.errors.full_messages.to_sentence
+      flash[:error] = @block_production.errors.full_messages.to_sentence
       redirect_to index_route
     end
   end
@@ -39,14 +39,25 @@ class BlockProductionsController < ApplicationController
   end
 
   def update
-    @block_prodcution.attributes = block_prodcution_params
-    if @block_prodcution.save
+    @block_production.attributes = block_production_params
+    if @block_production.save
       flash[:success] = 'Produccion por bloque actualizada.'
       redirect_to index_route
     else
-      flash[:error] = @block_prodcution.errors.full_messages.to_sentence
+      flash[:error] = @block_production.errors.full_messages.to_sentence
       redirect_to index_route
     end
+  end
+
+  def batch_delete
+    if params[:block_production_id] == "all"
+      BlockProduction.where(id: @farm.block_productions.pluck(:id) ).delete_all
+      notice = "Todas las producciones por bloque fueron borradas."
+    else
+      BlockProduction.where(status: params[:block_production_id]).delete_all
+      notice = "Las producciones por bloque : #{params[:block_production_id].to_s}  fueron borradas."
+    end
+      redirect_to index_route, notice: notice
   end
 
   def import_block_productions
