@@ -22,6 +22,7 @@ describe Farm do
     it { should have_many(:cuttings) }
     it { should have_many(:coldrooms) }
     it { should have_many(:block_productions) }
+    it { should have_many(:bed_productions) }
 
     it { should have_many(:beds) }
     it { should have_many(:block_color_flowers) }

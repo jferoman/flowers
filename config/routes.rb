@@ -32,6 +32,7 @@ Rails.application.routes.draw do
               :sowing_details,
               :productivity_curves,
               :block_productions,
+              :bed_productions,
               only: [:index, :create, :new, :edit, :destroy, :update]
   end
 
@@ -50,7 +51,8 @@ Rails.application.routes.draw do
             :sowing_details,
             :productivity_curves,
             :submarket_weeks,
-            :block_productions
+            :block_productions,
+            :bed_productions
 
 
   resources :blocks do
@@ -74,6 +76,7 @@ Rails.application.routes.draw do
   post 'farms/:farm_id/import_block_color_flowers' => 'block_color_flowers#import'
   post 'farms/:farm_id/import_sowing_details' => 'sowing_details#import'
   post 'farms/:farm_id/import_block_produtions' => 'block_produtions#import_block_produtions'
+  post 'farms/:farm_id/import_bed_produtions' => 'block_produtions#import_bed_produtions'
 
   delete '/farms/:farm_id/productivity_curves' => 'productivity_curves#destroy'
   delete '/farms/:farm_id/block_color_flowers' => 'block_color_flowers#batch_delete', as: :block_color_flowers_batch_delete
@@ -84,6 +87,7 @@ Rails.application.routes.draw do
   delete '/weeks' => 'weeks#batch_delete', as: :weeks_batch_delete
   delete '/submarket_weeks' => 'submarket_weeks#batch_delete', as: :submarket_weeks_batch_delete
   delete '/farms/:farm_id/block_productions' => 'block_productions#batch_delete', as: :block_productions_batch_delete
+  delete '/farms/:farm_id/bed_productions' => 'bed_productions#batch_delete', as: :bed_productions_batch_delete
 
 
 end

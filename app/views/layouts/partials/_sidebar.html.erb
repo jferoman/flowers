@@ -122,6 +122,11 @@
               <span>Producion por bloque</span>
             </a>
           </li>
+          <li class="<%= 'active' if controller?('bed_productions') && action?('index') %>">
+            <a href= <%= "/farms/" + session[:farm_id].to_s + "/bed_productions" %> title="Producion por cama">
+              <span>Producion por cama</span>
+            </a>
+          </li>
         </ul>
       </li>
       <li class="<%= 'active' if controller?('') %>">
