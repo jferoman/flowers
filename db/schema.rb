@@ -223,16 +223,19 @@ ActiveRecord::Schema.define(version: 20171206201028) do
   end
 
   create_table "sowing_solutions", force: :cascade do |t|
-    t.integer "bed_number", null: false
-    t.integer "cut", null: false
-    t.bigint "block_id", null: false
-    t.bigint "bed_type_id", null: false
+    t.integer "quantity", null: false
+    t.integer "cutting_week", null: false
     t.bigint "variety_id", null: false
     t.bigint "week_id", null: false
+    t.bigint "block_id", null: false
+    t.bigint "bed_type_id", null: false
+    t.bigint "expiration_week_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bed_type_id"], name: "index_sowing_solutions_on_bed_type_id"
     t.index ["block_id"], name: "index_sowing_solutions_on_block_id"
+    t.index ["expiration_week_id"], name: "index_sowing_solutions_on_expiration_week_id"
+    t.index ["variety_id", "block_id", "week_id", "bed_type_id"], name: "sowing_solution", unique: true
     t.index ["variety_id"], name: "index_sowing_solutions_on_variety_id"
     t.index ["week_id"], name: "index_sowing_solutions_on_week_id"
   end
