@@ -69,6 +69,7 @@
               <th>Cama</th>
               <th>Cantidad</th>
               <th>Semana de Corte</th>
+              <th>Vencimiento</th>
               <th>Estado</th>
               <th>Acciones</th>
             </tr>
@@ -81,6 +82,7 @@
               <td> <%= sowing_detail.bed.number %> </td>
               <td> <%= sowing_detail.quantity %> </td>
               <td> <%= sowing_detail.cutting_week %> </td>
+              <td> <%= sowing_detail.expiration_week.week.to_s + " : " + sowing_detail.expiration_week.initial_day.to_s %> </td>
               <td> <%= sowing_detail.status %> </td>
               <td>|
                 <%= link_to 'Editar', edit_sowing_detail_path(sowing_detail) %> |

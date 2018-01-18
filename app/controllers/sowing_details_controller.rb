@@ -14,7 +14,6 @@ class SowingDetailsController < ApplicationController
 
   def create
     @new_sowing_detail = SowingDetail.new(sowing_detail_params)
-    @new_sowing_detail.expiration_week_id = @new_sowing_detail.week.next_week_in(@new_sowing_detail.cutting_week).id
 
     if @new_sowing_detail.save
       flash[:success] = 'Detalle de siembra creado'
@@ -40,7 +39,6 @@ class SowingDetailsController < ApplicationController
 
   def update
     @sowing_detail.attributes = sowing_detail_params
-    @sowing_detail.expiration_week_id = @sowing_detail.week.next_week_in(@sowing_detail.cutting_week).id
 
     if @sowing_detail.save
       flash[:success] = 'Detalle de siembra actualizado'
@@ -79,7 +77,8 @@ class SowingDetailsController < ApplicationController
 
   private
     def sowing_detail_params
-      params.require(:sowing_detail).permit(:quantity, :cutting_week, :status, :variety_id, :week_id, :bed_id)
+      params["sowing_detail"]["expiration_week_id"]= Week.find(params["sowing_detail"]["week_id"].to_i).next_week_in(params["sowing_detail"]["cutting_week"].to_i).id
+      params.require(:sowing_detail).permit(:quantity, :cutting_week, :status, :variety_id, :week_id, :bed_id, :expiration_week_id)
     end
 
     def find_sowing_detail

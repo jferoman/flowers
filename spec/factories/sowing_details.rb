@@ -5,4 +5,10 @@ FactoryGirl.define do
     status { "Ejecutado" }
   end
 
+  trait :specific do
+    quantity { 1146 }
+    cutting_week { rand(0..51) }
+    status { "Ejecutado" }
+  end
+
 end
