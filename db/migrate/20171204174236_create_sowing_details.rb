@@ -6,8 +6,9 @@ class CreateSowingDetails < ActiveRecord::Migration[5.1]
       t.integer :status, default: 0
 
       t.references :variety, null: false, index: true
-      t.references :week, null: false, index: true
       t.references :bed, null: false, index: true
+      t.references :week, null: false, index: true
+      t.references :expiration_week, null: false, index: true
 
       t.timestamps
     end

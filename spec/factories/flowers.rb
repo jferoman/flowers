@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :flower do
-    name "MyString"
+    name { %w(CLAVLEL MINICLAVEL).sample }
   end
 end

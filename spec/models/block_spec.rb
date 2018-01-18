@@ -13,6 +13,7 @@ describe Block do
     it { should have_many(:beds) }
     it { should have_many(:block_color_flowers) }
     it { should have_many(:sowing_solutions) }
+    it { should have_many(:productions) }
   end
 
   describe 'class methods' do

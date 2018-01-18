@@ -13,5 +13,6 @@ describe SowingSolution do
     it { should belong_to(:block) }
     it { should belong_to(:bed_type) }
     it { should belong_to(:variety) }
+    it { should belong_to(:week) }
   end
 end

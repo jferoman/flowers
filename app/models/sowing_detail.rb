@@ -7,12 +7,12 @@ class SowingDetail < ApplicationRecord
   belongs_to :variety
   belongs_to :week
   belongs_to :bed
+  belongs_to :expiration_week, :class_name => 'Week'
 
   enum status: %w(Programado Ejecutado)
 
 
   class << self
-
     def import file_path
       sowing_details = []
       errors = []
@@ -41,8 +41,8 @@ class SowingDetail < ApplicationRecord
             next
           end
 
-          week_id = (Week.find_by(initial_day: row["sowing_date"]).id rescue nil)
-          if week_id.nil?
+          week = (Week.find_by(initial_day: row["sowing_date"]) rescue nil)
+          if week.nil?
             errors << {
               initial_values: row.to_h,
               error: "Fecha: #{row["sowing_date"]} no encontrada."
@@ -50,7 +50,7 @@ class SowingDetail < ApplicationRecord
             next
           end
 
-          sowing_detail = SowingDetail.find_by(variety_id: variety_id, week_id: week_id, bed_id: bed_id)
+          sowing_detail = SowingDetail.find_by(variety_id: variety_id, week_id: week.id, bed_id: bed_id)
           if !sowing_detail.nil?
             errors << {
               initial_values: row.to_h,
@@ -62,10 +62,11 @@ class SowingDetail < ApplicationRecord
           sowing_details << {
             quantity: row["quantity"],
             cutting_week: row["cutting_week"],
-            status: row["status"],
+            status: row["status"] == "Programado" ? 0 : 1,
+            expiration_week_id: week.next_week_in(row["cutting_week"].to_i).id,
             bed_id: bed_id,
             variety_id: variety_id,
-            week_id: week_id
+            week_id: week.id
           }
         end
 
@@ -74,6 +75,56 @@ class SowingDetail < ApplicationRecord
         else
           csv_with_errors errors
         end
+    end
+
+    ##
+    # Generate cuttings from sowing details with specified status, for the actual farm of the user.
+    # Parameters: Status, farm_id
+    # Return: Generate cuttings with the status, the variety and week of the sowing detail.
+    # SowingDetail.generate_cuttings("Ejecutado", session[:farm_id])
+    #
+    ##
+    def generate_cuttings status, farm_id
+      cuttings = []
+      Farm.find(farm_id).sowing_details.where(status: status).group(:variety_id, :week_id).sum(:quantity).each do |sowing|
+        cuttings << {
+          quantity: sowing[1],
+          status: "Ejecutado",
+          farm_id: farm_id,
+          week_id: sowing[0][1],
+          variety_id: sowing[0][0]
+        }
+      end
+      Cutting.bulk_insert values: cuttings
+    end
+
+    ##
+    # Generate the production from the sowing detail with especified status.
+    # Parameters:
+    # => Status: Status of the soowing solutions to process
+    # => farm: Farm for the sowings solutions
+    #
+    # Generate the bed production for this sowing.
+    ##
+    def generate_bed_production status, farm
+      bed_productions = []
+      farm.sowing_details.where(status: status).each do |sowing_detail|
+        production = 0
+        (1..(sowing_detail.expiration_week.week-sowing_detail.week.week)).each do |s|
+
+          production += (sowing_detail.quantity * sowing_detail.variety.get_productivity(s))
+
+          bed_productions << {
+            quantity: production,
+            status: status,
+            variety_id: sowing_detail.variety_id,
+            bed_id: sowing_detail.bed.id,
+            week_id: sowing_detail.week.next_week_in(s).id
+          }
+
+        end
+      end
+      BedProduction.bulk_insert values: bed_productions
     end
 
     private
@@ -92,4 +143,5 @@ class SowingDetail < ApplicationRecord
         file_path
       end
   end
+
 end

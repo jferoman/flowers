@@ -35,7 +35,7 @@
           <form action= <%= sowing_details_batch_delete_path(farm_id: params[:farm_id]) %> enctype="multipart/form-data"  accept-charset="UTF-8" method="post" class="form-horizontal">
             <input type="hidden" name="_method" value="delete" />
                <div class="form-group">
-                  <label class="col-sm-2 control-label">Variead:  </label>
+                  <label class="col-sm-2 control-label">Variedad:  </label>
                   <div class="col-md-6">
                      <select name="variety_id" class="form-control m-b">
                         <option value="all">BORRAR TODOS</option>
@@ -69,6 +69,7 @@
               <th>Cama</th>
               <th>Cantidad</th>
               <th>Semana de Corte</th>
+              <th>Vencimiento</th>
               <th>Estado</th>
               <th>Acciones</th>
             </tr>
@@ -81,6 +82,7 @@
               <td> <%= sowing_detail.bed.number %> </td>
               <td> <%= sowing_detail.quantity %> </td>
               <td> <%= sowing_detail.cutting_week %> </td>
+              <td> <%= sowing_detail.expiration_week.week.to_s + " : " + sowing_detail.expiration_week.initial_day.to_s %> </td>
               <td> <%= sowing_detail.status %> </td>
               <td>|
                 <%= link_to 'Editar', edit_sowing_detail_path(sowing_detail) %> |

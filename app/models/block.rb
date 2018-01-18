@@ -9,6 +9,7 @@ class Block < ApplicationRecord
   has_many :beds
   has_many :block_color_flowers
   has_many :sowing_solutions
+  has_many :productions
 
   class << self
     def import file_path
