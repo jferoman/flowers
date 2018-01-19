@@ -103,7 +103,7 @@ class SowingSolution < ApplicationRecord
     end
 
     ##
-    # Generate the production from the sowing detail with especified status.
+    # Generate the production from the sowing detail.
     # Parameters:
     # => Status: Status of the soowing solutions to process
     # => farm: Farm for the sowings solutions
@@ -111,7 +111,7 @@ class SowingSolution < ApplicationRecord
     # Generate the bed production for this sowing.
     ##
     # TODO
-    def generate_bed_production status, farm
+    def generate_bed_production farm
       block_productions = []
       farm.sowing_solutions.each do |sowing_solution|
         production = 0
@@ -121,9 +121,10 @@ class SowingSolution < ApplicationRecord
 
           block_productions << {
             quantity: production,
-            status: status,
+            status: "Modelo",
             variety_id: sowing_solution.variety_id,
-            bed_id: sowing_solution.bed.id,
+            block_id: sowing_solution.block.id,
+            farm_id: farm_id,
             week_id: sowing_solution.week.next_week_in(s).id
           }
 
