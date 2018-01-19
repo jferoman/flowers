@@ -12,7 +12,7 @@ class CreateSowingSolutions < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :sowing_solutions, [:variety_id, :block_id, :week_id, :bed_type_id], unique: true,  :name => 'sowing_solution'
+    add_index :sowing_solutions, [:variety_id, :block_id, :week_id, :bed_type_id, :cutting_week], unique: true,  :name => 'sowing_solution'
 
   end
 end

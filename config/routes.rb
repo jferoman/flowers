@@ -33,6 +33,7 @@ Rails.application.routes.draw do
               :productivity_curves,
               :block_productions,
               :bed_productions,
+              :sowing_solutions,
               only: [:index, :create, :new, :edit, :destroy, :update]
   end
 

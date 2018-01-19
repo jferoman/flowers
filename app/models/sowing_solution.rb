@@ -28,25 +28,25 @@ class SowingSolution < ApplicationRecord
             next
           end
 
-          week = (Week.find_by(initial_day: row["sowing_date"]) rescue nil)
+          week = (Week.find_by(initial_day: row["date"]) rescue nil)
           if week.nil?
             errors << {
               initial_values: row.to_h,
-              error: "Fecha: #{row["sowing_date"]} no encontrada."
+              error: "Fecha: #{row["date"]} no encontrada."
             }
             next
           end
 
-          block_id = (Block.find_by(name: row["block_name"].to_s.upcase).id rescue nil)
+          block_id = (Farm.find_by(name: row["farm_name"]).blocks.find_by(name: row["block_name"].to_s.upcase).id rescue nil)
           if block_id.nil?
             errors << {
               initial_values: row.to_h,
-              error: "Blque: #{row["block_name"]} no encontrado."
+              error: "Blque: #{row["block_name"]}, de la finca #{row["farm_name"]} no encontrado."
             }
             next
           end
 
-          bed_type_id = (Bed_type.find_by(width: row["bed_type"].to_s).id rescue nil)
+          bed_type_id = (BedType.find_by(name: row["bed_type_name"].to_s.upcase).id rescue nil)
           if bed_type_id.nil?
             errors << {
               initial_values: row.to_h,
@@ -59,19 +59,20 @@ class SowingSolution < ApplicationRecord
           if !sowing_solution.nil?
             errors << {
               initial_values: row.to_h,
-              error: "El resgistro #{row["variety_name"]}, #{row["bed_number"]}, #{row["bed_type"]}, #{row["sowing_date"]}, #{row["block_name"]} ya existe."
+              error: "El registro #{row["variety_name"]}, #{row["bed_number"]}, #{row["bed_type_name"]}, #{row["date"]}, #{row["block_name"]} ya existe."
             }
             next
           end
 
+          cutting_week = ProductivityCurve.find_by(variety_id: variety_id, cut: row["cut"].to_i).week_number
           sowing_solutions << {
             quantity: row["quantity"],
-            cutting_week: row["cutting_week"],
+            cutting_week: cutting_week,
             variety_id: variety_id,
             week_id: week.id,
-            block_id: block.id,
+            block_id: block_id,
             bed_type_id: bed_type_id,
-            expiration_week_id: week.next_week_in(row["cutting_week"].to_i).id
+            expiration_week_id: week.next_week_in( cutting_week).id
           }
         end
 
@@ -136,7 +137,7 @@ class SowingSolution < ApplicationRecord
     private
       def csv_with_errors sowing_solution_list
 
-        attributes = %w{bed_type bed_number sowing_date variaty_name quantity cutting_week errores}
+        attributes = %w{date variety_name cut farm_name block_name bed_type_name quantity errores}
         file_path = "db/tmp_files/errores_detalle_siembra.csv"
 
         CSV.open(file_path, "wb") do |csv|

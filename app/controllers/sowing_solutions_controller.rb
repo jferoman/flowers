@@ -64,6 +64,17 @@ class SowingSolutionsController < ApplicationController
     end
   end
 
+  def batch_delete
+    if params[:variety_id] == "all"
+      SowingSolution.where(id: @farm.sowing_solutions.pluck(:id) ).delete_all
+      notice = "Todas los detalles de siembra fueron borrados."
+    else
+      SowingSolution.where(variety_id: params[:variety_id]).delete_all
+      notice = "Los detalles de siembra de la variedad: " + Variety.find(params[:variety_id]).name + " fueron borrados."
+    end
+      redirect_to index_route, notice: notice
+  end
+
   private
     def sowing_solution_params
       params["sowing_solution"]["expiration_week_id"]= Week.find(params["sowing_solution"]["week_id"].to_i).next_week_in(params["sowing_solution"]["cutting_week"].to_i).id

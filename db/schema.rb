@@ -235,7 +235,7 @@ ActiveRecord::Schema.define(version: 20171206201028) do
     t.index ["bed_type_id"], name: "index_sowing_solutions_on_bed_type_id"
     t.index ["block_id"], name: "index_sowing_solutions_on_block_id"
     t.index ["expiration_week_id"], name: "index_sowing_solutions_on_expiration_week_id"
-    t.index ["variety_id", "block_id", "week_id", "bed_type_id"], name: "sowing_solution", unique: true
+    t.index ["variety_id", "block_id", "week_id", "bed_type_id", "cutting_week"], name: "sowing_solution", unique: true
     t.index ["variety_id"], name: "index_sowing_solutions_on_variety_id"
     t.index ["week_id"], name: "index_sowing_solutions_on_week_id"
   end
