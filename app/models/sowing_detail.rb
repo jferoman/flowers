@@ -54,7 +54,7 @@ class SowingDetail < ApplicationRecord
           if !sowing_detail.nil?
             errors << {
               initial_values: row.to_h,
-              error: "El resgistro #{row["variety_name"]}, #{row["bed_number"]}, #{row["block_name"]} #{row["sowing_date"]} ya existe."
+              error: "El registro #{row["variety_name"]}, #{row["bed_number"]}, #{row["block_name"]} #{row["sowing_date"]} ya existe."
             }
             next
           end

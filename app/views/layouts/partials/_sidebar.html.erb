@@ -56,8 +56,8 @@
             </a>
           </li>
           <li class="<%= 'active' if controller?('productivity_curves') && action?('index') %>">
-            <a href= <%='/farms/' + session[:farm_id].to_s + '/productivity_curves' %> title="Curvas de Variedad">
-              <span>Curvas de Variedad</span>
+            <a href= <%='/farms/' + session[:farm_id].to_s + '/productivity_curves' %> title="Curvas de Produccion">
+              <span>Curvas de Produccion</span>
             </a>
           </li>
           <li class="<%= 'active' if controller?('block_color_flowers') && action?('index') %>">
@@ -115,6 +115,16 @@
           <li class="<%= 'active' if controller?('sowing_details') && action?('index') %>">
             <a href= <%= "/farms/" + session[:farm_id].to_s + "/sowing_details" %> title="Detalle de siembra">
               <span>Detalle de siembra</span>
+            </a>
+          </li>
+          <li class="<%= 'active' if controller?('block_productions') && action?('index') %>">
+            <a href= <%= "/farms/" + session[:farm_id].to_s + "/block_productions" %> title="Producion por bloque">
+              <span>Producion por bloque</span>
+            </a>
+          </li>
+          <li class="<%= 'active' if controller?('bed_productions') && action?('index') %>">
+            <a href= <%= "/farms/" + session[:farm_id].to_s + "/bed_productions" %> title="Producion por cama">
+              <span>Producion por cama</span>
             </a>
           </li>
         </ul>

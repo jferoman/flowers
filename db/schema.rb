@@ -64,6 +64,22 @@ ActiveRecord::Schema.define(version: 20171206201028) do
     t.index ["flower_id"], name: "index_block_color_flowers_on_flower_id"
   end
 
+  create_table "block_productions", force: :cascade do |t|
+    t.integer "quantity", null: false
+    t.string "status", null: false
+    t.bigint "variety_id", null: false
+    t.bigint "farm_id", null: false
+    t.bigint "week_id", null: false
+    t.bigint "block_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["block_id"], name: "index_block_productions_on_block_id"
+    t.index ["farm_id"], name: "index_block_productions_on_farm_id"
+    t.index ["variety_id", "farm_id", "week_id", "block_id", "status"], name: "production_status", unique: true
+    t.index ["variety_id"], name: "index_block_productions_on_variety_id"
+    t.index ["week_id"], name: "index_block_productions_on_week_id"
+  end
+
   create_table "blocks", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "farm_id", null: false
@@ -173,22 +189,6 @@ ActiveRecord::Schema.define(version: 20171206201028) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_markets_on_company_id"
-  end
-
-  create_table "productions", force: :cascade do |t|
-    t.integer "quantity", null: false
-    t.string "status", null: false
-    t.bigint "variety_id", null: false
-    t.bigint "farm_id", null: false
-    t.bigint "week_id", null: false
-    t.bigint "block_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["block_id"], name: "index_productions_on_block_id"
-    t.index ["farm_id"], name: "index_productions_on_farm_id"
-    t.index ["variety_id", "farm_id", "week_id", "block_id", "status"], name: "production_status", unique: true
-    t.index ["variety_id"], name: "index_productions_on_variety_id"
-    t.index ["week_id"], name: "index_productions_on_week_id"
   end
 
   create_table "productivity_curves", force: :cascade do |t|

@@ -1,15 +1,16 @@
-class BedProduction < ApplicationRecord
+class BlockProduction < ApplicationRecord
 
-  validates_presence_of :quantity, :status
-  validates :status, uniqueness: { scope: [:variety_id, :bed_id, :week_id] }
+  validates_presence_of :quantity
+  validates :status, uniqueness: { scope: [:variety_id, :farm_id, :week_id, :block_id, :status] }
 
   belongs_to :variety
-  belongs_to :bed
+  belongs_to :farm
   belongs_to :week
+  belongs_to :block
 
   class << self
     def import file_path
-      bed_productions = []
+      block_productions = []
       errors = []
 
         CSV.foreach(file_path, {
@@ -27,6 +28,15 @@ class BedProduction < ApplicationRecord
             next
           end
 
+          farm_id = (Farm.find_by(name: row["farm"].to_s.upcase).id rescue nil)
+          if farm_id.nil?
+            errors << {
+              initial_values: row.to_h,
+              error: "Finca: #{row["farm"]} no encontrada."
+            }
+            next
+          end
+
           week_id = (Week.find_by(initial_day: row["week"]).id rescue nil)
           if week_id.nil?
             errors << {
@@ -36,49 +46,51 @@ class BedProduction < ApplicationRecord
             next
           end
 
-          bed_id = (Bed.find_by(number: row["cama"].to_s.upcase).id rescue nil)
-          if bed_id.nil?
+          block_id = (Block.find_by(name: row["bloque"].to_s.upcase).id rescue nil)
+          if block_id.nil?
             errors << {
               initial_values: row.to_h,
-              error: "Cama: #{row["cama"]} no encontrada."
+              error: "Bloque: #{row["bloque"]} no encontrado."
             }
             next
           end
 
-          bed_production = BedßProduction.find_by(variety_id: variety_id, week_id: week_id, bed_id: bed_id, status: row["status"])
-          if !bed_production.nil?
+          block_production = BlockProduction.find_by(variety_id: variety_id, farm_id: farm_id, week_id: week_id, block_id: block_id, status: row["status"])
+          if !block_production.nil?
             errors << {
               initial_values: row.to_h,
-              error: "El registro #{row["variety"]}, #{row["week"]}, #{row["bed"]}, Ejecutado ya existe."
+              error: "El registro #{row["variety"]}, #{row["farm"]}, #{row["week"]}, #{row["block"]}, Ejecutado ya existe."
             }
             next
           end
 
-          bed_productions << {
+          block_productions << {
             quantity: row["quantity"],
             status: row["status"],
             variety_id: variety_id,
+            farm_id: farm_id,
             week_id: week_id,
-            bed_id: bed_id
+            block_id: block_id
           }
         end
+
         if errors.empty?
-          BedProduction.bulk_insert values: bed_productions
+          BlockProduction.bulk_insert values: block_productions
         else
           csv_with_errors errors
         end
     end
 
     private
-    def csv_with_errors bed_productions_list
+    def csv_with_errors block_productions_list
 
-      attributes = %w{quantity variety week bed errores}
-      file_path = "db/tmp_files/errores_produccion_camas.csv"
+      attributes = %w{quantity variety farm week block errores}
+      file_path = "db/tmp_files/errores_produccion_bloques.csv"
 
       CSV.open(file_path, "wb") do |csv|
 
         csv << attributes
-        bed_productions_list.each do |data|
+        block_productions_list.each do |data|
           csv << [data[:initial_values].values, data[:error]].flatten
         end
       end

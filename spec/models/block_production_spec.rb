@@ -1,10 +1,9 @@
 require 'rails_helper'
 
-describe Production do
+describe BlockProduction do
   describe '#create' do
 
     it { should validate_presence_of(:quantity) }
-
     it { should have_db_index( [:variety_id, :farm_id, :week_id, :block_id, :status] ).unique(true) }
 
   end
