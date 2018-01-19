@@ -5,7 +5,7 @@ class SowingSolutionsController < ApplicationController
   before_action :find_farm, only: [:index, :create, :new, :edit, :batch_delete]
 
   def index
-    @sowing_solutions = @farm.sowing_solutions.includes(:variety, :week, :block, :bed_type)
+    @sowing_solutions = @farm.sowing_solutions.includes(:variety, :week, :block, :bed_type, :expiration_week)
   end
 
   def new
