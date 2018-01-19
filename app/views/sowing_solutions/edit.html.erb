@@ -1,2 +1,30 @@
-<h1>SowingSolutions#edit</h1>
-<p>Find me in app/views/sowing_solutions/edit.html.erb</p>
+<%= form_for @sowing_solution do |f| %>
+  <div class="form-group">
+    <%= f.label :variety_id, 'Variedad: ' %>
+    <%= f.collection_select(:variety_id, Variety.all, :id, :name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :week_id, 'Semana' %>
+    <%= f.collection_select(:week_id, Week.all, :id, :initial_day) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :block_id, 'Bloque: ' %>
+    <%= f.collection_select(:block_id, @farm.blocks, :id, :name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :bed_type_id, 'Tipo de cama: ' %>
+    <%= f.collection_select(:bed_type_id, BedType.all, :id, :width) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :quantity, 'Cantidad' %>
+    <%= f.text_field :quantity, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :cutting_week, 'Semana de corte' %>
+    <%= f.text_field :cutting_week, class: 'form-control' %>
+  </div>
+  <br>
+  <div>
+    <%= f.submit 'Actualizar Solucion de siembra' %>
+  </div>
+<% end %>

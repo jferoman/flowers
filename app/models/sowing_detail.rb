@@ -89,7 +89,7 @@ class SowingDetail < ApplicationRecord
       Farm.find(farm_id).sowing_details.where(status: status).group(:variety_id, :week_id).sum(:quantity).each do |sowing|
         cuttings << {
           quantity: sowing[1],
-          status: "Ejecutado",
+          status: status,
           farm_id: farm_id,
           week_id: sowing[0][1],
           variety_id: sowing[0][0]
