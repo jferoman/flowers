@@ -112,7 +112,7 @@ class SowingSolution < ApplicationRecord
     # Generate the bed production for this sowing.
     ##
     # TODO
-    def generate_bed_production farm
+    def generate_block_production farm
       block_productions = []
       farm.sowing_solutions.each do |sowing_solution|
         production = 0
@@ -124,14 +124,14 @@ class SowingSolution < ApplicationRecord
             quantity: production,
             status: "Modelo",
             variety_id: sowing_solution.variety_id,
-            block_id: sowing_solution.block.id,
-            farm_id: farm_id,
-            week_id: sowing_solution.week.next_week_in(s).id
+            farm_id: farm.id,
+            week_id: sowing_solution.week.next_week_in(s).id,
+            block_id: sowing_solution.block.id
           }
 
         end
       end
-      BedProduction.bulk_insert values: block_productions
+      BlockProduction.bulk_insert values: block_productions
     end
 
     private

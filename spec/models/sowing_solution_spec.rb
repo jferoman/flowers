@@ -23,17 +23,18 @@ describe SowingSolution do
       SowingSolution.generate_cuttings(Farm.first.id)
 
       expect( Cutting.all.count ).to eq(1)
-      expect( Cutting.first.quantity ).to eq(200)
+      expect( Cutting.first.quantity ).to eq(100)
     end
 
     it 'Generate bed productions' do
       seed
-      SowingSolution.generate_bed_production(Farm.first)
+      SowingSolution.generate_block_production(Farm.first)
 
-      expect( BedProduction.all.count ).to eq(2)
-      expect( BedProduction.first.quantity ).to eq(SowingSolution.first.quantity*ProductivityCurve.first.production)
+      expect( BlockProduction.all.count ).to eq(1)
+      expect( BlockProduction.first.quantity ).to eq(SowingSolution.first.quantity*ProductivityCurve.first.production)
 
     end
+  end
 
     def seed
     # Generate test Data
@@ -61,17 +62,15 @@ describe SowingSolution do
                                                  week_id: jan_1_2018.id,
                                                  block_id: bloque_1.id,
                                                  bed_type_id: tipo_angosta.id,
-                                                 bed_id: cama_1.id,
                                                  expiration_week_id: jan_1_2018.next_week_in(1).id)
 
-      solucion_siembra_2 = SowingSolution.create!(quantity: 100,
-                                                 cutting_week: 1,
-                                                 variety_id: variedad_1.id,
-                                                 week_id: jan_1_2018.id,
-                                                 block_id: bloque_1.id,
-                                                 bed_type_id: tipo_angosta.id,
-                                                 bed_id: cama_2.id,
-                                                 expiration_week_id: jan_1_2018.next_week_in(1).id)
+      # solucion_siembra_2 = SowingSolution.create!(quantity: 100,
+      #                                            cutting_week: 2,
+      #                                            variety_id: variedad_1.id,
+      #                                            week_id: jan_1_2018.id,
+      #                                            block_id: bloque_1.id,
+      #                                            bed_type_id: tipo_angosta.id,
+      #                                            expiration_week_id: jan_1_2018.next_week_in(1).id)
       # End test data.
   end
 
