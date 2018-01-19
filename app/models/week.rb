@@ -7,7 +7,7 @@ class Week < ApplicationRecord
   has_many :cuttings
   has_many :demands
   has_many :sowing_details
-  has_many :productions
+  has_many :block_productions
   has_many :bed_productions
   has_many :sowing_details
   has_many :sowing_solutions

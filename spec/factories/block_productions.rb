@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :production do
-    
+  factory :block_production do
+
   end
 end
