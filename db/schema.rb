@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(version: 20171206201028) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["farm_id"], name: "index_cuttings_on_farm_id"
+    t.index ["variety_id", "week_id", "farm_id", "origin", "cutting_week"], name: "cuttings_index", unique: true
     t.index ["variety_id"], name: "index_cuttings_on_variety_id"
     t.index ["week_id"], name: "index_cuttings_on_week_id"
   end

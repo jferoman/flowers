@@ -11,5 +11,7 @@ class CreateCuttings < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+    add_index :cuttings, [:variety_id, :week_id, :farm_id, :origin, :cutting_week], unique: true,  :name => 'cuttings_index'
+
   end
 end
