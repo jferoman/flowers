@@ -1,7 +1,7 @@
 class BedProduction < ApplicationRecord
 
-  validates_presence_of :quantity, :status
-  validates :status, uniqueness: { scope: [:variety_id, :bed_id, :week_id] }
+  validates_presence_of :quantity, :origin
+  validates :origin, uniqueness: { scope: [:variety_id, :bed_id, :week_id] }
 
   belongs_to :variety
   belongs_to :bed
@@ -45,7 +45,7 @@ class BedProduction < ApplicationRecord
             next
           end
 
-          bed_production = BedßProduction.find_by(variety_id: variety_id, week_id: week_id, bed_id: bed_id, status: row["status"])
+          bed_production = BedßProduction.find_by(variety_id: variety_id, week_id: week_id, bed_id: bed_id, origin: row["origin"])
           if !bed_production.nil?
             errors << {
               initial_values: row.to_h,
@@ -56,7 +56,7 @@ class BedProduction < ApplicationRecord
 
           bed_productions << {
             quantity: row["quantity"],
-            status: row["status"],
+            origin: row["origin"],
             variety_id: variety_id,
             week_id: week_id,
             bed_id: bed_id

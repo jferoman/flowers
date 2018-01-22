@@ -9,7 +9,7 @@
             <blockquote class="box-placeholder">
                <p>Importar archivo CSV
                   <br>EL archivo debe contener las <% "hey" %> columnas:
-                  <br>quantity, variety, farm, week, block, status
+                  <br>quantity, variety, farm, week, block, origin
                </p>
             </blockquote>
             <div class="row upload-box">
@@ -34,12 +34,12 @@
           <form action= <%= block_productions_batch_delete_path(farm_id: params[:farm_id]) %> enctype="multipart/form-data"  accept-charset="UTF-8" method="post" class="form-horizontal">
             <input type="hidden" name="_method" value="delete" />
                <div class="form-group">
-                  <label class="col-sm-2 control-label">Estado:  </label>
+                  <label class="col-sm-2 control-label">Origen:  </label>
                   <div class="col-md-6">
                      <select name="block_production_id" class="form-control m-b">
                         <option value="all">BORRAR TODOS</option>
-                        <%= @statuses.each do |status| %>
-                        <option value="<%= status %>"><%= status %></option>
+                        <%= @origines.each do |origin| %>
+                        <option value="<%= origin %>"><%= origin %></option>
                         <% end %>
                      </select>
                   </div>
@@ -67,7 +67,7 @@
               <th>Variedad</th>
               <th>Bloque</th>
               <th>Cantidad</th>
-              <th>Estado</th>
+              <th>Origen</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -78,7 +78,7 @@
               <td> <%= block_production.variety.name %> </td>
               <td> <%= block_production.block.name %> </td>
               <td> <%= block_production.quantity %> </td>
-              <td> <%= block_production.status %> </td>
+              <td> <%= block_production.origin %> </td>
               <td>
                 <%= link_to 'Editar', edit_block_production_path(block_production) %> |
                 <%= link_to 'Eliminar', block_production,  method: :delete, data: { confirm: 'Desea eliminar el registro?' } %> |

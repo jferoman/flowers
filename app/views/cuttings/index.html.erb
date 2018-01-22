@@ -17,7 +17,8 @@
               <th>Semana</th>
               <th>Año</th>
               <th class="sort-alpha">Cantidad</th>
-              <th>Estado</th>
+              <th>Semana de corte</th>
+              <th>Origen</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -28,7 +29,8 @@
               <td> <%= cutting.week.week %> </td>
               <td> <%= cutting.week.initial_day.year %> </td>
               <td> <%= cutting.quantity %> </td>
-              <td> <%= cutting.status %> </td>
+              <td> <%= cutting.cutting_week %> </td>
+              <td> <%= cutting.origin %> </td>
               <td>
                 <%= link_to 'Editar', edit_cutting_path(cutting) %> |
                 <%= link_to 'Eliminar', cutting,  method: :delete, data: { confirm: 'Desea eliminar el Corte?' } %>

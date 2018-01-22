@@ -4,9 +4,9 @@ describe BedProduction do
    describe '#create' do
 
     it { should validate_presence_of(:quantity) }
-    it { should validate_presence_of(:status) }
+    it { should validate_presence_of(:origin) }
 
-    it { should have_db_index( [:variety_id, :bed_id, :week_id, :status] ).unique(true) }
+    it { should have_db_index( [:variety_id, :bed_id, :week_id, :origin] ).unique(true) }
 
   end
 

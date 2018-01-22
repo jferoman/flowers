@@ -94,7 +94,7 @@ class SowingSolution < ApplicationRecord
       Farm.find(farm_id).sowing_solutions.group(:variety_id, :week_id).sum(:quantity).each do |sowing|
         cuttings << {
           quantity: sowing[1],
-          status: "Modelo",
+          origin: "Modelo",
           farm_id: farm_id,
           week_id: sowing[0][1],
           variety_id: sowing[0][0]
@@ -121,7 +121,7 @@ class SowingSolution < ApplicationRecord
 
           block_productions << {
             quantity: production,
-            status: "Modelo",
+            origin: "Modelo",
             variety_id: sowing_solution.variety_id,
             farm_id: farm.id,
             week_id: sowing_solution.week.next_week_in(s).id,

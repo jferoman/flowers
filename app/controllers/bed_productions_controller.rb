@@ -6,7 +6,7 @@ class BedProductionsController < ApplicationController
 
   def index
     @bed_productions = @farm.bed_productions.includes(:variety, :week, :bed)
-    @statuses = @bed_productions.all.pluck(:status).uniq
+    @origines = @bed_productions.all.pluck(:origin).uniq
   end
 
   def new
@@ -54,7 +54,7 @@ class BedProductionsController < ApplicationController
       BedProduction.where(id: @farm.bed_productions.pluck(:id) ).delete_all
       notice = "Todas las producciones por cama fueron borradas."
     else
-      BedProduction.where(status: params[:bed_production_id]).delete_all
+      BedProduction.where(origin: params[:bed_production_id]).delete_all
       notice = "Las producciones por cama : #{params[:bed_production_id].to_s}  fueron borradas."
     end
       redirect_to index_route, notice: notice
@@ -77,7 +77,7 @@ class BedProductionsController < ApplicationController
 
   private
   def bed_production_params
-    params.require(:bed_production).permit(:quantity, :status, :variety_id, :week_id, :bed_id)
+    params.require(:bed_production).permit(:quantity, :origin, :variety_id, :week_id, :bed_id)
   end
 
   def find_farm

@@ -66,7 +66,7 @@ class CuttingsController < ApplicationController
 
   private
   def cutting_params
-    params.require(:cutting).permit(:quantity, :status, :farm_id ,:week_id, :variety_id)
+    params.require(:cutting).permit(:quantity, :origin, :farm_id ,:week_id, :variety_id)
   end
 
   def find_farm

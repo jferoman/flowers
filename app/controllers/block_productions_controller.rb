@@ -6,7 +6,7 @@ class BlockProductionsController < ApplicationController
 
   def index
     @block_productions = @farm.block_productions.includes(:variety, :week, :block)
-    @statuses = @block_productions.all.pluck(:status).uniq
+    @origines = @block_productions.all.pluck(:origin).uniq
   end
 
   def new
@@ -54,7 +54,7 @@ class BlockProductionsController < ApplicationController
       BlockProduction.where(id: @farm.block_productions.pluck(:id) ).delete_all
       notice = "Todas las producciones por bloque fueron borradas."
     else
-      BlockProduction.where(status: params[:block_production_id]).delete_all
+      BlockProduction.where(origin: params[:block_production_id]).delete_all
       notice = "Las producciones por bloque : #{params[:block_production_id].to_s}  fueron borradas."
     end
       redirect_to index_route, notice: notice
@@ -77,7 +77,7 @@ class BlockProductionsController < ApplicationController
 
   private
   def block_production_params
-    params.require(:block_production).permit(:quantity, :status, :variety_id, :farm_id, :week_id, :block_id)
+    params.require(:block_production).permit(:quantity, :origin, :variety_id, :farm_id, :week_id, :block_id)
   end
 
   def find_farm

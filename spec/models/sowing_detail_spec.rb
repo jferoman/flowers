@@ -54,7 +54,7 @@ describe SowingDetail do
 
       siembra_1 = SowingDetail.create!(quantity: 100,
                                        cutting_week: 1,
-                                       status: "Ejecutado",
+                                       origin: "Ejecutado",
                                        variety_id: variedad_1.id,
                                        bed_id: cama_1.id,
                                        week_id: jan_1_2018.id,
@@ -62,7 +62,7 @@ describe SowingDetail do
 
       siembra_2 = SowingDetail.create!(quantity: 100,
                                        cutting_week: 1,
-                                       status: "Ejecutado",
+                                       origin: "Ejecutado",
                                        variety_id: variedad_1.id,
                                        bed_id: cama_2.id,
                                        week_id: jan_1_2018.id,

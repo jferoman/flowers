@@ -1,4 +1,4 @@
-block_name,bed_number,sowing_date,variety_name,quantity,cutting_week,status
+block_name,bed_number,sowing_date,variety_name,quantity,cutting_week,origin
 G-10,3,31/03/2015,MOONLIGHT,1188,1,Ejecutado
 G-10,5,31/03/2015,MOONLIGHT,1188,1,Ejecutado
 G-10,7,31/03/2015,MOONLIGHT,1188,1,Ejecutado

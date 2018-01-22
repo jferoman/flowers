@@ -17,14 +17,14 @@ ActiveRecord::Schema.define(version: 20171206201028) do
 
   create_table "bed_productions", force: :cascade do |t|
     t.integer "quantity", null: false
-    t.string "status", null: false
+    t.string "origin", null: false
     t.bigint "variety_id", null: false
     t.bigint "bed_id", null: false
     t.bigint "week_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bed_id"], name: "index_bed_productions_on_bed_id"
-    t.index ["variety_id", "bed_id", "week_id", "status"], name: "bed_production_status", unique: true
+    t.index ["variety_id", "bed_id", "week_id", "origin"], name: "bed_production_origin", unique: true
     t.index ["variety_id"], name: "index_bed_productions_on_variety_id"
     t.index ["week_id"], name: "index_bed_productions_on_week_id"
   end
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20171206201028) do
 
   create_table "block_productions", force: :cascade do |t|
     t.integer "quantity", null: false
-    t.string "status", null: false
+    t.string "origin", null: false
     t.bigint "variety_id", null: false
     t.bigint "farm_id", null: false
     t.bigint "week_id", null: false
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20171206201028) do
     t.datetime "updated_at", null: false
     t.index ["block_id"], name: "index_block_productions_on_block_id"
     t.index ["farm_id"], name: "index_block_productions_on_farm_id"
-    t.index ["variety_id", "farm_id", "week_id", "block_id", "status"], name: "production_status", unique: true
+    t.index ["variety_id", "farm_id", "week_id", "block_id", "origin"], name: "production_origin", unique: true
     t.index ["variety_id"], name: "index_block_productions_on_variety_id"
     t.index ["week_id"], name: "index_block_productions_on_week_id"
   end
@@ -128,7 +128,8 @@ ActiveRecord::Schema.define(version: 20171206201028) do
 
   create_table "cuttings", force: :cascade do |t|
     t.integer "quantity", null: false
-    t.string "status", null: false
+    t.integer "cutting_week", null: false
+    t.string "origin", null: false
     t.bigint "farm_id", null: false
     t.bigint "week_id", null: false
     t.bigint "variety_id", null: false
@@ -208,7 +209,7 @@ ActiveRecord::Schema.define(version: 20171206201028) do
   create_table "sowing_details", force: :cascade do |t|
     t.integer "quantity", null: false
     t.integer "cutting_week", null: false
-    t.integer "status", default: 0
+    t.string "origin", null: false
     t.bigint "variety_id", null: false
     t.bigint "bed_id", null: false
     t.bigint "week_id", null: false
