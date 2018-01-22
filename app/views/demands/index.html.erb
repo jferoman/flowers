@@ -34,12 +34,12 @@
           <form action= <%= demands_batch_delete_path %> enctype="multipart/form-data"  accept-charset="UTF-8" method="post" class="form-horizontal">
             <input type="hidden" name="_method" value="delete" />
                <div class="form-group">
-                  <label class="col-sm-2 control-label">Mercado:  </label>
+                  <label class="col-sm-2 control-label">Origen:  </label>
                   <div class="col-md-6">
-                     <select name="market_id" class="form-control m-b">
+                     <select name="origin" class="form-control m-b">
                         <option value="all">BORRAR TODOS</option>
-                        <%= @markets.each do |market| %>
-                        <option value="<%= market.id %>"><%= market.name %></option>
+                        <%= @origins.each do |origin| %>
+                        <option value="<%= origin %>"><%= origin %></option>
                         <% end %>
                      </select>
                   </div>
@@ -68,6 +68,7 @@
               <th>Mercado</th>
               <th>Semana : Fecha</th>
               <th class="sort-alpha">Cantidad</th>
+              <th>Origen</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -79,6 +80,7 @@
               <td> <%= demand.market.name %> </td>
               <td> <%= demand.week.week.to_s + " : " + demand.week.initial_day.to_s %> </td>
               <td> <%= demand.quantity %> </td>
+              <td> <%= demand.origin %> </td>
               <td>
                 <%= link_to 'Editar', edit_demand_path(demand) %> |
                 <%= link_to 'Eliminar', demand_path(demand),  method: :delete, data: { confirm: 'Desea eliminar el Demanda?' } %>

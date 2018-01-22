@@ -2,6 +2,7 @@ class CreateDemands < ActiveRecord::Migration[5.1]
   def change
     create_table :demands do |t|
       t.integer :quantity, null: false
+      t.string :origin, null: false
 
       t.references :color, null: false, index: true
       t.references :flower, null: false, index: true

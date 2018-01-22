@@ -113,8 +113,8 @@
         </a>
         <ul id="productions" class="nav sidebar-subnav collapse">
           <li class="<%= 'active' if controller?('sowing_details') && action?('index') %>">
-            <a href= <%= "/farms/" + session[:farm_id].to_s + "/sowing_details" %> title="Detalle de siembra">
-              <span>Detalle de siembra</span>
+            <a href= <%= "/farms/" + session[:farm_id].to_s + "/sowing_details" %> title="Plano de siembra">
+              <span>Plano de siembra</span>
             </a>
           </li>
           <li class="<%= 'active' if controller?('block_productions') && action?('index') %>">
@@ -128,8 +128,8 @@
             </a>
           </li>
           <li class="<%= 'active' if controller?('sowing_solutions') && action?('index') %>">
-            <a href= <%= "/farms/" + session[:farm_id].to_s + "/sowing_solutions" %> title="Solucion de siembra">
-              <span>Solucion de siembra</span>
+            <a href= <%= "/farms/" + session[:farm_id].to_s + "/sowing_solutions" %> title="Plano de siembra modelo">
+              <span>Plano de siembra modelo</span>
             </a>
           </li>
         </ul>

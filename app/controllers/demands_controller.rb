@@ -6,7 +6,7 @@ class DemandsController < ApplicationController
 
   def index
     @demands = @company.demands.includes(:color, :flower, :market, :week)
-    @markets = Market.where(id: @demands.pluck(:market_id).uniq)
+    @origins = @demands.pluck(:origin).uniq
   end
 
   def new
@@ -69,8 +69,8 @@ class DemandsController < ApplicationController
       Demand.where(id: @company.demands.pluck(:id) ).delete_all
       notice = "Todas las demandas fueron borradas."
     else
-      Demand.where(market_id: params[:market_id]).delete_all
-      notice = "Las demandas del mercado: " + Market.find(params[:market_id]).name + " fueron borradas."
+      Demand.where(origin: params[:origin]).delete_all
+      notice = "Las demandas #{params[:origin]} fueron borradas."
     end
       redirect_to index_route, notice: notice
   end

@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(version: 20171206201028) do
 
   create_table "demands", force: :cascade do |t|
     t.integer "quantity", null: false
+    t.string "origin", null: false
     t.bigint "color_id", null: false
     t.bigint "flower_id", null: false
     t.bigint "market_id", null: false
