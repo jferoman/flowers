@@ -63,15 +63,6 @@ describe SowingSolution do
                                                  block_id: bloque_1.id,
                                                  bed_type_id: tipo_angosta.id,
                                                  expiration_week_id: jan_1_2018.next_week_in(1).id)
-
-      # solucion_siembra_2 = SowingSolution.create!(quantity: 100,
-      #                                            cutting_week: 2,
-      #                                            variety_id: variedad_1.id,
-      #                                            week_id: jan_1_2018.id,
-      #                                            block_id: bloque_1.id,
-      #                                            bed_type_id: tipo_angosta.id,
-      #                                            expiration_week_id: jan_1_2018.next_week_in(1).id)
-      # End test data.
   end
 
 end

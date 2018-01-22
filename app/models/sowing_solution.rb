@@ -86,7 +86,7 @@ class SowingSolution < ApplicationRecord
     ##
     # Generate cuttings from sowing solution , for the specified farm.
     # Parameters: farm_id
-    # Return: Generate cuttings with the status: "Modelo", the variety and week of the sowing detail.
+    # Return: Generate cuttings for the variety and week of the sowing detail.
     #
     ##
     def generate_cuttings farm_id
@@ -106,7 +106,6 @@ class SowingSolution < ApplicationRecord
     ##
     # Generate the production from the sowing detail.
     # Parameters:
-    # => Status: Status of the soowing solutions to process
     # => farm: Farm for the sowings solutions
     #
     # Generate the bed production for this sowing.
