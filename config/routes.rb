@@ -92,5 +92,6 @@ Rails.application.routes.draw do
   delete '/submarket_weeks' => 'submarket_weeks#batch_delete', as: :submarket_weeks_batch_delete
   delete '/farms/:farm_id/block_productions' => 'block_productions#batch_delete', as: :block_productions_batch_delete
   delete '/farms/:farm_id/bed_productions' => 'bed_productions#batch_delete', as: :bed_productions_batch_delete
+  delete '/farms/:farm_id/cuttings' => 'cuttings#batch_delete', as: :cuttings_batch_delete
 
 end
