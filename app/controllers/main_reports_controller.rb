@@ -4,6 +4,12 @@ class MainReportsController < ApplicationController
 
   def index
     @sowing_detail_last_date = @farm.last_sowing_detail
+    @production_last_date = @farm.last_bed_production
+    @cutting_last_date = @farm.last_cutting
+  end
+
+  def sowing
+   # gon.sowing =
   end
 
   private

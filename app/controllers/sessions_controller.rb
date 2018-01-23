@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
   def change_farm
     session[:farm_id] = params[:farm_id]
     respond_to do |format|
-      format.json { render json: { url: home_path } }
+      format.json { render json: { url: home_path(farm_id: params[:farm_id]) } }
     end
   end
 end

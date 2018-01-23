@@ -27,14 +27,21 @@ class Farm < ApplicationRecord
   # Retorna la fecha del ultimo plano de siembra ejecutado para la finca
   ##
   def last_sowing_detail
-    Week.where(id: sowing_details.where(origin: "Ejecutado").pluck(:week_id)).order(:initial_day).last.initial_day
+    Week.where(id: sowing_details.where(origin: "Ejecutado").pluck(:week_id)).order(:initial_day).last.initial_day rescue "-"
   end
 
   ##
-  # Retorna la fecha de la última producció ejecutado para la finca
+  # Retorna la fecha de la última producción ejecutado para la finca
   ##
   def last_bed_production
-    Week.where(id: bed_productions.where(origin: "Ejecutado").pluck(:week_id)).order(:initial_day).last.initial_day
+    Week.where(id: bed_productions.where(origin: "Ejecutado").pluck(:week_id)).order(:initial_day).last.initial_day rescue "-"
+  end
+
+  ##
+  # Retorna la fecha del último esqueje ejecutado para la finca
+  ##
+  def last_cutting
+    Week.where(id: cuttings.where(origin: "Ejecutado").pluck(:week_id)).order(:initial_day).last.initial_day rescue "-"
   end
 
 end

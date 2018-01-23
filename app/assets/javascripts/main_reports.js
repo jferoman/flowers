@@ -1,2 +1,2 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+// Chart.js library
+//= require chart.js/dist/Chart
