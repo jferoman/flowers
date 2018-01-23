@@ -1,0 +1,14 @@
+<ul class="nav nav-tabs">
+  <li role="presentation" class=<%= active == 'Estado' ? "active":"" %>>
+    <%= link_to 'Estado', farm_main_reports_path(params[:farm_id]) %>
+  </li>
+  <li role="presentation" class=<%= active == 'Siembra' ? "active":"" %>>
+    <%= link_to 'Siembra', "" %>
+  </li>
+  <li role="presentation" class=<%= active == 'Produccion' ? "active":"" %>>
+    <%= link_to 'Produccion', "" %>
+  </li>
+  <li role="presentation" class=<%= active == 'Uso' ? "active":"" %>>
+    <%= link_to 'Uso', "" %>
+  </li>
+</ul>

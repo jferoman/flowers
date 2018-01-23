@@ -2,12 +2,8 @@
   <nav class="sidebar" data-sidebar-anyclick-close="">
     <ul class="nav">
       <li class="<%= 'active' if controller?('main_reports') && action?('index') %>">
-        <a href= "/home" title="IDF">
+        <a href= <%= farm_main_reports_path(session[:farm_id]) %> title="Estado de la finca">
           <em class="icon-graph"></em>
-          <span>Inicio</span>
-        </a>
-        <a href= "/" title="Estado de la finca">
-          <em class="fa-area-chart"></em>
           <span>Estado de la finca</span>
         </a>
       </li>

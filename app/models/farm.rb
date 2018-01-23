@@ -23,4 +23,18 @@ class Farm < ApplicationRecord
     Variety.where(id: productivity_curves.all.pluck(:variety_id).uniq)
   end
 
+  ##
+  # Retorna la fecha del ultimo plano de siembra ejecutado para la finca
+  ##
+  def last_sowing_detail
+    Week.where(id: sowing_details.where(origin: "Ejecutado").pluck(:week_id)).order(:initial_day).last.initial_day
+  end
+
+  ##
+  # Retorna la fecha de la última producció ejecutado para la finca
+  ##
+  def last_bed_production
+    Week.where(id: bed_productions.where(origin: "Ejecutado").pluck(:week_id)).order(:initial_day).last.initial_day
+  end
+
 end

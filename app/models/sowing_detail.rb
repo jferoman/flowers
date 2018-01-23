@@ -83,10 +83,11 @@ class SowingDetail < ApplicationRecord
     ##
     def generate_cuttings origin, farm_id
       cuttings = []
-      Farm.find(farm_id).sowing_details.where(origin: origin).group(:variety_id, :week_id).sum(:quantity).each do |sowing|
+      Farm.find(farm_id).sowing_details.where(origin: origin).group(:variety_id, :week_id, :cutting_week).sum(:quantity).each do |sowing|
         cuttings << {
           quantity: sowing[1],
           origin: origin,
+          cutting_week: sowing[0][2],
           farm_id: farm_id,
           week_id: sowing[0][1],
           variety_id: sowing[0][0]

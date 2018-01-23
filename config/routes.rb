@@ -35,6 +35,7 @@ Rails.application.routes.draw do
               :bed_productions,
               :sowing_solutions,
               only: [:index, :create, :new, :edit, :destroy, :update]
+    resources :main_reports, only: [:index]
   end
 
   resources :coldrooms, :blocks, :beds, only: [:create, :new, :edit, :destroy, :update]
