@@ -32,7 +32,10 @@ describe Farm do
 
   describe 'methods' do
 
-    describe '' do
+    it 'Sowing details by date' do
+      seed
+      sowing = Farm.first.sowing_detail_by_date
+      expect( sowing[Date.parse("2018-01-01")] ).to eq(100)
 
     end
 

@@ -6,10 +6,10 @@
     var myLineChart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: [1,2],
+        labels: Object.keys(gon.sowing),
         datasets: [
           {
-            label: "% Cumplimiento",
+            label: "Flores sembradas",
             fill: false,
             backgroundColor: "rgba(50,124,95,0.4)",
             borderColor: "rgba(50,124,95,1)",
@@ -25,7 +25,7 @@
             pointHoverBorderWidth: 2,
             pointRadius: 0,
             pointHitRadius: 10,
-            data: [1,2],
+            data: Object.values(gon.sowing),
             spanGaps: false,
           }
         ]

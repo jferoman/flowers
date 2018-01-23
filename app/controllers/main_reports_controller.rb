@@ -1,6 +1,6 @@
 class MainReportsController < ApplicationController
 
-  before_action :find_farm, only: [:index]
+  before_action :find_farm, only: [:index, :sowing]
 
   def index
     @sowing_detail_last_date = @farm.last_sowing_detail
@@ -9,7 +9,7 @@ class MainReportsController < ApplicationController
   end
 
   def sowing
-   # gon.sowing =
+   gon.sowing = @farm.sowing_detail_by_date
   end
 
   private

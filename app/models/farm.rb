@@ -44,4 +44,13 @@ class Farm < ApplicationRecord
     Week.where(id: cuttings.where(origin: "Ejecutado").pluck(:week_id)).order(:initial_day).last.initial_day rescue "-"
   end
 
+  ##
+  # Retorna la cantidad de siembras por fecha
+  # Parametros: origen: Por defecto lo hace para los Ejecutados
+  # Retorna: Hash con la fecha y la cantidad de siembras.
+  ##
+  def sowing_detail_by_date (origin = "Ejecutado")
+    sowing_details.where(origin: origin).group(:week_id).sum(:quantity).transform_keys{ |key| Week.find(key).initial_day }.sort.to_h
+  end
+
 end
