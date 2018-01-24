@@ -60,7 +60,6 @@ class Farm < ApplicationRecord
     sowing = sowing.merge(sowing_by_variety) unless sowing_by_variety.empty?
     sowing = sowing.merge(sowing_by_block) unless sowing_by_block.empty?
     sowing = sowing.merge(sowing_by_color) unless sowing_by_color.empty?
-
     sowing.group(:week_id).sum(:quantity).transform_keys{ |key| Week.find(key).initial_day }.sort.to_h
   end
 
@@ -104,6 +103,15 @@ class Farm < ApplicationRecord
   ##
   def cuttings_by_date where
     cuttings.where(where).group(:week_id).sum(:quantity).transform_keys{ |key| Week.find(key).initial_day }.sort.to_h
+  end
+
+  ##
+  # Retorna los bloques de la finca que tienen siembras ejecutadas
+  # Parametros: origen: Por defecto lo hace para los Ejecutados
+  # Retorna: bloques
+  ##
+  def blocks_sowed origin = "Ejecutado"
+    Block.where(id: beds.where(id: sowing_details.where(origin: origin).pluck(:bed_id)).pluck(:block_id).uniq)
   end
 
 end

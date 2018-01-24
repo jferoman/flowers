@@ -14,8 +14,10 @@ class MainReportsController < ApplicationController
 
     #Filters
     @selected_variety ||= params["variety_id"]
-    # @blocks =
-    # @colors =
+    @selected_color  ||= params["color_id"]
+    @selected_block  ||= params["block_id"]
+
+    @blocks = @farm.blocks_sowed
   end
 
   private
