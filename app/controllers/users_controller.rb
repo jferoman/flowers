@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 			session[:user_id] = user.id
       session[:farm_id] = user.default_farm
       session[:company_id] = Farm.find(user.default_farm).company.id
-			redirect_to '/home'
+			redirect_to farm_main_reports_path(session[:farm_id])
 		else
 			redirect_to '/signup'
 		end

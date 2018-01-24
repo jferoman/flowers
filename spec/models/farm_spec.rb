@@ -34,9 +34,11 @@ describe Farm do
 
     it 'Sowing details by date' do
       seed
-      sowing = Farm.first.sowing_detail_by_date
+      sowing = Farm.first.sowing_detail_qty_by_date
       expect( sowing[Date.parse("2018-01-01")] ).to eq(100)
 
+      # cutting = Farm.first.cuttings_by_date
+      # expect( cutting[Date.parse("2018-01-01")] ).to eq(200)
     end
 
   end
@@ -56,6 +58,7 @@ describe Farm do
 
       variedad_1 = Variety.create!(participation: 0.5, name: "Zapote", storage_resistance_type_id: 1, flower_id: Flower.first.id, color_id: color_1.id)
 
+      esquejes_1 = Cutting.create!(quantity: 200, cutting_week: 105, origin: "Teorico", farm_id: la_gaitana.id, week_id: jan_1_2018.id, variety_id: 1)
       siembra_1 = SowingDetail.create!(quantity: 100,
                                        cutting_week: 1,
                                        origin: "Ejecutado",

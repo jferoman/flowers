@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   #get 'main_reports/index'
-  get '/home' => 'main_reports#index'
+  #get '/home' => 'main_reports#index'
 
   # defaults to home
   #root :to => redirect('/signup')

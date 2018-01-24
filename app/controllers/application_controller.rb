@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   def lock_farms_per_company
     if !(session[:company_id] == Farm.find(session[:farm_id]).company.id)
       if !User.find(session[:user_id]).admin
-        redirect_to "/home" , notice: "No tiene los permisos para consultar otras fincas."
+        redirect_to farm_main_reports_path(session[:farm_id]) , notice: "No tiene los permisos para consultar otras fincas."
         return
       end
     end

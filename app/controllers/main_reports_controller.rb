@@ -9,7 +9,13 @@ class MainReportsController < ApplicationController
   end
 
   def sowing
-   gon.sowing = @farm.sowing_detail_by_date
+    gon.sowing = @farm.sowing_detail_qty_by_date( params["variety_id"], params["block_id"], params["color_id"], origin = "Ejecutado")
+    # gon.cutting = @farm.cuttings_by_date
+
+    #Filters
+    @selected_variety ||= params["variety_id"]
+    # @blocks =
+    # @colors =
   end
 
   private

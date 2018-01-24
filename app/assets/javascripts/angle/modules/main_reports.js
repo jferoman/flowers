@@ -27,6 +27,26 @@
             pointHitRadius: 10,
             data: Object.values(gon.sowing),
             spanGaps: false,
+          },
+          {
+            label: "Esquejes Teóricos",
+            fill: false,
+            backgroundColor: "rgba(75,134,192,0.4)",
+            borderColor: "rgba(75,134,192,1)",
+            borderCapStyle: 'butt',
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(75,134,192,1)",
+            pointBackgroundColor: "#000",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75,134,192,1)",
+            pointHoverBorderColor: "rgba(75,134,192,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 0,
+            pointHitRadius: 10,
+            data: [5000,25000,5000],
+            spanGaps: false,
           }
         ]
       },//end data
@@ -35,6 +55,11 @@
           yAxes: [{
             ticks: {
               beginAtZero:true
+            },
+            scaleLabel: {
+              display: true,
+              labelString: "Cantidad de Esquejes",
+              fontColor: "green"
             }
           }]
         },
