@@ -125,7 +125,7 @@ class Farm < ApplicationRecord
     sel_cuttings = sel_cuttings.merge(cuttings_by_variety) unless cuttings_by_variety.empty?
     sel_cuttings = sel_cuttings.merge(cuttings_by_color) unless cuttings_by_color.empty?
 
-    sel_cuttings.group(:week_id).sum(:quantity).transform_keys{ |key| id_week[key] }.sort.to_h
+    sel_cuttings = sel_cuttings.group(:week_id).sum(:quantity).transform_keys{ |key| id_week[key] }.sort.to_h
 
     sel_cuttings.each do |date, qty|
       week_year[date_week[date].to_s + " - " + date.year.to_s].nil? ? week_year[date_week[date].to_s + " - " + date.year.to_s] = qty :
