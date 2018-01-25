@@ -12,7 +12,6 @@ class MainReportsController < ApplicationController
     gon.cutting = []
     gon.sowing = []
     gon.sowing = @farm.sowing_detail_qty_by_date( params["variety_id"], params["block_id"], params["color_id"], origin = "Ejecutado")
-
     gon.cutting = @farm.cuttings_by_date( params["variety_id"], params["color_id"], origin = "Teorico") unless !params["block_id"].nil?
 
     #Filters

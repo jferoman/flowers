@@ -51,6 +51,7 @@ class Farm < ApplicationRecord
   ##
   def sowing_detail_qty_by_date( variety_id = nil, block_id = nil, color_id = nil, origin = "Ejecutado")
     date_week = Week.all.pluck(:initial_day, :week).to_h
+    id_week = Week.all.pluck(:id, :initial_day).to_h
     week_year = {}
 
     sowing = sowing_details.where(origin: origin)
@@ -63,7 +64,7 @@ class Farm < ApplicationRecord
     sowing = sowing.merge(sowing_by_block) unless sowing_by_block.empty?
     sowing = sowing.merge(sowing_by_color) unless sowing_by_color.empty?
 
-    sowing = sowing.group(:week_id).sum(:quantity).transform_keys{ |key| Week.find(key).initial_day }.sort.to_h
+    sowing = sowing.group(:week_id).sum(:quantity).transform_keys{ |key| id_week[key] }.sort.to_h
 
     sowing.each do |date, qty|
       week_year[date_week[date].to_s + " - " + date.year.to_s].nil? ? week_year[date_week[date].to_s + " - " + date.year.to_s] = qty :
@@ -111,6 +112,11 @@ class Farm < ApplicationRecord
   # Retorna: Hash con la fecha y la cantidad de siembras.
   ##
   def cuttings_by_date (variety_id = nil, block_id = nil, color_id = nil, origin = "Teorico")
+    date_week = Week.all.pluck(:initial_day, :week).to_h
+    id_week = Week.all.pluck(:id, :initial_day).to_h
+
+    week_year = {}
+
     sel_cuttings = cuttings.where(origin: origin)
 
     cuttings_by_variety = cuttings_by_variety(variety_id, origin)
@@ -119,8 +125,13 @@ class Farm < ApplicationRecord
     sel_cuttings = sel_cuttings.merge(cuttings_by_variety) unless cuttings_by_variety.empty?
     sel_cuttings = sel_cuttings.merge(cuttings_by_color) unless cuttings_by_color.empty?
 
-    sel_cuttings.group(:week_id).sum(:quantity).transform_keys{ |key| Week.find(key).initial_day }.sort.to_h
+    sel_cuttings.group(:week_id).sum(:quantity).transform_keys{ |key| id_week[key] }.sort.to_h
 
+    sel_cuttings.each do |date, qty|
+      week_year[date_week[date].to_s + " - " + date.year.to_s].nil? ? week_year[date_week[date].to_s + " - " + date.year.to_s] = qty :
+                                                                      week_year[date_week[date].to_s + " - " + date.year.to_s] += qty
+    end
+    week_year
   end
 
   ##
