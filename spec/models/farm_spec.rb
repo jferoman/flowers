@@ -39,6 +39,8 @@ describe Farm do
 
       # cutting = Farm.first.cuttings_by_date
       # expect( cutting[Date.parse("2018-01-01")] ).to eq(200)
+
+      expect(Farm.first.blocks_sowed.first).to eq(Block.first)
     end
 
   end

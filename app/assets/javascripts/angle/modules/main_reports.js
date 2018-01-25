@@ -9,7 +9,7 @@
         labels: Object.keys(gon.sowing),
         datasets: [
           {
-            label: "Flores sembradas",
+            label: "Siembras ejecutadas",
             fill: false,
             backgroundColor: "rgba(50,124,95,0.4)",
             borderColor: "rgba(50,124,95,1)",
@@ -51,7 +51,18 @@
         ]
       },//end data
       options: {
-        scales: {
+              scales: {
+                xAxes: [{
+            gridLines: {
+              display: false,
+              color: "black"
+            },
+            scaleLabel: {
+              display: true,
+              labelString: "Semana - año",
+              fontColor: "red"
+            }
+          }],
           yAxes: [{
             ticks: {
               beginAtZero:true
