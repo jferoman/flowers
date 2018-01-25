@@ -146,17 +146,6 @@ class Farm < ApplicationRecord
   end
 
   ##
-  # Retorna los esquejes de la finca por bloque y origen
-  # Parametros: Id del bloque para los esquejes
-  #             origen: Por defecto lo hace para los Teoricos
-  # Retorna: planos de siembra para el origen dado y el bloque especificada
-  #
-  ##
-  def cuttings_by_block( block_id = nil, origin = "Teorico")
-    #cuttings.where(origin: origin).joins(:bed).where(:beds => {block_id: block_id})
-  end
-
-  ##
   # Retorna los esquejes de la finca por color y origen
   # Parametros: Id del color para los esquejes
   #             origen: Por defecto lo hace para los Teoricos
@@ -175,6 +164,70 @@ class Farm < ApplicationRecord
   ##
   def blocks_sowed origin = "Ejecutado"
     Block.where(id: beds.where(id: sowing_details.where(origin: origin).pluck(:bed_id)).pluck(:block_id).uniq)
+  end
+
+  ##
+  # Retorna la produccion por cama de la finca dados los filtros
+  # Parametros variety_id, block_id, color_id por defecto no los usa a menos que se espefiquen
+  #
+  ##
+  def bed_productions_qty_by_week(variety_id = nil, block_id = nil, color_id = nil, origin = "Ejecutado")
+    date_week = Week.all.pluck(:initial_day, :week).to_h
+    id_week = Week.all.pluck(:id, :initial_day).to_h
+
+    week_year = {}
+
+    sel_production = bed_productions.where(origin: origin)
+
+    production_by_variety = bed_productions_by_variety(variety_id, origin)
+    production_by_color   = bed_productions_by_color(color_id , origin)
+    production_by_block   = bed_productions_by_block(block_id, origin)
+
+
+    sel_production = sel_production.merge(production_by_variety) unless production_by_variety.empty?
+    sel_production = sel_production.merge(production_by_block) unless production_by_block.empty?
+    sel_production = sel_production.merge(production_by_color) unless production_by_color.empty?
+
+    sel_production = sel_production.group(:week_id).sum(:quantity).transform_keys{ |key| id_week[key] }.sort.to_h
+
+    sel_production.each do |date, qty|
+      week_year[date_week[date].to_s + " - " + date.year.to_s].nil? ? week_year[date_week[date].to_s + " - " + date.year.to_s] = qty :
+                                                                      week_year[date_week[date].to_s + " - " + date.year.to_s] += qty
+    end
+    week_year
+  end
+
+  ##
+  # Retorna la produccioón de la finca por variedad y origen
+  # Parametros: Id de la variedad para la produccioón
+  #            origen: Por defecto lo hace para los Ejecutados
+  # Retorna: Produccion para el origen dado y la variedad especificada
+  #
+  ##
+  def bed_productions_by_variety( variety_id , origin = "Ejecutado")
+    bed_productions.where(origin: origin, variety_id: variety_id)
+  end
+
+  ##
+  # Retorna los esquejes de la finca por color y origen
+  # Parametros: Id del color para los esquejes
+  #             origen: Por defecto lo hace para los Teoricos
+  # Retorna: planos de siembra para el origen dado y el color especificado
+  #
+  ##
+  def bed_productions_by_color( color_id , origin = "Ejecutado")
+    bed_productions.where(origin: origin).joins(:variety).where(:varieties => {color_id: color_id})
+  end
+
+  ##
+  # Retorna la produccion de la finca por bloque y origen
+  # Parametros: Id del bloque para la produccion
+  #             origen: Por defecto lo hace para los Ejecutados
+  # Retorna: planos de siembra para el origen dado y el bloque especificada
+  #
+  ##
+  def bed_productions_by_block( block_id = nil, origin = "Ejecutado")
+    bed_productions.where(origin: origin).joins(:bed).where(:beds => {block_id: block_id})
   end
 
 end

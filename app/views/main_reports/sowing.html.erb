@@ -1,51 +1,8 @@
 <%= include_gon %>
 
-<%= render partial: "main_reports/main_reports_header", locals: { active: "Siembra"} %>
+<%= render partial: "main_reports/main_reports_header", locals: { active: "Siembra", path: farm_main_reports_sowing_path(params[:farm_id])} %>
 <br>
 <br>
-
-<form action="<%= farm_main_resports_sowing_path(params[:farm_id]) %>" method="get" id="index_form" class="form-inline">
-
-  <select class="selectpicker" data-live-search="true" id="variety_id" name="variety_id" type="variety_id">
-    <option value=<%= nil %>>
-      Todas las variedades
-    </option>
-    <% Variety.all.each do |variety|%>
-    <option value=<%= variety.id.to_s %>
-      <%= if variety.id.to_s == @selected_variety; selected="selected" end %>>
-      <%= variety.name %>
-    </option>
-    <% end %>
-  </select>
-
-  <select class="selectpicker" data-live-search="true" id="color_id" name="color_id" type="color_id">
-    <option value=<%= nil %>>
-      Todos los colores
-    </option>
-    <% Color.all.each do |color|%>
-    <option value=<%= color.id.to_s %>
-      <%= if color.id.to_s == @selected_color; selected="selected" end %>>
-      <%= color.name %>
-    </option>
-    <% end %>
-  </select>
-
-  <select class="selectpicker" data-live-search="true" id="block_id" name="block_id" type="block_id">
-    <option value=<%= nil %>>
-      Todos los bloques
-    </option>
-    <% @blocks.each do |block|%>
-    <option value=<%= block.id.to_s %>
-      <%= if block.id.to_s == @selected_block; selected="selected" end %>>
-      <%= block.name %>
-    </option>
-    <% end %>
-  </select>
-
-  <br>
-  <br>
-  <input type="submit" class='btn btn-primary'>
-</form>
 
 <div class="container-fluid">
   <div class="row mb-lg ">

@@ -1,6 +1,6 @@
 class MainReportsController < ApplicationController
 
-  before_action :find_farm, only: [:index, :sowing]
+  before_action :find_farm, only: [:index, :sowing, :production]
 
   def index
     @sowing_detail_last_date = @farm.last_sowing_detail
@@ -20,6 +20,19 @@ class MainReportsController < ApplicationController
     @selected_block  ||= params["block_id"]
 
     @blocks = @farm.blocks_sowed
+  end
+
+  def production
+    binding.pry
+    gon.bed_prod = []
+
+    @selected_variety ||= params["variety_id"]
+    @selected_color  ||= params["color_id"]
+    @selected_block  ||= params["block_id"]
+
+    @blocks = @farm.blocks_sowed
+    gon.bed_prod = @farm.bed_productions_qty_by_week(params["variety_id"], params["block_id"], params["color_id"], origin = "Ejecutado")
+
   end
 
   private
