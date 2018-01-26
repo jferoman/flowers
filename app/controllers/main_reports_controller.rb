@@ -23,7 +23,6 @@ class MainReportsController < ApplicationController
   end
 
   def production
-    binding.pry
     gon.bed_prod = []
 
     @selected_variety ||= params["variety_id"]
