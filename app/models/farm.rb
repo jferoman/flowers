@@ -38,6 +38,8 @@ class Farm < ApplicationRecord
     case origin
     when "Modelo"
       sowing = sowing_solutions.group(:variety_id, :week_id, :cutting_week).sum(:quantity)
+    when "Teorico"
+
     else
       sowing = sowing_details.where(origin: origin).group(:variety_id, :week_id, :cutting_week).sum(:quantity)
     end
@@ -57,24 +59,24 @@ class Farm < ApplicationRecord
   end
 
   ##
-  # Generate the production from the sowing detail with especified origin.
+  # Generate the production from the sowing detail "Ejecutado"
   # Parameters:
-  # => origin: origin of the soowing solutions to process
   # => farm: Farm for the sowings solutions
   #
   # Generate the bed production for this sowing.
   ##
-  def generate_bed_production origin
+  def generate_bed_production
     bed_productions = []
-    sowing_details.where(origin: origin).each do |sowing_detail|
+
+    sowing_details.where(origin: "Ejecutado").each do |sowing_detail|
       production = 0
-      (1..(sowing_detail.expiration_week.week-sowing_detail.week.week)).each do |s|
+      (1..(sowing_detail.cutting_week)).each do |s|
 
         production += (sowing_detail.quantity * sowing_detail.variety.get_productivity(s))
 
         bed_productions << {
           quantity: production,
-          origin: origin,
+          origin: "Esperada",
           variety_id: sowing_detail.variety_id,
           bed_id: sowing_detail.bed.id,
           week_id: sowing_detail.week.next_week_in(s).id

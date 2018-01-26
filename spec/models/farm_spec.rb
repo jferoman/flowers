@@ -62,9 +62,10 @@ describe Farm do
 
     it 'Generate bed productions' do
       seed
-      Farm.first.generate_bed_production("Ejecutado")
+      Farm.first.generate_bed_production
 
       expect( BedProduction.all.count ).to eq(1)
+
       expect( BedProduction.first.quantity ).to eq(SowingDetail.first.quantity*ProductivityCurve.first.production)
 
     end
