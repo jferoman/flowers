@@ -16,25 +16,6 @@ describe SowingSolution do
     it { should belong_to(:bed_type) }
   end
 
-  describe 'Generate cuttings and production' do
-    it 'Generate cuttings' do
-      seed
-      # Execute method for test.
-      SowingSolution.generate_cuttings(Farm.first.id)
-
-      expect( Cutting.all.count ).to eq(1)
-      expect( Cutting.first.quantity ).to eq(100)
-    end
-
-    it 'Generate bed productions' do
-      seed
-      SowingSolution.generate_block_production(Farm.first)
-
-      expect( BlockProduction.all.count ).to eq(1)
-      expect( BlockProduction.first.quantity ).to eq(SowingSolution.first.quantity*ProductivityCurve.first.production)
-
-    end
-  end
 
     def seed
     # Generate test Data
