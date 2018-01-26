@@ -69,6 +69,7 @@ module Angle
                                  'block_productions.js',
                                  'bed_productions.js',
                                  'sowings.js',
+                                 'productions.js',
                                  # 'Styles',
                                  'main_reports.css',
                                  'blocks.css',
@@ -96,7 +97,8 @@ module Angle
                                  'sowing_solutions.css',
                                  'block_productions.css',
                                  'bed_productions.css',
-                                 'sowings.css'
+                                 'sowings.css',
+                                 'productions.css'
                                 ]
   end
 end

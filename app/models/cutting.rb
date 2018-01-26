@@ -48,7 +48,7 @@ class Cutting < ApplicationRecord
 
           cuttings << {
             quantity: row["cuttings"],
-            origin: "Ejecutado",
+            origin: row["origin"],
             cutting_week:row["cutting_week"],
             farm_id: farm_id,
             week_id: week_id,

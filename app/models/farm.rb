@@ -23,54 +23,96 @@ class Farm < ApplicationRecord
     Variety.where(id: productivity_curves.all.pluck(:variety_id).uniq)
   end
 
+
   ##
-    # Generate cuttings from sowing solution , for the specified farm.
-    # Return: Generate cuttings for the variety and week of the sowing detail.
-    #
-    ##
-    def generate_cuttings
-      cuttings = []
-      sowing_solutions.group(:variety_id, :week_id, :cutting_week).sum(:quantity).each do |sowing|
-        cuttings << {
-          quantity: sowing[1],
-          origin: "Modelo",
-          cutting_week: sowing[0][2],
-          farm_id: id,
-          week_id: sowing[0][1],
-          variety_id: sowing[0][0]
+  # Generate cuttings from sowing details with specified origin, for the actual farm of the user.
+  # Parameters: origin,
+  # Return: Generate cuttings with the origin, the variety and week of the sowing detail.
+  # SowingDetail.generate_cuttings()
+  #
+  ##
+  def generate_cuttings origin = "Ejecutado"
+    cuttings = []
+    sowing = {}
+
+    case origin
+    when "Modelo"
+      sowing = sowing_solutions.group(:variety_id, :week_id, :cutting_week).sum(:quantity)
+    else
+      sowing = sowing_details.where(origin: origin).group(:variety_id, :week_id, :cutting_week).sum(:quantity)
+    end
+
+    sowing.each do |sow|
+
+      cuttings << {
+        quantity: sow[1],
+        origin: origin,
+        cutting_week: sow[0][2],
+        farm_id: id,
+        week_id: sow[0][1],
+        variety_id: sow[0][0]
+      }
+    end
+    Cutting.bulk_insert values: cuttings
+  end
+
+  ##
+  # Generate the production from the sowing detail with especified origin.
+  # Parameters:
+  # => origin: origin of the soowing solutions to process
+  # => farm: Farm for the sowings solutions
+  #
+  # Generate the bed production for this sowing.
+  ##
+  def generate_bed_production origin
+    bed_productions = []
+    sowing_details.where(origin: origin).each do |sowing_detail|
+      production = 0
+      (1..(sowing_detail.expiration_week.week-sowing_detail.week.week)).each do |s|
+
+        production += (sowing_detail.quantity * sowing_detail.variety.get_productivity(s))
+
+        bed_productions << {
+          quantity: production,
+          origin: origin,
+          variety_id: sowing_detail.variety_id,
+          bed_id: sowing_detail.bed.id,
+          week_id: sowing_detail.week.next_week_in(s).id
         }
+
       end
-      Cutting.bulk_insert values: cuttings
     end
+    BedProduction.bulk_insert values: bed_productions
+  end
 
-    ##
-    # Generate the production from the sowing detail.
-    # Parameters:
-    #
-    # Generate the bed production for this sowing.
-    ##
-    # TODO
-    def generate_block_production
-      block_productions = []
-      sowing_solutions.each do |sowing_solution|
-        production = 0
-        (1..(sowing_solution.expiration_week.week-sowing_solution.week.week)).each do |s|
+  ##
+  # Generate the production from the sowing detail.
+  # Parameters:
+  #
+  # Generate the bed production for this sowing.
+  ##
+  # TODO
+  def generate_block_production
+    block_productions = []
+    sowing_solutions.each do |sowing_solution|
+      production = 0
+      (1..(sowing_solution.expiration_week.week-sowing_solution.week.week)).each do |s|
 
-          production += (sowing_solution.quantity * sowing_solution.variety.get_productivity(s))
+        production += (sowing_solution.quantity * sowing_solution.variety.get_productivity(s))
 
-          block_productions << {
-            quantity: production,
-            origin: "Modelo",
-            variety_id: sowing_solution.variety_id,
-            farm_id: id,
-            week_id: sowing_solution.week.next_week_in(s).id,
-            block_id: sowing_solution.block.id
-          }
+        block_productions << {
+          quantity: production,
+          origin: "Modelo",
+          variety_id: sowing_solution.variety_id,
+          farm_id: id,
+          week_id: sowing_solution.week.next_week_in(s).id,
+          block_id: sowing_solution.block.id
+        }
 
-        end
       end
-      BlockProduction.bulk_insert values: block_productions
     end
+    BlockProduction.bulk_insert values: block_productions
+  end
 
   ##
   # Retorna la fecha del ultimo plano de siembra ejecutado para la finca

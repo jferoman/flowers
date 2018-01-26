@@ -49,10 +49,24 @@ describe Farm do
     it 'Generate cuttings' do
       seed
       # Execute method for test.
-      Farm.first.generate_cuttings
+      Farm.first.generate_cuttings("Modelo")
 
       expect( Cutting.where(origin: "Modelo").count ).to eq(1)
       expect( Cutting.first.quantity ).to eq(200)
+
+      Farm.first.generate_cuttings("Ejecutado")
+
+      expect( Cutting.where(origin: "Ejecutado").count ).to eq(1)
+      # expect( Cutting.first.quantity ).to eq(200)
+    end
+
+    it 'Generate bed productions' do
+      seed
+      Farm.first.generate_bed_production("Ejecutado")
+
+      expect( BedProduction.all.count ).to eq(1)
+      expect( BedProduction.first.quantity ).to eq(SowingDetail.first.quantity*ProductivityCurve.first.production)
+
     end
 
     it 'Generate bed productions' do
@@ -64,7 +78,6 @@ describe Farm do
 
     end
   end
-
 
   def seed
     comp = Company.create!(name: "LA GAITANA", nit: 8000000, phone: "1123456789")

@@ -12,26 +12,7 @@ describe SowingDetail do
   	it { should belong_to(:bed)}
   end
 
-  describe 'generate cuttings' do
 
-    it 'Generate cuttings' do
-
-      seed
-      # Execute method for test.
-      SowingDetail.generate_cuttings("Ejecutado", Farm.first.id)
-
-      expect( Cutting.all.count ).to eq(1)
-      expect( Cutting.first.quantity ).to eq(200)
-    end
-
-    it 'Generate bed productions' do
-      seed
-      SowingDetail.generate_bed_production("Ejecutado", Farm.first)
-
-      expect( BedProduction.all.count ).to eq(2)
-      expect( BedProduction.first.quantity ).to eq(SowingDetail.first.quantity*ProductivityCurve.first.production)
-
-    end
 
   end
 

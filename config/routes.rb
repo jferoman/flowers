@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'productions/index'
+
   get 'sowing_graph/index'
 
   #get 'main_reports/index'
