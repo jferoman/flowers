@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   #get 'main_reports/index'
-  get '/home' => 'main_reports#index'
+  #get '/home' => 'main_reports#index'
 
   # defaults to home
   #root :to => redirect('/signup')
@@ -33,7 +33,12 @@ Rails.application.routes.draw do
               :productivity_curves,
               :block_productions,
               :bed_productions,
+              :sowing_solutions,
               only: [:index, :create, :new, :edit, :destroy, :update]
+    resources :main_reports, only: [:index]
+    get "/farm_sowing/" => "main_reports#sowing" , as: :main_reports_sowing
+    get "/farm_production/" => "main_reports#production" , as: :main_reports_production
+
   end
 
   resources :coldrooms, :blocks, :beds, only: [:create, :new, :edit, :destroy, :update]
@@ -51,6 +56,7 @@ Rails.application.routes.draw do
             :sowing_details,
             :productivity_curves,
             :submarket_weeks,
+            :sowing_solutions,
             :block_productions,
             :bed_productions
 
@@ -75,12 +81,14 @@ Rails.application.routes.draw do
   post '/farms/:farm_id/import_productivity_curves' => 'productivity_curves#csv_import'
   post 'farms/:farm_id/import_block_color_flowers' => 'block_color_flowers#import'
   post 'farms/:farm_id/import_sowing_details' => 'sowing_details#import'
+  post 'farms/:farm_id/import_sowing_solutions' => 'sowing_solutions#import'
   post 'farms/:farm_id/import_block_productions' => 'block_productions#import_block_productions'
   post 'farms/:farm_id/import_bed_productions' => 'bed_productions#import_bed_productions'
 
   delete '/farms/:farm_id/productivity_curves' => 'productivity_curves#destroy'
   delete '/farms/:farm_id/block_color_flowers' => 'block_color_flowers#batch_delete', as: :block_color_flowers_batch_delete
   delete '/farms/:farm_id/sowing_details' => 'sowing_details#batch_delete', as: :sowing_details_batch_delete
+  delete '/farms/:farm_id/sowing_solutions' => 'sowing_solutions#batch_delete', as: :sowing_solutions_batch_delete
   delete '/beds' => 'beds#batch_delete', as: :beds_batch_delete
   delete '/demands' => 'demands#batch_delete', as: :demands_batch_delete
   delete '/color_submarkets' => 'color_submarkets#batch_delete', as: :color_submarkets_batch_delete
@@ -88,6 +96,6 @@ Rails.application.routes.draw do
   delete '/submarket_weeks' => 'submarket_weeks#batch_delete', as: :submarket_weeks_batch_delete
   delete '/farms/:farm_id/block_productions' => 'block_productions#batch_delete', as: :block_productions_batch_delete
   delete '/farms/:farm_id/bed_productions' => 'bed_productions#batch_delete', as: :bed_productions_batch_delete
-
+  delete '/farms/:farm_id/cuttings' => 'cuttings#batch_delete', as: :cuttings_batch_delete
 
 end

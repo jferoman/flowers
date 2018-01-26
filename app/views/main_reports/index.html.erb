@@ -1,2 +1,99 @@
-<h1>MainReports#index</h1>
-<p>Find me in app/views/main_reports/index.html.erb</p>
+<%= render partial: "main_reports/main_reports_header", locals: { active: "Estado"} %>
+<br>
+<br>
+<!-- START row-->
+<div class="row">
+  <div class="col-lg-3 col-md-6">
+    <!-- START panel-->
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-3">
+            <em class="fa fa-tree fa-5x"></em>
+          </div>
+          <div class="col-xs-9 text-right">
+            <div class="text-md"><%= @sowing_detail_last_date %></div>
+            <p class="m0">Última siembra</p>
+          </div>
+        </div>
+      </div>
+      <a href= <%= farm_sowing_details_path(farm_id: params[:farm_id]) %> class="panel-footer bg-gray-dark bt0 clearfix btn-block">
+        <span class="pull-left">Importar plan de siembra</span>
+        <span class="pull-right">
+          <em class="fa fa-chevron-circle-right"></em>
+        </span>
+      </a>
+      <!-- END panel-->
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6">
+    <!-- START panel-->
+    <div class="panel panel-green">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-3">
+            <em class="fa fa-tasks fa-5x"></em>
+          </div>
+          <div class="col-xs-9 text-right">
+            <div class="text-md"><%= @production_last_date %></div>
+            <p class="m0">Última producción</p>
+          </div>
+        </div>
+      </div>
+      <a href=<%= farm_bed_productions_path(farm_id: params[:farm_id])%> class="panel-footer bg-gray-dark bt0 clearfix btn-block">
+        <span class="pull-left">Producción</span>
+        <span class="pull-right">
+          <em class="fa fa-chevron-circle-right"></em>
+        </span>
+      </a>
+    </div>
+    <!-- END panel-->
+  </div>
+  <div class="col-lg-3 col-md-6">
+    <!-- START panel-->
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-3">
+            <em class="fa fa-shopping-cart fa-5x"></em>
+          </div>
+          <div class="col-xs-9 text-right">
+            <div class="text-md">124</div>
+            <p class="m0">Ventas</p>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="panel-footer bg-gray-dark bt0 clearfix btn-block">
+        <span class="pull-left">Ventas</span>
+        <span class="pull-right">
+          <em class="fa fa-chevron-circle-right"></em>
+        </span>
+      </a>
+    </div>
+    <!-- END panel-->
+  </div>
+  <div class="col-lg-3 col-md-6">
+    <!-- START panel-->
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-3">
+            <em class="fa icon-notebook fa-5x"></em>
+          </div>
+          <div class="col-xs-9 text-right">
+            <div class="text-md"><%= @cutting_last_date %></div>
+            <p class="m0">Esquejes futuros</p>
+          </div>
+        </div>
+      </div>
+      <a href= <%= farm_cuttings_path(farm_id: params[:farm_id]) %> class="panel-footer bg-gray-dark bt0 clearfix btn-block">
+        <span class="pull-left">View Details</span>
+        <span class="pull-right">
+          <em class="fa fa-chevron-circle-right"></em>
+        </span>
+      </a>
+    </div>
+    <!-- END panel-->
+  </div>
+</div>
+<!-- END row-->

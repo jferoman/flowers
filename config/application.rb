@@ -65,6 +65,7 @@ module Angle
                                  'block_color_flowers.js',
                                  'sowing_details.js',
                                  'submarket_weeks.js',
+                                 'sowing_solutions.js',
                                  'block_productions.js',
                                  'bed_productions.js',
                                  # 'Styles',
@@ -91,10 +92,10 @@ module Angle
                                  'productivity_curves.css',
                                  'block_color_flowers.css',
                                  'submarket_weeks.css',
+                                 'sowing_solutions.css',
                                  'block_productions.css',
                                  'bed_productions.css'
                                 ]
-
   end
 end
 

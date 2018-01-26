@@ -1,7 +1,7 @@
 class Cutting < ApplicationRecord
   require 'csv'
 
-  validates_presence_of :farm_id, :week_id, :variety_id, :status
+  validates_presence_of :farm_id, :week_id, :variety_id, :origin
   validates_numericality_of :quantity, :allow_nil => false, :greater_than => 0.0
 
   belongs_to :farm
@@ -48,8 +48,8 @@ class Cutting < ApplicationRecord
 
           cuttings << {
             quantity: row["cuttings"],
-            # TODO : Definir estados de los cortes
-            status: "Ejecutado",
+            origin: "Ejecutado",
+            cutting_week:row["cutting_week"],
             farm_id: farm_id,
             week_id: week_id,
             variety_id: variety_id
@@ -65,7 +65,7 @@ class Cutting < ApplicationRecord
 
     private
     def csv_with_errors cuttings_list
-      attributes = %w{year  company_week  variety_name farm_name cuttings errores}
+      attributes = %w{year  company_week  variety_name farm_name cuttings cutting_week errores}
       file_path = "db/tmp_files/errores_cortes.csv"
 
       CSV.open(file_path, "wb") do |csv|

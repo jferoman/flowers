@@ -2,10 +2,11 @@ class CuttingsController < ApplicationController
 
   before_action :authorize, :lock_farms_per_company
   before_action :find_cutting, only: [:destroy, :edit, :update]
-  before_action :find_farm, only: [:index, :create]
+  before_action :find_farm, only: [:index, :create, :batch_delete]
 
   def index
     @cuttings = @farm.cuttings
+    @origins = @cuttings.pluck(:origin).uniq
   end
 
   def new
@@ -48,6 +49,17 @@ class CuttingsController < ApplicationController
     end
   end
 
+  def batch_delete
+    if params[:origin] == "all"
+      Cutting.where(id: @farm.cuttings.pluck(:id) ).delete_all
+      notice = "Todas los esquejes fueron borradas."
+    else
+      Cutting.where(origin: params[:origin]).delete_all
+      notice = "Llos esquejes : #{params[:origin].to_s}  fueron borrados."
+    end
+      redirect_to index_route, notice: notice
+  end
+
   def import_cuttings
     begin
       file_path = Cutting.import(params[:file].path)
@@ -66,7 +78,7 @@ class CuttingsController < ApplicationController
 
   private
   def cutting_params
-    params.require(:cutting).permit(:quantity, :status, :farm_id ,:week_id, :variety_id)
+    params.require(:cutting).permit(:quantity, :origin, :farm_id ,:week_id, :variety_id)
   end
 
   def find_farm

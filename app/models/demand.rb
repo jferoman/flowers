@@ -59,6 +59,7 @@ class Demand < ApplicationRecord
           demands << {
             quantity: row["quantity"],
             color_id: color_id,
+            origin: row["origin"],
             week_id: week_id,
             market_id: market_id,
             flower_id: flower_id

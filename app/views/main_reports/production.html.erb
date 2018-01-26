@@ -1,0 +1,15 @@
+<%= include_gon %>
+
+<%= render partial: "main_reports/main_reports_header", locals: { active: "Produccion", path: farm_main_reports_production_path(params[:farm_id]) } %>
+<br>
+<br>
+
+<div class="container-fluid">
+  <div class="row mb-lg ">
+    <div class="production-graph-col">
+      <div>
+        <canvas class = "production-graph" id="chartjs-linechart-production"></canvas>
+      </div>
+    </div>
+  </div>
+</div>

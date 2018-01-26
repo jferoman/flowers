@@ -2,9 +2,9 @@
   <nav class="sidebar" data-sidebar-anyclick-close="">
     <ul class="nav">
       <li class="<%= 'active' if controller?('main_reports') && action?('index') %>">
-        <a href= "/home" title="IDF">
+        <a href= <%= farm_main_reports_path(session[:farm_id]) %> title="Estado de la finca">
           <em class="icon-graph"></em>
-          <span>Inicio</span>
+          <span>Estado de la finca</span>
         </a>
       </li>
       <li class="nav-heading">
@@ -113,8 +113,8 @@
         </a>
         <ul id="productions" class="nav sidebar-subnav collapse">
           <li class="<%= 'active' if controller?('sowing_details') && action?('index') %>">
-            <a href= <%= "/farms/" + session[:farm_id].to_s + "/sowing_details" %> title="Detalle de siembra">
-              <span>Detalle de siembra</span>
+            <a href= <%= "/farms/" + session[:farm_id].to_s + "/sowing_details" %> title="Plano de siembra">
+              <span>Plano de siembra</span>
             </a>
           </li>
           <li class="<%= 'active' if controller?('block_productions') && action?('index') %>">
@@ -125,6 +125,11 @@
           <li class="<%= 'active' if controller?('bed_productions') && action?('index') %>">
             <a href= <%= "/farms/" + session[:farm_id].to_s + "/bed_productions" %> title="Producion por cama">
               <span>Producion por cama</span>
+            </a>
+          </li>
+          <li class="<%= 'active' if controller?('sowing_solutions') && action?('index') %>">
+            <a href= <%= "/farms/" + session[:farm_id].to_s + "/sowing_solutions" %> title="Plano de siembra modelo">
+              <span>Plano de siembra modelo</span>
             </a>
           </li>
         </ul>

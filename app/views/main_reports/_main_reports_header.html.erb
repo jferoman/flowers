@@ -1,0 +1,60 @@
+<ul class="nav nav-tabs">
+  <li role="presentation" class=<%= active == 'Estado' ? "active":"" %>>
+    <%= link_to 'Estado', farm_main_reports_path(params[:farm_id]) %>
+  </li>
+  <li role="presentation" class=<%= active == 'Siembra' ? "active":"" %>>
+    <%= link_to 'Siembra', farm_main_reports_sowing_path(params[:farm_id]) %>
+  </li>
+  <li role="presentation" class=<%= active == 'Produccion' ? "active":"" %>>
+    <%= link_to 'Produccion', farm_main_reports_production_path(params[:farm_id]) %>
+  </li>
+  <li role="presentation" class=<%= active == 'Uso' ? "active":"" %>>
+    <%= link_to 'Uso', "" %>
+  </li>
+</ul>
+
+<br>
+<br>
+
+<form action="<%= path %>" method="get" id="index_form" class="form-inline">
+
+  <select class="selectpicker" data-live-search="true" id="variety_id" name="variety_id" type="variety_id">
+    <option value=<%= nil %>>
+      Todas las variedades
+    </option>
+    <% Variety.all.each do |variety|%>
+    <option value=<%= variety.id.to_s %>
+      <%= if variety.id.to_s == @selected_variety; selected="selected" end %>>
+      <%= variety.name %>
+    </option>
+    <% end %>
+  </select>
+
+  <select class="selectpicker" data-live-search="true" id="color_id" name="color_id" type="color_id">
+    <option value=<%= nil %>>
+      Todos los colores
+    </option>
+    <% Color.all.each do |color|%>
+    <option value=<%= color.id.to_s %>
+      <%= if color.id.to_s == @selected_color; selected="selected" end %>>
+      <%= color.name %>
+    </option>
+    <% end %>
+  </select>
+
+  <select class="selectpicker" data-live-search="true" id="block_id" name="block_id" type="block_id">
+    <option value=<%= nil %>>
+      Todos los bloques
+    </option>
+    <% @blocks.each do |block|%>
+    <option value=<%= block.id.to_s %>
+      <%= if block.id.to_s == @selected_block; selected="selected" end %>>
+      <%= block.name %>
+    </option>
+    <% end %>
+  </select>
+
+  <br>
+  <br>
+  <input type="submit" class='btn btn-primary'>
+</form>

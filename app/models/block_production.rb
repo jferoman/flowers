@@ -1,7 +1,7 @@
 class BlockProduction < ApplicationRecord
 
   validates_presence_of :quantity
-  validates :status, uniqueness: { scope: [:variety_id, :farm_id, :week_id, :block_id, :status] }
+  validates :origin, uniqueness: { scope: [:variety_id, :farm_id, :week_id, :block_id, :origin] }
 
   belongs_to :variety
   belongs_to :farm
@@ -55,7 +55,7 @@ class BlockProduction < ApplicationRecord
             next
           end
 
-          block_production = BlockProduction.find_by(variety_id: variety_id, farm_id: farm_id, week_id: week_id, block_id: block_id, status: row["status"])
+          block_production = BlockProduction.find_by(variety_id: variety_id, farm_id: farm_id, week_id: week_id, block_id: block_id, origin: row["origin"])
           if !block_production.nil?
             errors << {
               initial_values: row.to_h,
@@ -66,7 +66,7 @@ class BlockProduction < ApplicationRecord
 
           block_productions << {
             quantity: row["quantity"],
-            status: row["status"],
+            origin: row["origin"],
             variety_id: variety_id,
             farm_id: farm_id,
             week_id: week_id,
