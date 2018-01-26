@@ -37,9 +37,9 @@ Rails.application.routes.draw do
               :bed_productions,
               :sowing_solutions,
               only: [:index, :create, :new, :edit, :destroy, :update]
-    resources :main_reports, :sowing_graphs, :productions, only: [:index]
-    # get "/farm_sowing/" => "main_reports#sowing" , as: :main_reports_sowing
-    # get "/farm_production/" => "main_reports#production" , as: :main_reports_production
+
+    resources :main_reports, :sowings, :productions, :land_uses,
+              only: [:index]
 
   end
 

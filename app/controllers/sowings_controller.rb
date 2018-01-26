@@ -1,4 +1,4 @@
-class SowingGraphsController < ApplicationController
+class SowingsController < ApplicationController
   before_action :find_farm, only: [:index]
 
   def index

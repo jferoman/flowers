@@ -81,6 +81,6 @@
         }
       }, //end options
     });
-  } // End if
+  } // End if - chartjs-linechart-sowing
 
 })(window, document, window.jQuery);

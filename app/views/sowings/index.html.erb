@@ -1,6 +1,7 @@
 <%= include_gon %>
 
-<%= render partial: "main_reports/main_reports_header", locals: { active: "Siembra", path: farm_sowing_graphs_path(params[:farm_id])} %>
+<%= render partial: "main_reports/main_reports_header", locals: { active: "Siembra" } %>
+<%= render partial: "main_reports/main_reports_filters", locals: { path: farm_sowings_path(params[:farm_id]) } %>
 <br>
 <br>
 

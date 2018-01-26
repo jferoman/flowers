@@ -3,13 +3,13 @@
     <%= link_to 'Estado', farm_main_reports_path(params[:farm_id]) %>
   </li>
   <li role="presentation" class=<%= active == 'Siembra' ? "active":"" %>>
-    <%= link_to 'Siembra', farm_sowing_graphs_path(params[:farm_id]) %>
+    <%= link_to 'Siembra', farm_sowings_path(params[:farm_id]) %>
   </li>
   <li role="presentation" class=<%= active == 'Produccion' ? "active":"" %>>
     <%= link_to 'Produccion', farm_productions_path(params[:farm_id]) %>
   </li>
   <li role="presentation" class=<%= active == 'Uso' ? "active":"" %>>
-    <%= link_to 'Uso', "" %>
+    <%= link_to 'Uso', farm_land_uses_path(params[:farm_id]) %>
   </li>
 </ul>
 
