@@ -6,7 +6,7 @@
     var myLineChart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: Object.keys(gon.sowing),
+        labels: Object.keys(gon.weeks),
         datasets: [
           {
             label: "Siembras ejecutadas",

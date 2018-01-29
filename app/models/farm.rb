@@ -421,10 +421,10 @@ class Farm < ApplicationRecord
   # Desde el dia de hoy hasta dos anos atras
   #
   ##
-  def self.week_year_hash
+  def self.week_year_hash(from, to)
     week_year = {}
 
-    (Date.parse(1.years.ago.strftime("%F"))..Date.today+1.years).each do |date|
+    (from..to).each do |date|
       week_year[date.cweek.to_s + " - " + date.year.to_s] = 0
     end
     week_year
