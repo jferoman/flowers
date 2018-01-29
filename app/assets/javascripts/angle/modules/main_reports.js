@@ -89,7 +89,7 @@
     var myLineChart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: Object.keys(gon.proy_production),
+        labels: Object.keys(gon.weeks),
         datasets: [
           {
             label: "Producción Ejecutada",
@@ -129,6 +129,26 @@
             pointRadius: 0,
             pointHitRadius: 10,
             data: Object.values(gon.proy_production),
+            spanGaps: false,
+          },
+          {
+            label: "Total Proyectado",
+            fill: false,
+            backgroundColor: "rgba(139,71,137,0.4)",
+            borderColor: "rgba(139,71,137,1)",
+            borderCapStyle: 'butt',
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(139,71,137,1)",
+            pointBackgroundColor: "#000",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(139,71,137,1)",
+            pointHoverBorderColor: "rgba(139,71,137,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 0,
+            pointHitRadius: 10,
+            data: Object.values(gon.cuttings_and_prod),
             spanGaps: false,
           }
         ]

@@ -98,7 +98,7 @@ class Farm < ApplicationRecord
     block_productions = []
     sowing_solutions.each do |sowing_solution|
       production = 0
-      (1..(sowing_solution.expiration_week.week-sowing_solution.week.week)).each do |s|
+      (1..(sowing_solution.cutting_week)).each do |s|
 
         production += (sowing_solution.quantity * sowing_solution.variety.get_productivity(s))
 
@@ -116,6 +116,35 @@ class Farm < ApplicationRecord
     BlockProduction.bulk_insert values: block_productions
   end
 
+  ##
+  # Generate the production from the cuttings.
+  # Parameters: origen, default: Teorico
+  #
+  # Generate the bed production for the cuttings.
+  ##
+  # TODO
+  def generate_block_production_cutting origin = "Teorico"
+    block_productions = []
+    cuttings.where(origin: origin).each do |cutting|
+
+      production = 0
+      (1..(cutting.cutting_week)).each do |s|
+
+        production += (cutting.quantity * cutting.variety.get_productivity(s))
+
+        block_productions << {
+          quantity: production,
+          origin: origin,
+          variety_id: cutting.variety_id,
+          farm_id: id,
+          week_id: cutting.week.next_week_in(s).id,
+          block_id: cutting.block.id
+        }
+
+      end
+    end
+    BlockProduction.bulk_insert values: block_productions
+  end
   ##
   # Retorna la fecha del ultimo plano de siembra ejecutado para la finca
   ##
@@ -321,6 +350,84 @@ class Farm < ApplicationRecord
   ##
   def bed_productions_by_block( block_id = nil, origin = "Ejecutado")
     bed_productions.where(origin: origin).joins(:bed).where(:beds => {block_id: block_id})
+  end
+
+  ##
+  # Retorna la produccion por bloque de la finca dados los filtros
+  # Parametros variety_id, block_id, color_id por defecto no los usa a menos que se espefiquen
+  #
+  ##
+  def block_productions_qty_by_week(variety_id = nil, block_id = nil, color_id = nil, origin = "Teorico")
+    date_week = Week.all.pluck(:initial_day, :week).to_h
+    id_week = Week.all.pluck(:id, :initial_day).to_h
+
+    week_year = {}
+
+    sel_production = block_productions.where(origin: origin)
+
+    production_by_variety = block_productions_by_variety(variety_id, origin)
+    production_by_color   = block_productions_by_color(color_id , origin)
+    production_by_block   = block_productions_by_block(block_id, origin)
+
+
+    sel_production = sel_production.merge(production_by_variety) unless production_by_variety.empty?
+    sel_production = sel_production.merge(production_by_block) unless production_by_block.empty?
+    sel_production = sel_production.merge(production_by_color) unless production_by_color.empty?
+
+    sel_production = sel_production.group(:week_id).sum(:quantity).transform_keys{ |key| id_week[key] }.sort.to_h
+
+    sel_production.each do |date, qty|
+      week_year[date_week[date].to_s + " - " + date.year.to_s].nil? ? week_year[date_week[date].to_s + " - " + date.year.to_s] = qty :
+                                                                      week_year[date_week[date].to_s + " - " + date.year.to_s] += qty
+    end
+    week_year
+  end
+
+  ##
+  # Retorna la produccioón de la finca por variedad y origen
+  # Parametros: Id de la variedad para la produccioón
+  #            origen: Por defecto lo hace para los Ejecutados
+  # Retorna: Produccion para el origen dado y la variedad especificada por bloque
+  #
+  ##
+  def block_productions_by_variety( variety_id , origin = "Teorico")
+    block_productions.where(origin: origin, variety_id: variety_id)
+  end
+
+  ##
+  # Retorna la produccioon por bloque de la finca por color y origen
+  # Parametros: Id del color para la produccioon por bloque
+  #             origen: Por defecto lo hace para los Teoricos
+  # Retorna: Produccion para el origen dado y el color especificado por bloque
+  #
+  ##
+  def block_productions_by_color( color_id , origin = "Teorico")
+    block_productions.where(origin: origin).joins(:variety).where(:varieties => {color_id: color_id})
+  end
+
+  ##
+  # Retorna la produccioón de la finca por bloque y origen
+  # Parametros: Id de la bloque para la producción
+  #            origen: Por defecto lo hace para los Teoricos
+  # Retorna: Produccion para el origen dado y el bloque especificada por bloque
+  #
+  ##
+  def block_productions_by_variety( block_id , origin = "Teorico")
+    block_productions.where(origin: origin, block_id: block_id)
+  end
+
+  ##
+  # Retrona un hash {"semana - ano" =>0 }
+  # Desde el dia de hoy hasta dos anos atras
+  #
+  ##
+  def self.week_year_hash
+    week_year = {}
+
+    (Date.parse(1.years.ago.strftime("%F"))..Date.today+1.years).each do |date|
+      week_year[date.cweek.to_s + " - " + date.year.to_s] = 0
+    end
+    week_year
   end
 
 end
