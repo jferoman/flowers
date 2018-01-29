@@ -74,6 +74,12 @@ class Farm < ApplicationRecord
 
         production += (sowing_detail.quantity * sowing_detail.variety.get_productivity(s))
 
+        next unless (BedProduction.find_by(  quantity: production,
+                                                origin: "Esperada",
+                                                variety_id: sowing_detail.variety_id,
+                                                bed_id: sowing_detail.bed.id,
+                                                week_id: sowing_detail.week.next_week_in(s).id).nil?)
+
         bed_productions << {
           quantity: production,
           origin: "Esperada",
@@ -81,10 +87,9 @@ class Farm < ApplicationRecord
           bed_id: sowing_detail.bed.id,
           week_id: sowing_detail.week.next_week_in(s).id
         }
-
       end
     end
-    BedProduction.bulk_insert values: bed_productions
+    BedProduction.bulk_insert values: bed_productions unless bed_productions.empty?
   end
 
   ##

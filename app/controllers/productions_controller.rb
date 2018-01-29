@@ -2,7 +2,11 @@ class ProductionsController < ApplicationController
   before_action :find_farm, only: [:index]
 
   def index
-    gon.weeks = Farm.week_year_hash(Date.parse(1.years.ago.strftime("%F")), Date.today+1.years)
+
+    from = @farm.bed_productions.first.week.initial_day > Date.parse(1.years.ago.strftime("%F")) ?
+          @farm.bed_productions.first.week.initial_day : Date.parse(1.years.ago.strftime("%F"))
+
+    gon.weeks = Farm.week_year_hash(from, Date.today+1.years)
     gon.production = []
     gon.proy_production = []
     gon.cuttings_and_prod = []
