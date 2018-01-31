@@ -19,14 +19,32 @@ class ProductionsController < ApplicationController
     gon.production = @farm.bed_productions_qty_by_week(params["variety_id"],
                                                        params["block_id"],
                                                        params["color_id"],
-                                                       origin = "Ejecutado")
+                                                       "Ejecutado")
 
     gon.proy_production = @farm.bed_productions_qty_by_week(params["variety_id"],
                                                             params["block_id"],
                                                             params["color_id"],
-                                                            origin = "Esperada")
+                                                            "Esperada")
 
-    cuttings = @farm.production_by_date (variety_id = nil, block_id = nil, color_id = nil, origin = "Teorico")
+    cuttings = @farm.production_by_date(params["variety_id"],
+                                                params["block_id"],
+                                                params["color_id"],
+                                                "Teorico")
+
+    e_cuttings = @farm.cuttings_by_date(params["variety_id"],
+                                                params["block_id"],
+                                                params["color_id"],
+                                                "Ejecutado")
+
+    e_cuttings = e_cuttings.keep_if { |k, v| gon.weeks.key? k }
+
+
+    t_cuttigns = @farm.cuttings_by_date(params["variety_id"],
+                                                params["block_id"],
+                                                params["color_id"],
+                                                "Teorico")
+    t_cuttigns = e_cuttings.keep_if { |k, v| gon.weeks.key? k }
+    gon.fulfillment = t_cuttigns.merge(e_cuttings){ |k, a_value, b_value| (100-abs(a_value - b_value))/a_value   }
 
     gon.cuttings_and_prod = gon.proy_production.merge(cuttings){ |k, a_value, b_value| a_value + b_value }
 

@@ -8,13 +8,14 @@ class LandUsesController < ApplicationController
     @selected_color   ||= params["color_id"]
     @selected_block   ||= params["block_id"]
 
-    from = @farm.first_cutting("Teorico") > Date.parse(1.years.ago.strftime("%F")) ?
-           @farm.first_cutting("Teorico") : Date.parse(1.years.ago.strftime("%F"))
+    # from = @farm.first_cutting("Teorico") > Date.parse(1.years.ago.strftime("%F")) ?
+    #        @farm.first_cutting("Teorico") : Date.parse(1.years.ago.strftime("%F"))
 
-    gon.weeks = Farm.week_year_hash(from, Date.today+1.years)
-    gon.production = []
+    # gon.weeks = Farm.week_year_hash(from, Date.today)
+    # gon.production = []
 
-
+    # cutting_t =
+    # binding.pry
   end
 
   private
