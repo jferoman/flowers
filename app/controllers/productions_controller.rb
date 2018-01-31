@@ -26,7 +26,7 @@ class ProductionsController < ApplicationController
                                                             params["color_id"],
                                                             origin = "Esperada")
 
-    cuttings = @farm.cuttings_by_date (variety_id = nil, block_id = nil, color_id = nil, origin = "Teorico")
+    cuttings = @farm.production_by_date (variety_id = nil, block_id = nil, color_id = nil, origin = "Teorico")
 
     gon.cuttings_and_prod = gon.proy_production.merge(cuttings){ |k, a_value, b_value| a_value + b_value }
 

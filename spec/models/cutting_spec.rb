@@ -13,5 +13,7 @@ describe Cutting do
     it { should belong_to(:farm) }
     it { should belong_to(:week) }
     it { should belong_to(:variety) }
+    it {should have_one(:production)}
+
   end
 end

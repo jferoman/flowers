@@ -23,11 +23,13 @@ describe Farm do
     it { should have_many(:coldrooms) }
     it { should have_many(:block_productions) }
     it { should have_many(:bed_productions) }
+    it { should have_many(:productions) }
 
     it { should have_many(:beds) }
     it { should have_many(:block_color_flowers) }
     it { should have_many(:sowing_details) }
     it { should have_many(:sowing_solutions) }
+
   end
 
   describe 'methods' do

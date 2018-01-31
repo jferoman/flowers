@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'land_uses/index'
+
   get 'productions/index'
 
   get 'sowing_graph/index'

@@ -7,6 +7,8 @@ class Cutting < ApplicationRecord
   belongs_to :farm
   belongs_to :week
   belongs_to :variety
+  has_one    :production
+
 
   class << self
     def import file_path

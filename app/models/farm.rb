@@ -18,6 +18,7 @@ class Farm < ApplicationRecord
   has_many :sowing_solutions, through: :blocks
   has_many :bed_productions, through: :beds
   has_many :block_productions, through: :blocks
+  has_many :productions, through: :cuttings
 
   def productivity_curves_varieties
     Variety.where(id: productivity_curves.all.pluck(:variety_id).uniq)
@@ -128,8 +129,9 @@ class Farm < ApplicationRecord
   # Generate the bed production for the cuttings.
   ##
   # TODO
-  def generate_block_production_cutting origin = "Teorico"
-    block_productions = []
+  def generate_production_cutting origin = "Teorico"
+    productions = []
+
     cuttings.where(origin: origin).each do |cutting|
 
       production = 0
@@ -137,26 +139,25 @@ class Farm < ApplicationRecord
 
         production += (cutting.quantity * cutting.variety.get_productivity(s))
 
-        next unless (BlockProduction.find_by( quantity: production,
-                                              origin: origin,
-                                              variety_id: cutting.variety_id,
-                                              farm_id: id,
-                                              week_id: cutting.week.next_week_in(s).id,
-                                              block_id: cutting.block.id))
+        next unless (Production.find_by(quantity: production,
+                                        origin: origin,
+                                        variety_id: cutting.variety_id,
+                                        cutting_id: cutting.id,
+                                        week_id: cutting.week.next_week_in(s).id).nil?)
 
-        block_productions << {
+        productions << {
           quantity: production,
           origin: origin,
+          cutting_id: cutting.id,
           variety_id: cutting.variety_id,
-          farm_id: id,
-          week_id: cutting.week.next_week_in(s).id,
-          block_id: cutting.block.id
+          week_id: cutting.week.next_week_in(s).id
         }
 
       end
     end
-    BlockProduction.bulk_insert values: block_productions
+    Production.bulk_insert values: productions
   end
+
   ##
   # Retorna la fecha del ultimo plano de siembra ejecutado para la finca
   ##
@@ -200,8 +201,8 @@ class Farm < ApplicationRecord
   ##
   # Retorna la primera fecha del primer esqueje ejecutado para la finca
   ##
-  def first_cutting
-    Week.where(id: cuttings.where(origin: "Ejecutado")
+  def first_cutting origin = "Ejecutado"
+    Week.where(id: cuttings.where(origin: origin)
                                   .pluck(:week_id))
                                   .order(:initial_day)
                                   .first.initial_day
@@ -286,16 +287,16 @@ class Farm < ApplicationRecord
   # Parametros: origen: Por defecto lo hace para los Ejecutados
   # Retorna: Hash con la fecha y la cantidad de siembras.
   ##
-  def cuttings_by_date (variety_id = nil, block_id = nil, color_id = nil, origin = "Teorico")
+  def production_by_date (variety_id = nil, block_id = nil, color_id = nil, origin = "Teorico")
     date_week = Week.all.pluck(:initial_day, :week).to_h
     id_week = Week.all.pluck(:id, :initial_day).to_h
 
     week_year = {}
 
-    sel_cuttings = cuttings.where(origin: origin)
+    sel_cuttings = productions.where(origin: origin)
 
-    cuttings_by_variety = cuttings_by_variety(variety_id, origin)
-    cuttings_by_color   = cuttings_by_color(color_id , origin)
+    cuttings_by_variety = productions_by_variety(variety_id, origin)
+    cuttings_by_color   = productions_by_color(color_id , origin)
 
     sel_cuttings = sel_cuttings.merge(cuttings_by_variety) unless cuttings_by_variety.empty?
     sel_cuttings = sel_cuttings.merge(cuttings_by_color) unless cuttings_by_color.empty?
@@ -317,8 +318,8 @@ class Farm < ApplicationRecord
   # Retorna: planos de siembra para el origen dado y la variedad especificada
   #
   ##
-  def cuttings_by_variety( variety_id = nil, origin = "Teorico")
-    cuttings.where(origin: origin, variety_id: variety_id)
+  def productions_by_variety( variety_id = nil, origin = "Teorico")
+    productions.where(origin: origin, variety_id: variety_id)
   end
 
   ##
@@ -328,8 +329,8 @@ class Farm < ApplicationRecord
   # Retorna: planos de siembra para el origen dado y el color especificado
   #
   ##
-  def cuttings_by_color( color_id = nil, origin = "Teorico")
-    cuttings.where(origin: origin).joins(:variety).where(:varieties => {color_id: color_id})
+  def productions_by_color( color_id = nil, origin = "Teorico")
+    productions.where(origin: origin).joins(:variety).where(:varieties => {color_id: color_id})
   end
 
 
