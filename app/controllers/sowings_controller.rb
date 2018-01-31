@@ -2,8 +2,8 @@ class SowingsController < ApplicationController
   before_action :find_farm, only: [:index]
 
   def index
-    from = @farm.sowing_details.first.week.initial_day > Date.parse(1.years.ago.strftime("%F")) ?
-          @farm.sowing_details.first.week.initial_day : Date.parse(1.years.ago.strftime("%F"))
+    from = @farm.first_sowing_detail > Date.parse(1.years.ago.strftime("%F")) ?
+          @farm.first_sowing_detail : Date.parse(1.years.ago.strftime("%F"))
 
     gon.weeks = Farm.week_year_hash(from, Date.today)
     gon.cutting = []
@@ -17,8 +17,9 @@ class SowingsController < ApplicationController
     gon.cutting = @farm.cuttings_by_date( params["variety_id"],
                                           params["color_id"],
                                           origin = "Teorico") unless !params["block_id"].nil?
+
     gon.cutting = gon.cutting.keep_if { |k, v| gon.weeks.key? k }
-# binding.pry
+
     #Filters
     @selected_variety ||= params["variety_id"]
     @selected_color  ||= params["color_id"]

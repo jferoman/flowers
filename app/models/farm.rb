@@ -137,6 +137,13 @@ class Farm < ApplicationRecord
 
         production += (cutting.quantity * cutting.variety.get_productivity(s))
 
+        next unless (BlockProduction.find_by( quantity: production,
+                                              origin: origin,
+                                              variety_id: cutting.variety_id,
+                                              farm_id: id,
+                                              week_id: cutting.week.next_week_in(s).id,
+                                              block_id: cutting.block.id))
+
         block_productions << {
           quantity: production,
           origin: origin,
@@ -158,6 +165,13 @@ class Farm < ApplicationRecord
   end
 
   ##
+  # Retorna la fecha del primer plano de siembra ejecutado para la finca
+  ##
+  def first_sowing_detail
+    Week.where(id: sowing_details.where(origin: "Ejecutado").pluck(:week_id)).order(:initial_day).first.initial_day
+  end
+
+  ##
   # Retorna la fecha de la última producción ejecutado para la finca
   ##
   def last_bed_production
@@ -171,6 +185,12 @@ class Farm < ApplicationRecord
     Week.where(id: cuttings.where(origin: "Ejecutado").pluck(:week_id)).order(:initial_day).last.initial_day rescue "-"
   end
 
+  ##
+  # Retorna la primera del último esqueje ejecutado para la finca
+  ##
+  def first_cutting
+    Week.where(id: cuttings.where(origin: "Ejecutado").pluck(:week_id)).order(:initial_day).first.initial_day
+  end
   ##
   # Retorna la cantidad de siembras por fecha
   # Parametros: origen: Por defecto lo hace para los Ejecutados
@@ -259,6 +279,7 @@ class Farm < ApplicationRecord
                                                                       week_year[date_week[date].to_s + " - " + date.year.to_s] += qty
     end
     week_year
+
   end
 
   ##

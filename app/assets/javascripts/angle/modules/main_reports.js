@@ -45,7 +45,7 @@
             pointHoverBorderWidth: 2,
             pointRadius: 0,
             pointHitRadius: 10,
-            data: [],
+            data: Object.values(gon.cutting),
             spanGaps: false,
           }
         ]
