@@ -3,8 +3,8 @@ class ProductionsController < ApplicationController
 
   def index
 
-    from = @farm.bed_productions.first.week.initial_day > Date.parse(1.years.ago.strftime("%F")) ?
-          @farm.bed_productions.first.week.initial_day : Date.parse(1.years.ago.strftime("%F"))
+    from = @farm.first_bed_production > Date.parse(1.years.ago.strftime("%F")) ?
+           @farm.first_bed_production : Date.parse(1.years.ago.strftime("%F"))
 
     gon.weeks = Farm.week_year_hash(from, Date.today+1.years)
     gon.production = []
@@ -26,8 +26,8 @@ class ProductionsController < ApplicationController
                                                             params["color_id"],
                                                             origin = "Esperada")
 
-
     cuttings = @farm.cuttings_by_date (variety_id = nil, block_id = nil, color_id = nil, origin = "Teorico")
+
     gon.cuttings_and_prod = gon.proy_production.merge(cuttings){ |k, a_value, b_value| a_value + b_value }
 
     gon.proy_production = gon.proy_production.keep_if { |k, v| gon.weeks.key? k }

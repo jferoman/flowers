@@ -179,7 +179,7 @@
         },
         title: {
           display: true,
-          text: "Siembra",
+          text: "Producción",
           fontSize: 18
         }
       }, //end options

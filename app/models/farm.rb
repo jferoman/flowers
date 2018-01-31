@@ -161,36 +161,63 @@ class Farm < ApplicationRecord
   # Retorna la fecha del ultimo plano de siembra ejecutado para la finca
   ##
   def last_sowing_detail
-    Week.where(id: sowing_details.where(origin: "Ejecutado").pluck(:week_id)).order(:initial_day).last.initial_day rescue "-"
+    Week.where(id: sowing_details.where(origin: "Ejecutado")
+                                  .pluck(:week_id))
+                                  .order(:initial_day)
+                                  .last.initial_day rescue "-"
   end
 
   ##
   # Retorna la fecha del primer plano de siembra ejecutado para la finca
   ##
   def first_sowing_detail
-    Week.where(id: sowing_details.where(origin: "Ejecutado").pluck(:week_id)).order(:initial_day).first.initial_day
+    Week.where(id: sowing_details.where(origin: "Ejecutado")
+                                  .pluck(:week_id))
+                                  .order(:initial_day)
+                                  .first.initial_day
   end
 
   ##
   # Retorna la fecha de la última producción ejecutado para la finca
   ##
   def last_bed_production
-    Week.where(id: bed_productions.where(origin: "Ejecutado").pluck(:week_id)).order(:initial_day).last.initial_day rescue "-"
+    Week.where(id: bed_productions.where(origin: "Ejecutado")
+                                  .pluck(:week_id))
+                                  .order(:initial_day)
+                                  .last.initial_day rescue "-"
   end
 
   ##
   # Retorna la fecha del último esqueje ejecutado para la finca
   ##
   def last_cutting
-    Week.where(id: cuttings.where(origin: "Ejecutado").pluck(:week_id)).order(:initial_day).last.initial_day rescue "-"
+    Week.where(id: cuttings.where(origin: "Ejecutado")
+                                  .pluck(:week_id))
+                                  .order(:initial_day)
+                                  .last.initial_day rescue "-"
   end
 
   ##
-  # Retorna la primera del último esqueje ejecutado para la finca
+  # Retorna la primera fecha del primer esqueje ejecutado para la finca
   ##
   def first_cutting
-    Week.where(id: cuttings.where(origin: "Ejecutado").pluck(:week_id)).order(:initial_day).first.initial_day
+    Week.where(id: cuttings.where(origin: "Ejecutado")
+                                  .pluck(:week_id))
+                                  .order(:initial_day)
+                                  .first.initial_day
   end
+
+  ##
+  # Retorna la primera fecha del último esqueje ejecutado para la finca
+  ##
+  def first_bed_production
+    Week.where(id: bed_productions.where(origin: "Ejecutado").
+                                  pluck(:week_id)).
+                                  order(:initial_day).
+                                  first.
+                                  initial_day
+  end
+
   ##
   # Retorna la cantidad de siembras por fecha
   # Parametros: origen: Por defecto lo hace para los Ejecutados
@@ -218,6 +245,7 @@ class Farm < ApplicationRecord
                                                                       week_year[date_week[date].to_s + " - " + date.year.to_s] += qty
     end
     week_year
+
   end
 
   ##
