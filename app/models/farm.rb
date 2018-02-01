@@ -235,9 +235,9 @@ class Farm < ApplicationRecord
     sowing_by_block   = data_by_block(sowing_details, block_id, origin)
     sowing_by_color   = data_by_color(sowing_details, color_id , origin)
 
-    sowing = sowing.merge(sowing_by_variety) unless sowing_by_variety.empty?
+    sowing = sowing.merge(sowing_by_variety) if !sowing_by_variety.empty? || !variety_id.empty?
+    sowing = sowing.merge(sowing_by_color) if !sowing_by_color.empty? || !color_id.empty?
     sowing = sowing.merge(sowing_by_block) unless sowing_by_block.empty?
-    sowing = sowing.merge(sowing_by_color) unless sowing_by_color.empty?
 
     sowing = sowing.group(:week_id).sum(:quantity).transform_keys{ |key| id_week[key] }.sort.to_h
 
@@ -290,8 +290,8 @@ class Farm < ApplicationRecord
     cuttings_by_variety = data_by_variety(productions, variety_id, origin)
     cuttings_by_color   = data_by_color(productions, color_id, origin)
 
-    sel_cuttings = sel_cuttings.merge(cuttings_by_variety) unless cuttings_by_variety.empty?
-    sel_cuttings = sel_cuttings.merge(cuttings_by_color) unless cuttings_by_color.empty?
+    sel_cuttings = sel_cuttings.merge(cuttings_by_variety) if !cuttings_by_variety.empty? || !variety_id.empty?# unless cuttings_by_variety.empty?
+    sel_cuttings = sel_cuttings.merge(cuttings_by_color) if !cuttings_by_color.empty? || !color_id.empty?#unless cuttings_by_color.empty?
 
     sel_cuttings = sel_cuttings.group(:week_id).sum(:quantity).transform_keys{ |key| id_week[key] }.sort.to_h
 
@@ -309,7 +309,7 @@ class Farm < ApplicationRecord
   # Parametros: origen: Por defecto lo hace para los Ejecutados
   # Retorna: Hash con la fecha y la cantidad de siembras.
   ##
-  def cuttings_by_date (variety_id = nil, block_id = nil, color_id = nil, origin = "Teorico")
+  def cuttings_by_date (variety_id = nil, color_id = nil, origin = "Teorico")
 
     date_week = Week.all.pluck(:initial_day, :week).to_h
     id_week = Week.all.pluck(:id, :initial_day).to_h
@@ -321,8 +321,8 @@ class Farm < ApplicationRecord
     cuttings_by_variety = data_by_variety(cuttings, variety_id, origin)
     cuttings_by_color   = data_by_color(cuttings, color_id, origin)
 
-    sel_cuttings = sel_cuttings.merge(cuttings_by_variety) unless cuttings_by_variety.empty?
-    sel_cuttings = sel_cuttings.merge(cuttings_by_color) unless cuttings_by_color.empty?
+    sel_cuttings = sel_cuttings.merge(cuttings_by_variety) if !cuttings_by_variety.empty? || !variety_id.empty?
+    sel_cuttings = sel_cuttings.merge(cuttings_by_color)   if !cuttings_by_color.empty? || !color_id.empty?
 
     sel_cuttings = sel_cuttings.group(:week_id).sum(:quantity).transform_keys{ |key| id_week[key] }.sort.to_h
 
@@ -353,15 +353,15 @@ class Farm < ApplicationRecord
     week_year = {}
 
     sel_production = bed_productions.where(origin: origin)
-
+binding.pry
     production_by_variety = data_by_variety(bed_productions, variety_id, origin)
     production_by_color   = data_by_color(bed_productions, color_id, origin)
     production_by_block   = data_by_block(bed_productions, block_id, origin)
 
 
-    sel_production = sel_production.merge(production_by_variety) unless production_by_variety.empty?
+    sel_production = sel_production.merge(production_by_variety) if !production_by_variety.empty? || !variety_id.empty? #unless production_by_variety.empty?
+    sel_production = sel_production.merge(production_by_color) if !production_by_color.empty? || !color_id.empty?#unless production_by_color.empty?
     sel_production = sel_production.merge(production_by_block) unless production_by_block.empty?
-    sel_production = sel_production.merge(production_by_color) unless production_by_color.empty?
 
     sel_production = sel_production.group(:week_id).sum(:quantity).transform_keys{ |key| id_week[key] }.sort.to_h
 
@@ -384,6 +384,39 @@ class Farm < ApplicationRecord
       week_year[date.cweek.to_s + " - " + date.year.to_s] = 0
     end
     week_year
+  end
+
+  ##
+  # Cacula el numero de camas en uso por semana para la finca
+  ##
+  def beds_used_by_week(block_id, bed_type_id, origin = "Ejecutado")
+    week_year = {}
+    date_week = Week.all.pluck(:initial_day, :week).to_h
+    id_week = Week.all.pluck(:id, :initial_day).to_h
+
+    beds_by_week = sowing_details.where(origin: origin)
+
+    sowing_by_block = data_by_block(sowing_details, block_id, origin)
+    sowing_by_bed_type = sowing_by_bed_type(sowing_details, bed_type_id, origin)
+
+    beds_by_week = beds_by_week.merge(sowing_by_block) unless sowing_by_block.empty?
+    beds_by_week = beds_by_week.merge(sowing_by_bed_type) if !sowing_by_bed_type.empty? || !bed_type_id.empty?
+
+    beds_by_week = beds_by_week.group(:week_id).count(:bed_id).transform_keys{ |key| id_week[key] }.sort.to_h
+
+    beds_by_week.each do |date, qty|
+      week_year[date_week[date].to_s + " - " + date.year.to_s].nil? ? week_year[date_week[date].to_s + " - " + date.year.to_s] = qty :
+                                                                      week_year[date_week[date].to_s + " - " + date.year.to_s] += qty
+    end
+    week_year
+  end
+
+  ##
+  # Retorna la lista enviada filtrada por tipo de cama y origen
+  # sowing_details
+  ##
+  def sowing_by_bed_type(data, bed_type_id, origin)
+    data.where(origin: origin).joins(:bed).where(:beds => {bed_type_id: bed_type_id})
   end
 
 end

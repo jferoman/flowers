@@ -6,7 +6,11 @@ class SowingsController < ApplicationController
           @farm.first_sowing_detail : Date.parse(1.years.ago.strftime("%F"))
 
     gon.weeks = Farm.week_year_hash(from, Date.today)
-    params["block_id"] ||= ""
+    #Filters
+    @selected_variety = params["variety_id"] ||= ""
+    @selected_color   = params["color_id"] ||= ""
+    @selected_block   = params["block_id"] ||= ""
+
     gon.cutting = []
     gon.sowing = []
 
@@ -24,10 +28,6 @@ class SowingsController < ApplicationController
 
     gon.cutting = gon.cutting.keep_if { |k, v| gon.weeks.key? k }
 
-    #Filters
-    @selected_variety ||= params["variety_id"]
-    @selected_color   ||= params["color_id"]
-    @selected_block   ||= params["block_id"]
 
     @blocks = @farm.blocks_sowed
   end
