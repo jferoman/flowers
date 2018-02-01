@@ -70,11 +70,8 @@ class Farm < ApplicationRecord
     bed_productions = []
 
     sowing_details.where(origin: "Ejecutado").each do |sowing_detail|
-      production = 0
       (1..(sowing_detail.cutting_week)).each do |s|
-
-        production += (sowing_detail.quantity * sowing_detail.variety.get_productivity(s))
-
+        production = (sowing_detail.quantity * sowing_detail.variety.get_productivity(s))
         next unless (BedProduction.find_by(  quantity: production,
                                                 origin: "Esperada",
                                                 variety_id: sowing_detail.variety_id,
@@ -103,11 +100,9 @@ class Farm < ApplicationRecord
   def generate_block_production
     block_productions = []
     sowing_solutions.each do |sowing_solution|
-      production = 0
+
       (1..(sowing_solution.cutting_week)).each do |s|
-
-        production += (sowing_solution.quantity * sowing_solution.variety.get_productivity(s))
-
+        production = (sowing_solution.quantity * sowing_solution.variety.get_productivity(s))
         block_productions << {
           quantity: production,
           origin: "Modelo",
@@ -134,11 +129,8 @@ class Farm < ApplicationRecord
 
     cuttings.where(origin: origin).each do |cutting|
 
-      production = 0
       (1..(cutting.cutting_week)).each do |s|
-
-        production += (cutting.quantity * cutting.variety.get_productivity(s))
-
+        production = (cutting.quantity * cutting.variety.get_productivity(s))
         next unless (Production.find_by(quantity: production,
                                         origin: origin,
                                         variety_id: cutting.variety_id,
