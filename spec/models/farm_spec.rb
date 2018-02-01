@@ -36,10 +36,10 @@ describe Farm do
 
     it 'Sowing details by date' do
       seed
-      sowing = Farm.first.sowing_detail_qty_by_date
+      sowing = Farm.first.sowing_detail_qty_by_date( "", "", "",  "Ejecutado")
       expect( sowing["1 - 2018"] ).to eq(100)
 
-      cutting = Farm.first.cuttings_by_date
+      cutting = Farm.first.cuttings_by_date("", "", "Teorico")
       expect( cutting["1 - 2018"] ).to eq(200)
 
       expect(Farm.first.blocks_sowed.first).to eq(Block.first)

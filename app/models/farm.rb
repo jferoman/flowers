@@ -357,7 +357,6 @@ class Farm < ApplicationRecord
     production_by_color   = data_by_color(bed_productions, color_id, origin)
     production_by_block   = data_by_block(bed_productions, block_id, origin)
 
-
     sel_production = sel_production.merge(production_by_variety) if !production_by_variety.empty? || !variety_id.empty?
     sel_production = sel_production.merge(production_by_color) if !production_by_color.empty? || !color_id.empty?
     sel_production = sel_production.merge(production_by_block) if !production_by_block.empty? || !block_id.empty?
