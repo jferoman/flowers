@@ -150,6 +150,27 @@
             pointHitRadius: 10,
             data: Object.values(gon.cuttings_and_prod),
             spanGaps: false,
+          },
+          {
+            label: "Porcentaje de Cumplimiento",
+            fill: false,
+            backgroundColor: "rgba(231,23,23,0.4)",
+            borderColor: "rgba(231,23,23,1)",
+            borderCapStyle: 'butt',
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(231,23,23,1)",
+            pointBackgroundColor: "#000",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(231,23,23,1)",
+            pointHoverBorderColor: "rgba(231,23,23,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 0,
+            pointHitRadius: 10,
+            data: Object.values(gon.fulfillment),
+            spanGaps: false,
+            yAxisID: "y-axis-2"
           }
         ]
       },//end data
@@ -163,7 +184,7 @@
             scaleLabel: {
               display: true,
               labelString: "Semana - año",
-              fontColor: "red"
+              fontColor: "green"
             }
           }],
           yAxes: [{
@@ -175,7 +196,28 @@
               labelString: "Cantidad producida",
               fontColor: "green"
             }
-          }]
+            },
+            {
+              ticks: {
+                beginAtZero:true
+                //max: 105
+              },
+              scaleLabel: {
+                display: true,
+                labelString: "Cumplimiento",
+                fontColor: "red"
+              },
+                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                display: true,
+                position: "right",
+                id: "y-axis-2",
+
+                // grid line settings
+                gridLines: {
+                    drawOnChartArea: false, // only want the grid lines for one axis to show up
+                },
+            }
+          ] // End y axis
         },
         title: {
           display: true,
