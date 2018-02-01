@@ -224,7 +224,7 @@ class Farm < ApplicationRecord
   # Parametros: origen: Por defecto lo hace para los Ejecutados
   # Retorna: Hash con la fecha y la cantidad de siembras.
   ##
-  def sowing_detail_qty_by_date( variety_id = nil, block_id = nil, color_id = nil, origin = "Ejecutado")
+  def sowing_detail_qty_by_date( variety_id = "", block_id = "", color_id = "", origin = "Ejecutado")
     date_week = Week.all.pluck(:initial_day, :week).to_h
     id_week = Week.all.pluck(:id, :initial_day).to_h
     week_year = {}
@@ -279,7 +279,7 @@ class Farm < ApplicationRecord
   # Parametros: origen: Por defecto lo hace para los Ejecutados
   # Retorna: Hash con la fecha y la cantidad de siembras.
   ##
-  def production_by_date (variety_id = nil, block_id = nil, color_id = nil, origin = "Teorico")
+  def production_by_date (variety_id = "", block_id = "", color_id = "", origin = "Teorico")
     date_week = Week.all.pluck(:initial_day, :week).to_h
     id_week = Week.all.pluck(:id, :initial_day).to_h
 
@@ -309,7 +309,7 @@ class Farm < ApplicationRecord
   # Parametros: origen: Por defecto lo hace para los Ejecutados
   # Retorna: Hash con la fecha y la cantidad de siembras.
   ##
-  def cuttings_by_date (variety_id = nil, color_id = nil, origin = "Teorico")
+  def cuttings_by_date (variety_id = "", color_id = "", origin = "Teorico")
 
     date_week = Week.all.pluck(:initial_day, :week).to_h
     id_week = Week.all.pluck(:id, :initial_day).to_h
@@ -346,7 +346,7 @@ class Farm < ApplicationRecord
   # Parametros variety_id, block_id, color_id por defecto no los usa a menos que se espefiquen
   #
   ##
-  def bed_productions_qty_by_week(variety_id = nil, block_id = nil, color_id = nil, origin = "Ejecutado")
+  def bed_productions_qty_by_week(variety_id = "", block_id = "", color_id = "", origin = "Ejecutado")
     date_week = Week.all.pluck(:initial_day, :week).to_h
     id_week = Week.all.pluck(:id, :initial_day).to_h
 
