@@ -10,6 +10,7 @@ class SowingsController < ApplicationController
     @selected_variety = params["variety_id"] ||= ""
     @selected_color   = params["color_id"] ||= ""
     @selected_block   = params["block_id"] ||= ""
+    @blocks = @farm.blocks_sowed
 
     gon.cutting = []
     gon.sowing = []
@@ -28,8 +29,6 @@ class SowingsController < ApplicationController
 
     gon.cutting = gon.cutting.keep_if { |k, v| gon.weeks.key? k }
 
-
-    @blocks = @farm.blocks_sowed
   end
 
   private

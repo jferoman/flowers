@@ -2,7 +2,7 @@ class SowingDetailsController < ApplicationController
 
   before_action :authorize, :lock_farms_per_company
   before_action :find_sowing_detail, only: [:destroy, :edit, :update]
-  before_action :find_farm, only: [:index, :create, :new, :edit, :batch_delete]
+  before_action :find_farm, only: [:index, :create, :new, :edit, :update, :batch_delete]
 
   def index
     @sowing_details = @farm.sowing_details.includes(:bed, :week, :variety, :expiration_week)
@@ -41,6 +41,8 @@ class SowingDetailsController < ApplicationController
     @sowing_detail.attributes = sowing_detail_params
 
     if @sowing_detail.save
+      @farm.delete_sowing_production(@sowing_detail)
+      @farm.generate_bed_production
       flash[:success] = 'Detalle de siembra actualizado'
       redirect_to index_route
     else

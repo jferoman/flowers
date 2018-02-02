@@ -4,7 +4,7 @@
     <%= f.collection_select(:variety_id, Variety.all, :id, :name) %>
   </div>
   <div class="form-group">
-    <%= f.label :bed_id, 'Bloque: ' %>
+    <%= f.label :bed_id, 'Cama: ' %>
     <%= f.collection_select(:bed_id, @farm.beds, :id, :number) %>
   </div>
   <div class="form-group">

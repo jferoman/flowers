@@ -53,9 +53,7 @@ class ProductionsController < ApplicationController
 
     end
 
-
     gon.production = gon.production.keep_if { |k, v| gon.weeks.key? k }
-
 
   end
 

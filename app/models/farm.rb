@@ -90,6 +90,11 @@ class Farm < ApplicationRecord
     BedProduction.bulk_insert values: bed_productions unless bed_productions.empty?
   end
 
+  def delete_sowing_production sowing_detail
+    BedProduction.where( origin: "Esperada",
+                          variety_id: sowing_detail.variety_id,
+                          bed_id: sowing_detail.bed.id).delete_all
+  end
   ##
   # Generate the production from the sowing detail.
   # Parameters:
@@ -207,8 +212,7 @@ class Farm < ApplicationRecord
     Week.where(id: bed_productions.where(origin: "Ejecutado").
                                   pluck(:week_id)).
                                   order(:initial_day).
-                                  first.
-                                  initial_day
+                                  first.initial_day rescue "-"
   end
 
   ##
@@ -383,6 +387,8 @@ class Farm < ApplicationRecord
     week_year = {}
     date_week = Week.all.pluck(:initial_day, :week).to_h
     id_week = Week.all.pluck(:id, :initial_day).to_h
+    week_qty = {}
+    beds = []
 
     beds_by_week = sowing_details.where(origin: origin)
 
@@ -392,9 +398,19 @@ class Farm < ApplicationRecord
     beds_by_week = beds_by_week.merge(sowing_by_block) unless sowing_by_block.empty?
     beds_by_week = beds_by_week.merge(sowing_by_bed_type) if !sowing_by_bed_type.empty? || !bed_type_id.empty?
 
-    beds_by_week = beds_by_week.group(:week_id).count(:bed_id).transform_keys{ |key| id_week[key] }.sort.to_h
+    beds_by_week.includes(:week).each do |sow|
+      next if beds.include? sow.bed_id
+      week_qty[sow.week.id] = 1
+      beds << sow.bed_id
+      (1..sow.cutting_week).each do |day|
+          week_qty[sow.week.next_week_in(day).id].nil? ? week_qty[sow.week.next_week_in(day).id] = 1
+                                                       : week_qty[sow.week.next_week_in(day).id] += 1
+      end
+    end
 
-    beds_by_week.each do |date, qty|
+    week_qty = week_qty.transform_keys{ |key| id_week[key] }.sort.to_h
+
+    week_qty.each do |date, qty|
       week_year[date_week[date].to_s + " - " + date.year.to_s].nil? ? week_year[date_week[date].to_s + " - " + date.year.to_s] = qty :
                                                                       week_year[date_week[date].to_s + " - " + date.year.to_s] += qty
     end
