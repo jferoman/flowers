@@ -1,6 +1,3 @@
-// Place all the behaviors and hooks related to the matching controller here.
-
-
 
 //--- Sparklines
 //= require sparkline/index
@@ -23,3 +20,5 @@
 //--- jqGrid
 //= require jqgrid/js/jquery.jqGrid.js
 //= require jqgrid/js/i18n/grid.locale-en.js
+
+//= require bootstrap-select/dist/js/bootstrap-select.min.js
