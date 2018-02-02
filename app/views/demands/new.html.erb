@@ -1,28 +1,52 @@
 <%= form_for @demand do |f| %>
 <div class="form-group">
-  <%= f.label :quantity, 'Cantidad' %>
+  <%= f.label :quantity, 'Cantidad: ' %>
   <%= f.text_field :quantity, class: 'form-control' %>
 </div>
 <div class="form-group">
-  <%= f.label :color_id, 'Color' %>
-  <%= f.collection_select(:color_id, Color.all, :id, :name) %>
+  <%= f.label :color_id, 'Color: ' %>
+    <select class="selectpicker" data-live-search="true" name="demand[color_id]" id="demand_color_id">
+    <% Color.all.each do |color|%>
+    <option value=<%= color.id.to_s %>>
+      <%= color.name %>
+    </option>
+    <% end %>
+  </select>
 </div>
 <div class="form-group">
-  <%= f.label :market_id, 'Mercado' %>
-  <%= f.collection_select(:market_id, @company.markets, :id, :name) %>
+  <%= f.label :market_id, 'Mercado: ' %>
+  <select class="selectpicker" data-live-search="true" name="demand[market_id]" id="demand_market_id">
+    <% @company.markets.each do |market|%>
+    <option value=<%= market.id.to_s %>>
+      <%= market.name %>
+    </option>
+    <% end %>
+  </select>
 </div>
 <div class="form-group">
-  <%= f.label :flower_id, 'Flor' %>
-  <%= f.collection_select(:flower_id, Flower.all, :id, :name) %>
+  <%= f.label :flower_id, 'Flor: ' %>
+    <select class="selectpicker" data-live-search="true" name="demand[flower_id]" id="demand_flower_id">
+    <% Flower.all.each do |flower|%>
+    <option value=<%= flower.id.to_s %>>
+      <%= flower.name %>
+    </option>
+    <% end %>
+  </select>
 </div>
 <div class="form-group">
-  <%= f.label :week_id, 'Semana' %>
-  <%= f.collection_select(:week_id, Week.all, :id, :initial_day) %>
+  <%= f.label :week_id, 'Semana: ' %>
+  <select class="selectpicker" data-live-search="true" name="demand[week_id]" id="demand_variety_id">
+    <% Week.all.each do |week|%>
+    <option value=<%= week.id.to_s %>>
+      <%= week.initial_day %>
+    </option>
+    <% end %>
+  </select>
 </div>
 <div class="form-group">
-    <%= f.label :origin, 'Origen' %>
-    <%= f.text_field :origin, class: 'form-control' %>
-  </div>
+  <%= f.label :origin, 'Origen: ' %>
+  <%= f.text_field :origin, class: 'form-control' %>
+</div>
 
 <div>
   <%= f.submit 'Crear Demanda' %>

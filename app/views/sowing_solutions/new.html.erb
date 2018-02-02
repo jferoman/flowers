@@ -1,19 +1,43 @@
 <%= form_for @sowing_solution do |f| %>
   <div class="form-group">
     <%= f.label :variety_id, 'Variedad: ' %>
-    <%= f.collection_select(:variety_id, Variety.all, :id, :name) %>
+    <select class="selectpicker" data-live-search="true" name="sowing_solution[variety_id]" id="sowing_solution_variety_id">
+      <% Variety.all.each do |variety|%>
+      <option value=<%= variety.id.to_s %>>
+        <%= variety.name %>
+      </option>
+      <% end %>
+    </select>
   </div>
   <div class="form-group">
     <%= f.label :week_id, 'Semana' %>
-    <%= f.collection_select(:week_id, Week.all, :id, :initial_day) %>
+    <select class="selectpicker" data-live-search="true" name="sowing_solution[week_id]" id="sowing_solution_week_id">
+      <% Week.all.each do |week|%>
+      <option value=<%= week.id.to_s %>>
+        <%= week.initial_day %>
+      </option>
+      <% end %>
+    </select>
   </div>
   <div class="form-group">
     <%= f.label :block_id, 'Bloque: ' %>
-    <%= f.collection_select(:block_id, @farm.blocks, :id, :name) %>
+    <select class="selectpicker" data-live-search="true" name="sowing_solution[block_id]" id="sowing_solution_block_id">
+      <% @farm.blocks.each do |block|%>
+      <option value=<%= block.id.to_s %>>
+        <%= block.name %>
+      </option>
+      <% end %>
+    </select>
   </div>
   <div class="form-group">
     <%= f.label :bed_type_id, 'Tipo de cama: ' %>
-    <%= f.collection_select(:bed_type_id, BedType.all, :id, :width) %>
+    <select class="selectpicker" data-live-search="true" name="sowing_solution[bed_type_id]" id="sowing_solution_bed_type_id">
+      <% BedType.all.each do |bed_type|%>
+      <option value=<%= bed_type.id.to_s %>>
+        <%= bed_type.name %>
+      </option>
+      <% end %>
+    </select>
   </div>
   <div class="form-group">
     <%= f.label :quantity, 'Cantidad' %>

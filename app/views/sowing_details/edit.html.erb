@@ -1,15 +1,33 @@
 <%= form_for @sowing_detail do |f| %>
-  <div class="form-group">
+<div class="form-group">
     <%= f.label :variety_id, 'Variedad: ' %>
-    <%= f.collection_select(:variety_id, Variety.all, :id, :name) %>
+    <select class="selectpicker" data-live-search="true" name="sowing_detail[variety_id]" id="sowing_detail_variety_id">
+      <% Variety.all.each do |variety|%>
+      <option value=<%= variety.id.to_s %>>
+        <%= variety.name %>
+      </option>
+      <% end %>
+    </select>
   </div>
   <div class="form-group">
     <%= f.label :bed_id, 'Cama: ' %>
-    <%= f.collection_select(:bed_id, @farm.beds, :id, :number) %>
+    <select class="selectpicker" data-live-search="true" name="sowing_detail[bed_id]" id="sowing_detail_bed_id">
+      <% @farm.beds.includes(:block).each do |bed|%>
+      <option value=<%= bed.id.to_s %>>
+        <%= bed.number.to_s + " - " + bed.block.name %>
+      </option>
+      <% end %>
+    </select>
   </div>
   <div class="form-group">
-    <%= f.label :week_id, 'Semana' %>
-    <%= f.collection_select(:week_id, Week.all, :id, :initial_day) %>
+    <%= f.label :week_id, 'Semana: ' %>
+    <select class="selectpicker" data-live-search="true" name="sowing_detail[week_id]" id="sowing_detail_week_id">
+      <% Week.all.each do |week|%>
+      <option value=<%= week.id.to_s %>>
+        <%= week.initial_day %>
+      </option>
+      <% end %>
+    </select>
   </div>
   <div class="form-group">
     <%= f.label :quantity, 'Cantidad' %>
@@ -21,10 +39,9 @@
   </div>
   <div class="form-group">
     <%= f.label :origin, 'Origen' %>
-    <%= f.select :origin, %w(Programado Ejecutado) %>
+    <%= f.text_field :origin, class: 'form-control'%>
   </div>
-  <br>
-  <div>
+  <br>  <div>
     <%= f.submit 'Actualizar detalle de siembra' %>
   </div>
 <% end %>

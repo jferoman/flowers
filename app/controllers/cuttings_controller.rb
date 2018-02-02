@@ -55,7 +55,7 @@ class CuttingsController < ApplicationController
       notice = "Todas los esquejes fueron borradas."
     else
       Cutting.where(origin: params[:origin]).delete_all
-      notice = "Llos esquejes : #{params[:origin].to_s}  fueron borrados."
+      notice = "Los esquejes : #{params[:origin].to_s}  fueron borrados."
     end
       redirect_to index_route, notice: notice
   end
@@ -78,6 +78,7 @@ class CuttingsController < ApplicationController
 
   private
   def cutting_params
+    binding.pry
     params.require(:cutting).permit(:quantity, :origin, :farm_id ,:week_id, :variety_id, :cutting_week)
   end
 

@@ -19,3 +19,5 @@
 //--- jqGrid
 //= require jqgrid/js/jquery.jqGrid.js
 //= require jqgrid/js/i18n/grid.locale-en.js
+
+//= require bootstrap-select/dist/js/bootstrap-select.min.js
