@@ -78,7 +78,6 @@ class CuttingsController < ApplicationController
 
   private
   def cutting_params
-    binding.pry
     params.require(:cutting).permit(:quantity, :origin, :farm_id ,:week_id, :variety_id, :cutting_week)
   end
 
