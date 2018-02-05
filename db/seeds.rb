@@ -33,7 +33,7 @@ ProductivityCurve.import('db/seeds_data/productivity_curves_la_gaitana.csv',comp
 ColorSubmarket.import('db/seeds_data/color_submarket.csv')
 BlockColorFlower.import('db/seeds_data/block_color_flower.csv')
 
-Cutting.import('db/seeds_data/cuttings.csv')
-SowingDetail.import('db/seeds_data/sowing_detail.csv')
-SowingSolution.import('db/seeds_data/sowing_solution.csv')
+# Cutting.import('db/seeds_data/cuttings.csv')
+# SowingDetail.import('db/seeds_data/sowing_detail.csv')
+# SowingSolution.import('db/seeds_data/sowing_solution.csv')
 

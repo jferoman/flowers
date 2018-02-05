@@ -56,8 +56,8 @@
             </a>
           </li>
           <li class="<%= 'active' if controller?('productivity_curves') && action?('index') %>">
-            <a href= <%='/farms/' + session[:farm_id].to_s + '/productivity_curves' %> title="Curvas de Produccion">
-              <span>Curvas de Produccion</span>
+            <a href= <%='/farms/' + session[:farm_id].to_s + '/productivity_curves' %> title="Curvas de Producción">
+              <span>Curvas de Producción</span>
             </a>
           </li>
           <li class="<%= 'active' if controller?('block_color_flowers') && action?('index') %>">
@@ -107,9 +107,9 @@
       </li>
 
       <li class="<%= 'active' if controller?('')%>">
-        <a href="#productions" title="Produccion" data-toggle="collapse">
+        <a href="#productions" title="Producción" data-toggle="collapse">
           <em class="fa fa-area-chart"></em>
-          <span>Produccion & Siembra</span>
+          <span>Producción & Siembra</span>
         </a>
         <ul id="productions" class="nav sidebar-subnav collapse">
           <li class="<%= 'active' if controller?('sowing_details') && action?('index') %>">
@@ -117,14 +117,19 @@
               <span>Plano de siembra</span>
             </a>
           </li>
+          <li class="<%= 'active' if controller?('farm_productions') && action?('index') %>">
+            <a href= <%= "/farms/" + session[:farm_id].to_s + "/farm_productions" %> title="Producción">
+              <span>Producción</span>
+            </a>
+          </li>
           <li class="<%= 'active' if controller?('block_productions') && action?('index') %>">
-            <a href= <%= "/farms/" + session[:farm_id].to_s + "/block_productions" %> title="Producion por bloque">
-              <span>Producion por bloque</span>
+            <a href= <%= "/farms/" + session[:farm_id].to_s + "/block_productions" %> title="Producción por bloque">
+              <span>Producción por bloque</span>
             </a>
           </li>
           <li class="<%= 'active' if controller?('bed_productions') && action?('index') %>">
-            <a href= <%= "/farms/" + session[:farm_id].to_s + "/bed_productions" %> title="Producion por cama">
-              <span>Producion por cama</span>
+            <a href= <%= "/farms/" + session[:farm_id].to_s + "/bed_productions" %> title="Producción por cama">
+              <span>Producción por cama</span>
             </a>
           </li>
           <li class="<%= 'active' if controller?('sowing_solutions') && action?('index') %>">
@@ -137,7 +142,7 @@
       <li class="<%= 'active' if controller?('') %>">
         <a href= "#parameters" title="Parametros" data-toggle="collapse">
           <em class="fa fa-wrench"></em>
-          <span >Parametros</span>
+          <span >Parámetros</span>
         </a>
         <ul id="parameters" class="nav sidebar-subnav collapse">
           <li class="<%= 'active' if controller?('weeks') && action?('index') %>">

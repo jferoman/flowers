@@ -41,6 +41,7 @@
             <% @colors.each do |color| %>
             <tr class="gradeX">
               <td> <%= color.name %> </td>
+              <td> <%= color.varieties.count %> </td>
               <td> </td>
               <td>
                 <%= link_to 'Editar', edit_color_path(color) %> |

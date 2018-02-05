@@ -71,6 +71,7 @@ module Angle
                                  'sowings.js',
                                  'productions.js',
                                  'land_uses.js',
+                                 'farm_productions.js',
                                  # 'Styles',
                                  'main_reports.css',
                                  'blocks.css',
@@ -100,7 +101,8 @@ module Angle
                                  'bed_productions.css',
                                  'sowings.css',
                                  'productions.css',
-                                 'land_uses.css'
+                                 'land_uses.css',
+                                 'farm_productions.css'
                                 ]
   end
 end

@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'land_uses/index'
-
-  get 'productions/index'
-
-  get 'sowing_graph/index'
-
   #get 'main_reports/index'
   #get '/home' => 'main_reports#index'
 
@@ -40,6 +34,7 @@ Rails.application.routes.draw do
               :block_productions,
               :bed_productions,
               :sowing_solutions,
+              :farm_productions,
               only: [:index, :create, :new, :edit, :destroy, :update]
 
     resources :main_reports, :sowings, :productions, :land_uses,
@@ -64,7 +59,8 @@ Rails.application.routes.draw do
             :submarket_weeks,
             :sowing_solutions,
             :block_productions,
-            :bed_productions
+            :bed_productions,
+            :farm_productions
 
 
   resources :blocks do

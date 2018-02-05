@@ -188,7 +188,7 @@ class Farm < ApplicationRecord
   # Retorna la fecha del último esqueje ejecutado para la finca
   ##
   def last_cutting
-    Week.where(id: cuttings.where(origin: "Ejecutado")
+    Week.where(id: cuttings.where(origin: "Teorico")
                                   .pluck(:week_id))
                                   .order(:initial_day)
                                   .last.initial_day rescue "-"

@@ -16,6 +16,7 @@ class SowingDetailsController < ApplicationController
     @new_sowing_detail = SowingDetail.new(sowing_detail_params)
 
     if @new_sowing_detail.save
+      @farm.generate_bed_production
       flash[:success] = 'Detalle de siembra creado'
       redirect_to index_route
     else

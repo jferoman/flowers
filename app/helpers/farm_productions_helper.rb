@@ -1,0 +1,2 @@
+module FarmProductionsHelper
+end
