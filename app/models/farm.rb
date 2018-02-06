@@ -128,7 +128,7 @@ class Farm < ApplicationRecord
   # Generate the bed production for the cuttings.
   ##
   # TODO
-  def generate_production_cutting origin = "Teorico"
+  def generate_production_cutting(origin = "Teorico")
     productions = []
 
     cuttings.where(origin: origin).each do |cutting|
@@ -177,8 +177,8 @@ class Farm < ApplicationRecord
   ##
   # Retorna la fecha de la última producción ejecutado para la finca
   ##
-  def last_bed_production
-    Week.where(id: bed_productions.where(origin: "Ejecutado")
+  def last_bed_production(origin = "Ejecutada")
+    Week.where(id: bed_productions.where(origin: origin)
                                   .pluck(:week_id))
                                   .order(:initial_day)
                                   .last.initial_day rescue "-"
@@ -208,7 +208,7 @@ class Farm < ApplicationRecord
   # Retorna la primera fecha del último esqueje ejecutado para la finca
   ##
   def first_bed_production
-    Week.where(id: bed_productions.where(origin: "Ejecutado").
+    Week.where(id: bed_productions.where(origin: "Ejecutada").
                                   pluck(:week_id)).
                                   order(:initial_day).
                                   first.initial_day rescue "-"
