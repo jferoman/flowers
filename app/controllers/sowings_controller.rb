@@ -2,8 +2,7 @@ class SowingsController < ApplicationController
   before_action :find_farm, only: [:index]
 
   def index
-    from = @farm.first_sowing_detail #> Date.parse(1.years.ago.strftime("%F")) ?
-          #@farm.first_sowing_detail : Date.parse(1.years.ago.strftime("%F"))
+    from = @farm.first_sowing_detail
 
     gon.weeks = Farm.week_year_hash(from, Date.today)
     gon.weeks.delete("52 - 2017")

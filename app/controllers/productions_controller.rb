@@ -3,11 +3,10 @@ class ProductionsController < ApplicationController
 
   def index
 
-    from = @farm.first_bed_production# > Date.parse(1.years.ago.strftime("%F")) ?
-          # @farm.first_bed_production : Date.parse(1.years.ago.strftime("%F"))
+    from = @farm.first_bed_production
 
     gon.weeks = Farm.week_year_hash(from, Date.today+1.years)
-    binding.pry
+
     gon.production = []
     gon.proy_production = []
     gon.cuttings_and_prod = []
@@ -28,8 +27,6 @@ class ProductionsController < ApplicationController
                                                             params["color_id"],
                                                             "Esperada")
 
-binding.pry
-
     if params["block_id"].empty?
 
       cuttings = @farm.production_by_date(params["variety_id"],
@@ -44,7 +41,6 @@ binding.pry
       t_cuttigns = @farm.cuttings_by_date(params["variety_id"],
                                           params["color_id"],
                                           "Teorico")
-binding.pry
 
     e_cuttings = e_cuttings.keep_if { |k, v| gon.weeks.key? k }
     t_cuttigns = e_cuttings.keep_if { |k, v| gon.weeks.key? k }
@@ -56,7 +52,6 @@ binding.pry
 
     # @farm.last_bed_production("Esperada")
     # gon.cuttings_and_prod =
-binding.pry
     end
 
     gon.production = gon.production.keep_if { |k, v| gon.weeks.key? k }
