@@ -1,11 +1,25 @@
 <%= form_for @color_submarket do |f| %>
-  <div class="form-group">
     <%= f.label :submarket_id, 'Submercado: ' %>
-    <%= f.collection_select(:submarket_id, @company.submarkets, :id, :name) %>
+    <select class="selectpicker" data-live-search="true" name="color_submarket[submarket_id]" id="color_submarket_submarket_id">
+      <% @company.submarkets.each do |submarket|%>
+      <option value=<%= submarket.id.to_s %>>
+        <%= submarket.name %>
+      </option>
+      <% end %>
+    </select>
+
   </div>
   <div class="form-group">
     <%= f.label :color_id, 'Color: ' %>
-    <%= f.collection_select(:color_id, Color.all, :id, :name) %>
+
+    <select class="selectpicker" data-live-search="true" name="color_submarket[color_id]" id="color_submarket_color_id">
+      <% Color.all.each do |color|%>
+      <option value=<%= color.id.to_s %>>
+        <%= color.name %>
+      </option>
+      <% end %>
+    </select>
+
   </div>
   <div class="form-group">
     <%= f.label :price, 'Precio: ' %>

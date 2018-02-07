@@ -14,6 +14,8 @@ describe Week do
 		it {should have_many(:block_productions)}
 		it {should have_many(:bed_productions)}
     it {should have_many(:sowing_solutions)}
+    it {should have_many(:productions)}
+
 
 	end
 

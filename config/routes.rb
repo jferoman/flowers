@@ -34,10 +34,11 @@ Rails.application.routes.draw do
               :block_productions,
               :bed_productions,
               :sowing_solutions,
+              :farm_productions,
               only: [:index, :create, :new, :edit, :destroy, :update]
-    resources :main_reports, only: [:index]
-    get "/farm_sowing/" => "main_reports#sowing" , as: :main_reports_sowing
-    get "/farm_production/" => "main_reports#production" , as: :main_reports_production
+
+    resources :main_reports, :sowings, :productions, :land_uses,
+              only: [:index]
 
   end
 
@@ -58,7 +59,8 @@ Rails.application.routes.draw do
             :submarket_weeks,
             :sowing_solutions,
             :block_productions,
-            :bed_productions
+            :bed_productions,
+            :farm_productions
 
 
   resources :blocks do

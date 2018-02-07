@@ -2,7 +2,7 @@ class SubmarketsController < ApplicationController
 
   before_action :authorize, :lock_farms_per_company
   before_action :find_submarket, only: [:destroy, :edit, :update]
-  before_action :find_company, only: [:index, :new]
+  before_action :find_company, only: [:index, :new, :edit]
 
   def index
     @submarkets = @company.submarkets

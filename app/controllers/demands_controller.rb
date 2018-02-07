@@ -77,7 +77,7 @@ class DemandsController < ApplicationController
 
   private
   def demand_params
-    params.require(:demand).permit(:quantity, :color_id, :market_id, :flower_id, :week_id)
+    params.require(:demand).permit(:quantity, :color_id, :market_id, :flower_id, :week_id, :origin)
   end
 
   def find_demand

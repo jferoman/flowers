@@ -1,4 +1,4 @@
-<%= render partial: "main_reports/main_reports_header", locals: { active: "Estado"} %>
+<%= render partial: "main_reports/main_reports_header", locals: { active: "Estado", path: farm_main_reports_path(params[:farm_id]) } %>
 <br>
 <br>
 <!-- START row-->
@@ -87,7 +87,7 @@
         </div>
       </div>
       <a href= <%= farm_cuttings_path(farm_id: params[:farm_id]) %> class="panel-footer bg-gray-dark bt0 clearfix btn-block">
-        <span class="pull-left">View Details</span>
+        <span class="pull-left">Esquejes</span>
         <span class="pull-right">
           <em class="fa fa-chevron-circle-right"></em>
         </span>

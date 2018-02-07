@@ -1,16 +1,34 @@
 <%= form_for @block_color_flower do |f| %>
   <div class="form-group">
     <%= f.label :flower_id, 'Flor: ' %>
-    <%= f.collection_select(:flower_id, Flower.all, :id, :name) %>
+    <select class="selectpicker" data-live-search="true" name="block_color_flower[flower_id]" id="block_color_flower_flower_id">
+      <% Flower.all.each do |flower|%>
+      <option value=<%= flower.id.to_s %>>
+        <%= flower.name %>
+      </option>
+      <% end %>
+    </select>
   </div>
   <div class="form-group">
     <%= f.label :color_id, 'Color: ' %>
-    <%= f.collection_select(:color_id, Color.all, :id, :name) %>
+    <select class="selectpicker" data-live-search="true" name="block_color_flower[color_id]" id="block_color_flower_color_id">
+      <% Color.all.each do |color|%>
+      <option value=<%= color.id.to_s %>>
+        <%= color.name %>
+      </option>
+      <% end %>
+    </select>
   </div>
 
   <div class="form-group">
     <%= f.label :block_id, 'Bloque: ' %>
-    <%= f.collection_select(:block_id, @farm.blocks, :id, :name) %>
+    <select class="selectpicker" data-live-search="true" name="block_color_flower[block_id]" id="block_color_flower_block_id">
+      <% @farm.blocks.each do |block|%>
+      <option value=<%= block.id.to_s %>>
+        <%= block.name %>
+      </option>
+      <% end %>
+    </select>
   </div>
 
   <div class="field">

@@ -13,7 +13,15 @@
 </div>
 <div class="form-group">
   <%= f.label :bed_type_id, 'Tipo de cama' %>
-  <%= f.collection_select(:bed_type_id, BedType.all, :id, :name) %>
+
+  <select class="selectpicker" data-live-search="true" id="bed__bed_type_id" name="bed[bed_type_id]">
+    <% BedType.all.each do |bed_type|%>
+    <option value=<%= bed_type.id.to_s %>>
+      <%= bed_type.name %>
+    </option>
+    <% end %>
+  </select>
+
 </div>
 <%= hidden_field_tag(:block_id, params[:block_id]) %>
 <div>

@@ -11,6 +11,7 @@ class Week < ApplicationRecord
   has_many :bed_productions
   has_many :sowing_details
   has_many :sowing_solutions
+  has_many :productions
 
   class << self
     def import file_path

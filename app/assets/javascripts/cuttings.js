@@ -13,3 +13,5 @@
 //= require datatables-buttons/js/buttons.print
 //= require datatables-responsive/js/dataTables.responsive
 //= require datatables-responsive/js/responsive.bootstrap
+
+//= require bootstrap-select/dist/js/bootstrap-select.min.js

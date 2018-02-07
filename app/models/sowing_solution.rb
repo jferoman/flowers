@@ -83,57 +83,6 @@ class SowingSolution < ApplicationRecord
         end
     end
 
-    ##
-    # Generate cuttings from sowing solution , for the specified farm.
-    # Parameters: farm_id
-    # Return: Generate cuttings for the variety and week of the sowing detail.
-    #
-    ##
-    def generate_cuttings farm_id
-      cuttings = []
-      Farm.find(farm_id).sowing_solutions.group(:variety_id, :week_id, :cutting_week).sum(:quantity).each do |sowing|
-        cuttings << {
-          quantity: sowing[1],
-          origin: "Modelo",
-          cutting_week: sowing[0][2],
-          farm_id: farm_id,
-          week_id: sowing[0][1],
-          variety_id: sowing[0][0]
-        }
-      end
-      Cutting.bulk_insert values: cuttings
-    end
-
-    ##
-    # Generate the production from the sowing detail.
-    # Parameters:
-    # => farm: Farm for the sowings solutions
-    #
-    # Generate the bed production for this sowing.
-    ##
-    # TODO
-    def generate_block_production farm
-      block_productions = []
-      farm.sowing_solutions.each do |sowing_solution|
-        production = 0
-        (1..(sowing_solution.expiration_week.week-sowing_solution.week.week)).each do |s|
-
-          production += (sowing_solution.quantity * sowing_solution.variety.get_productivity(s))
-
-          block_productions << {
-            quantity: production,
-            origin: "Modelo",
-            variety_id: sowing_solution.variety_id,
-            farm_id: farm.id,
-            week_id: sowing_solution.week.next_week_in(s).id,
-            block_id: sowing_solution.block.id
-          }
-
-        end
-      end
-      BlockProduction.bulk_insert values: block_productions
-    end
-
     private
       def csv_with_errors sowing_solution_list
 

@@ -7,6 +7,8 @@ class Cutting < ApplicationRecord
   belongs_to :farm
   belongs_to :week
   belongs_to :variety
+  has_one    :production
+
 
   class << self
     def import file_path
@@ -48,7 +50,7 @@ class Cutting < ApplicationRecord
 
           cuttings << {
             quantity: row["cuttings"],
-            origin: "Ejecutado",
+            origin: row["origin"],
             cutting_week:row["cutting_week"],
             farm_id: farm_id,
             week_id: week_id,

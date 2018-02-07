@@ -15,6 +15,7 @@ class Variety < ApplicationRecord
   has_many :sowing_solutions
   has_many :block_productions
   has_many :bed_productions
+  has_many :productions
 
   delegate :name, to: :flower, prefix: true
   delegate :name, to: :color, prefix: true

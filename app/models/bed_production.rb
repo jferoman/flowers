@@ -36,16 +36,16 @@ class BedProduction < ApplicationRecord
             next
           end
 
-          bed_id = (Bed.find_by(number: row["cama"].to_s.upcase).id rescue nil)
+          bed_id = (Bed.find_by(number: row["bed"].to_s.upcase).id rescue nil)
           if bed_id.nil?
             errors << {
               initial_values: row.to_h,
-              error: "Cama: #{row["cama"]} no encontrada."
+              error: "Cama: #{row["bed"]} no encontrada."
             }
             next
           end
 
-          bed_production = BedßProduction.find_by(variety_id: variety_id, week_id: week_id, bed_id: bed_id, origin: row["origin"])
+          bed_production = BedProduction.find_by(variety_id: variety_id, week_id: week_id, bed_id: bed_id, origin: row["origin"])
           if !bed_production.nil?
             errors << {
               initial_values: row.to_h,

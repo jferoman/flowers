@@ -1,11 +1,24 @@
 <%= form_for @cutting do |f| %>
   <div class="form-group">
     <%= f.label :variety_id, 'Variedad' %>
-    <%= f.collection_select(:variety_id, Variety.all, :id, :name) %>
+    <select class="selectpicker" data-live-search="true" name="cutting[variety_id]" id="cutting_variety_id">
+      <% Variety.all.each do |variety|%>
+      <option value=<%= variety.id.to_s %>>
+        <%= variety.name %>
+      </option>
+      <% end %>
+    </select>
   </div>
   <div class="form-group">
     <%= f.label :week_id, 'Semana' %>
-    <%= f.collection_select(:week_id, Week.all, :id, :initial_day) %>
+    <select class="selectpicker" data-live-search="true" name="cutting[week_id]" id="cutting_variety_id">
+      <% Week.all.each do |week|%>
+      <option value=<%= week.id.to_s %>>
+        <%= week.initial_day %>
+      </option>
+      <% end %>
+    </select>
+
   </div>
   <div class="form-group">
       <%= f.label :cutting_week, 'Semana de corte' %>
@@ -21,6 +34,6 @@
   </div>
 
   <div>
-    <%= f.submit 'Registrar corte' %>
+    <%= f.submit 'Registrar esqueje' %>
   </div>
 <% end %>

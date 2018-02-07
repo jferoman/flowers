@@ -1,0 +1,47 @@
+<%= include_gon %>
+
+<%= render partial: "main_reports/main_reports_header", locals: { active: "Uso" } %>
+
+<form action="<%= farm_land_uses_path(params[:farm_id]) %>" method="get" id="index_form" class="form-inline">
+
+  <select class="selectpicker" data-live-search="true" id="block_id" name="block_id" type="block_id">
+    <option value=<%= nil %>>
+      Todos los bloques
+    </option>
+    <% @blocks.each do |block|%>
+    <option value=<%= block.id.to_s %>
+      <%= if block.id.to_s == @selected_block; selected="selected" end %>>
+      <%= block.name %>
+    </option>
+    <% end %>
+  </select>
+
+  <select class="selectpicker" data-live-search="true" id="bed_type_id" name="bed_type_id" type="bed_type_id">
+    <option value=<%= nil %>>
+      Todos los tipos de cama
+    </option>
+    <% BedType.all.each do |bed_type|%>
+    <option value=<%= bed_type.id.to_s %>
+      <%= if bed_type.id.to_s == @selected_bed_type; selected="selected" end %>>
+      <%= bed_type.name %>
+    </option>
+    <% end %>
+  </select>
+
+  <br>
+  <br>
+  <input type="submit" class='btn btn-primary'>
+</form>
+
+<br>
+<br>
+
+<div class="container-fluid">
+  <div class="row mb-lg ">
+    <div class="land-use-graph-col">
+      <div>
+        <canvas class = "land-use-graph" id="chartjs-linechart-land-use"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
